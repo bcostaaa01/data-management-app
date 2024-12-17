@@ -1,5 +1,5 @@
 <template>
-    <fwb-sidebar class="h-full">
+    <fwb-sidebar class="h-full dark:bg-gray-800">
         <fwb-sidebar-item>
             <template #icon>
                 <font-awesome-icon :icon="faTachometerAlt" />
