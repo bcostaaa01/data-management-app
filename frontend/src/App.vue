@@ -4,7 +4,6 @@
       <Sidebar />
     </div>
     <div class="w-5/6 flex flex-col">
-      <NavBar />
       <main class="flex-1 p-4">
         <RouterView />
       </main>
