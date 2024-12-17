@@ -5,6 +5,7 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import Aura from "@primevue/themes/aura";
 import { router } from "./router";
+import "../node_modules/flowbite-vue/dist/index.css";
 
 const pinia = createPinia();
 
