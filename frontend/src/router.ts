@@ -1,10 +1,10 @@
 import { createMemoryHistory, createRouter } from "vue-router";
-import HomeView from "./views/HomeView.vue";
+import DashboardView from "./views/DashboardView.vue";
 import AboutView from "./views/AboutView.vue";
 import ReportsView from "./views/ReportsView.vue";
 
 const routes = [
-  { path: "/", component: HomeView },
+  { path: "/", component: DashboardView },
   {
     path: "/about",
     component: AboutView,
