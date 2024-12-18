@@ -1,38 +1,19 @@
 <template>
-    <fwb-sidebar class="h-full dark:bg-gray-800">
-        <fwb-sidebar-item>
-            <template #icon>
-                <font-awesome-icon :icon="faTachometerAlt" />
-            </template>
-            <template #default>
-                <router-link to="/">Dashboard</router-link>
-            </template>
-        </fwb-sidebar-item>
-        <fwb-sidebar-item>
-            <template #icon>
-                <font-awesome-icon :icon="faFileAlt" />
-            </template>
-            <template #default>
-                <router-link to="/reports">Reports</router-link>
-            </template>
-        </fwb-sidebar-item>
-
+    <fwb-sidebar>
+        <SidebarLink v-for="link in links" :key="link.label" :icon="link.icon" :label="link.label" :to="link.to" />
         <fwb-sidebar-item-group border>
-            <fwb-sidebar-item>
-                <template #icon>
-                    <font-awesome-icon :icon="faCog" />
-                </template>
-                <template #default>
-                    <router-link to="/settings">Settings</router-link>
-                </template>
-            </fwb-sidebar-item>
+            <SidebarLink :icon="faCog" label="Settings" :to="'/settings'" />
         </fwb-sidebar-item-group>
     </fwb-sidebar>
 </template>
 
-<script setup>
-import { FwbSidebar, FwbSidebarItem, FwbSidebarItemGroup } from "flowbite-vue";
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+<script setup lang="ts">
+import { FwbSidebar, FwbSidebarItemGroup } from "flowbite-vue";
+import SidebarLink from './SidebarLink.vue';
 import { faTachometerAlt, faFileAlt, faCog } from '@fortawesome/free-solid-svg-icons';
 
+const links = [
+    { icon: faTachometerAlt, label: 'Dashboard', to: '/' },
+    { icon: faFileAlt, label: 'Reports', to: '/reports' },
+];
 </script>
