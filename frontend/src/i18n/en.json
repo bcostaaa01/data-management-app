@@ -1,3 +1,10 @@
 {
-  "message": "Hello, world!"
+  "message": "Hello, world!",
+  "settings": {
+    "language": "Language",
+    "language_switch": "Language switch"
+  },
+  "pages": {
+    "settings": "Settings"
+  }
 }
