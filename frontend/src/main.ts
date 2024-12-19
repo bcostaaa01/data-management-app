@@ -18,7 +18,7 @@ createApp(App)
     },
   })
   .use(Vue3Toastify, {
-    autoClose: 5000,
+    autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
