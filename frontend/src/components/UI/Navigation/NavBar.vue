@@ -1,7 +1,7 @@
 <template>
     <div class="mt-4 ml-4 card flex justify-start">
         <Breadcrumb :home="home" :model="items" class="rounded-md">
-            <template #item="{ item, index }">
+            <template #item="{ item }">
                 <router-link :to="item.to"> {{ item.label }} </router-link>
             </template>
         </Breadcrumb>
