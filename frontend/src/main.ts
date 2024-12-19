@@ -8,7 +8,7 @@ import { router } from "./router";
 import "../node_modules/flowbite-vue/dist/index.css";
 import Vue3Toastify, { type ToastContainerOptions } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
-
+import i18n from "./i18n/config";
 const pinia = createPinia();
 
 createApp(App)
@@ -17,6 +17,7 @@ createApp(App)
       preset: Aura,
     },
   })
+  .use(i18n)
   .use(Vue3Toastify, {
     autoClose: 3000,
     hideProgressBar: false,

@@ -9,6 +9,7 @@
         <div class="fixed top-0 right-0 p-4">
           <RefreshServiceWorker />
         </div>
+        {{ $t('message') }}
       </main>
     </div>
   </div>
