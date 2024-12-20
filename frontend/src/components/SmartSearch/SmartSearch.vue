@@ -9,7 +9,7 @@
             <template #header>
                 <div class="flex items-center w-full">
                     <FontAwesomeIcon :icon="faSearch" class="h-4 w-4 text-gray-500" />
-                    <FwbInput v-model="query" placeholder="Search..." autofocus
+                    <FwbInput v-model="query" placeholder="Search for reports, tables, ..." autofocus
                         class="w-full ml-2 mr-2 text-sm focus:outline-none" />
                 </div>
             </template>
