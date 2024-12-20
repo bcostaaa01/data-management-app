@@ -1,10 +1,10 @@
 <template>
-    <fwb-sidebar-item class="flex items-center">
+    <fwb-sidebar-item class="flex items-center py-2">
         <template #icon>
-            <font-awesome-icon :icon="icon" class="w-5 h-5" />
+            <font-awesome-icon :icon="icon" class="w-4 h-4" />
         </template>
         <template #default>
-            <router-link :to="to" class="ml-3">{{ label }}</router-link>
+            <router-link :to="to" class="ml-2 text-sm">{{ label }}</router-link>
         </template>
     </fwb-sidebar-item>
 </template>
