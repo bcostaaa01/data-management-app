@@ -15,11 +15,20 @@ import SidebarLink from './SidebarLink.vue';
 import { faTachometerAlt, faFileAlt, faCog } from '@fortawesome/free-solid-svg-icons';
 import SmartSearch from '../../SmartSearch/SmartSearch.vue';
 import { useI18n } from 'vue-i18n';
+import { faTable } from '@fortawesome/free-solid-svg-icons/faTable';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const { t } = useI18n();
 
-const links = computed(() => [
+type Link = {
+    icon: IconProp;
+    label: string;
+    to: string;
+};
+
+const links = computed<Link[]>(() => [
     { icon: faTachometerAlt, label: 'Dashboard', to: '/' },
     { icon: faFileAlt, label: `${t('sidebar.reports')}`, to: '/reports' },
+    { icon: faTable, label: `${t('sidebar.tables')}`, to: '/tables' },
 ]);
 </script>
