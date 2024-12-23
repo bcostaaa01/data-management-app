@@ -6,5 +6,9 @@
   },
   "pages": {
     "settings": "Settings"
+  },
+  "sidebar": {
+    "reports": "Reports",
+    "settings": "Settings"
   }
 }

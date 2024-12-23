@@ -6,5 +6,9 @@
   },
   "pages": {
     "settings": "Einstellungen"
+  },
+  "sidebar": {
+    "reports": "Berichte",
+    "settings": "Einstellungen"
   }
 }
