@@ -10,6 +10,7 @@
   "sidebar": {
     "reports": "Reports",
     "tables": "Tables",
-    "settings": "Settings"
+    "settings": "Settings",
+    "signOut": "Sign out"
   }
 }

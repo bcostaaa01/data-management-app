@@ -4,7 +4,7 @@ import ReportsView from "./views/ReportsView.vue";
 import SettingsView from "./views/SettingsView.vue";
 import TablesView from "./views/TablesView.vue";
 import SignIn from "./views/Auth/SignIn.vue";
-import supabase from "./supabase/config";
+import { checkAuth } from "./supabase/auth";
 
 const routes = [
   { path: "/", component: DashboardView, meta: { requiresAuth: true } },
@@ -32,6 +32,9 @@ const routes = [
   {
     path: "/signin",
     component: SignIn,
+    meta: {
+      requiresAuth: false,
+    },
   },
 ];
 
@@ -41,12 +44,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (!supabase.auth.getUser()) {
-      next("/signin");
-    } else {
-      next();
-    }
+  if (to.matched.some((record) => record.meta.requiresAuth) && !checkAuth()) {
+    next("/signin");
   } else {
     next();
   }

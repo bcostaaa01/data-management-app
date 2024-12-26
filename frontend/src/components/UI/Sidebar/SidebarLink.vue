@@ -4,7 +4,7 @@
             <font-awesome-icon :icon="icon" class="w-4 h-4" />
         </template>
         <template #default>
-            <router-link :to="to" class="ml-2 text-sm">{{ label }}</router-link>
+            <router-link :to="to" class="ml-2 text-sm" @click="click">{{ label }}</router-link>
         </template>
     </fwb-sidebar-item>
 </template>
@@ -20,6 +20,7 @@ interface Props {
     icon: IconProp;
     label: string;
     to: string;
+    click?: () => void;
 }
 
 const props = defineProps<Props>();
