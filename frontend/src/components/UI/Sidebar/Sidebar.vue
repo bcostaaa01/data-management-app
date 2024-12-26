@@ -15,7 +15,7 @@
                     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                         <div class="flex justify-between items-center h-14">
                             <CompanyInfo />
-                            <SidebarToggle @open="onToggle" />
+                            <SidebarToggle @open="onToggle" class="mb-4" />
                         </div>
                         <SmartSearch />
                         <SidebarLink v-for="link in links" :key="link.label" :icon="link.icon" :label="link.label"
