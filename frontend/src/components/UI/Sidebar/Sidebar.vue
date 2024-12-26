@@ -1,6 +1,6 @@
 <template>
     <div class="relative">
-        <div class="fixed inset-y-0 top-0 left-0 h-screen w-16 bg-gray-800 text-white">
+        <div class="fixed inset-y-0 top-0 left-0 h-screen w-16 bg-gray-50 dark:bg-gray-800 text-white">
 
             <button @click="toggleSidebar" class="mt-4 ml-4 hover:bg-gray-600 rounded-md p-1 transition duration-200">
                 <FontAwesomeIcon :icon="visible ? faTimes : faBars" class="w-5 h-5" />
@@ -10,7 +10,7 @@
 
             <Transition mode="out-in" appear name="slide">
                 <aside id="default-sidebar"
-                    :class="['fixed', 'top-0', 'left-0', 'z-40', 'h-screen', 'border-r', 'border-gray-700', 'transition-transform', visible ? 'translate-x-0' : '-translate-x-full', 'sm:translate-x-0', 'w-64']"
+                    :class="['fixed', 'top-0', 'left-0', 'z-40', 'h-screen', 'border-r', 'border-gray-700', visible ? 'translate-x-0' : '-translate-x-full', 'sm:translate-x-0', 'w-64']"
                     aria-label="Sidebar" v-if="visible">
                     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                         <div class="flex justify-between items-center h-14">
