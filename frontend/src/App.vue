@@ -1,9 +1,9 @@
 <template>
   <div class="flex h-screen dark:bg-gray-900">
-    <div class="w-1/6 md:w-1/5">
+    <div>
       <Sidebar />
     </div>
-    <div class="w-5/6 md:w-4/5 flex flex-col">
+    <div class="flex flex-col ml-16">
       <main class="flex-1 p-4">
         <RouterView />
         <div class="fixed top-0 right-0 p-4">

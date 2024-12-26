@@ -2,7 +2,7 @@
     <div>
         <div @click="openModal" tabindex="0" class="relative w-50 cursor-pointer">
             <FwbInput type="text" :placeholder="`Search for reports, tables, ...(${systemKey}+K)`" readonly
-                class="w-full py-2 text-xs rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer hover:bg-gray-800 transition-colors duration-200" />
+                class="w-full py-2 text-xs rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-colors duration-200" />
         </div>
 
         <FwbModal v-if="isOpen" @close="closeModal" size="4xl">
