@@ -17,11 +17,11 @@
                             <CompanyInfo />
                             <SidebarToggle @open="onToggle" class="mb-4" />
                         </div>
-                        <SmartSearch />
+                        <SmartSearchInput />
                         <SidebarLink v-for="link in links" :key="link.label" :icon="link.icon" :label="link.label"
                             :to="link.to" />
                         <fwb-sidebar-item-group border>
-                            <SidebarLink :icon="faCog" :label="t('sidebar.settings')" :to="'/settings'" />
+                            <SidebarLink :icon="faCog" :label="t('sidebar.settings')" :to="'/settings'" class="my-0" />
                         </fwb-sidebar-item-group>
                     </div>
                 </aside>
@@ -35,13 +35,13 @@ import { computed, ref } from 'vue';
 import { FwbSidebarItemGroup } from "flowbite-vue";
 import SidebarLink from './SidebarLink.vue';
 import { faTachometerAlt, faFileAlt, faCog, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
-import SmartSearch from '../../SmartSearch/SmartSearch.vue';
 import { useI18n } from 'vue-i18n';
 import { faTable } from '@fortawesome/free-solid-svg-icons/faTable';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import CompanyInfo from './CompanyInfo.vue';
 import SidebarToggle from './SidebarToggle.vue';
+import SmartSearchInput from '../../SmartSearch/SmartSearchInput.vue';
 
 const { t } = useI18n();
 

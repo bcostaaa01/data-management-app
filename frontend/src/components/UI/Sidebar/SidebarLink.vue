@@ -1,5 +1,5 @@
 <template>
-    <fwb-sidebar-item class="flex items-center py-2 dark:hover:bg-blue-500" :class="activeClasses">
+    <fwb-sidebar-item class="flex items-center py-2 my-2 dark:hover:bg-blue-500" :class="activeClasses">
         <template #icon>
             <font-awesome-icon :icon="icon" class="w-4 h-4" />
         </template>
