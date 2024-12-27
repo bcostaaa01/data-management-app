@@ -12,7 +12,8 @@
     "importButton": "Daten importieren",
     "successMessage": "Daten erfolgreich importiert",
     "errorMessage": "Bitte wählen Sie eine Datei aus",
-    "uploadingMessage": "Datei wird hochgeladen..."
+    "uploadingMessage": "Datei wird hochgeladen...",
+    "beforeUploadMessage": "Bitte wählen Sie eine Datei aus"
   },
   "sidebar": {
     "reports": "Berichte",
