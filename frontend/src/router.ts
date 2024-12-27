@@ -4,10 +4,16 @@ import ReportsView from "./views/ReportsView.vue";
 import SettingsView from "./views/SettingsView.vue";
 import TablesView from "./views/TablesView.vue";
 import SignIn from "./views/Auth/SignIn.vue";
+import DataImportView from "./views/DataImportView.vue";
 import { checkAuth } from "./supabase/auth";
 
 const routes = [
   { path: "/", component: DashboardView, meta: { requiresAuth: true } },
+  {
+    path: "/data-import",
+    component: DataImportView,
+    meta: { requiresAuth: true },
+  },
   {
     path: "/reports",
     component: ReportsView,

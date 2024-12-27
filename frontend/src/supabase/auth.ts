@@ -17,7 +17,7 @@ export const signUp = async (email: string, password: string) => {
 };
 
 export const signIn = async (email: string) => {
-  const { data, error } = await supabase.auth.signInWithOtp({
+  const { error } = await supabase.auth.signInWithOtp({
     email: email,
     options: {
       emailRedirectTo: "http://localhost:5173/",
@@ -28,13 +28,16 @@ export const signIn = async (email: string) => {
     alert("Error signing in: " + error.message);
   } else {
     router.push("/");
-    return data;
   }
 };
 
 export const signOut = async () => {
-  await supabase.auth.signOut();
-  router.push("/signin");
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    alert("Error signing out: " + error.message);
+  } else {
+    router.push("/signin");
+  }
 };
 
 export const checkAuth = async () => {

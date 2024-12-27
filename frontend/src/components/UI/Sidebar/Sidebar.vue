@@ -35,7 +35,7 @@
 import { computed, ref } from 'vue';
 import { FwbSidebarItemGroup } from "flowbite-vue";
 import SidebarLink from './SidebarLink.vue';
-import { faTachometerAlt, faFileAlt, faCog, faBars, faTimes, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faFileAlt, faFileImport, faCog, faBars, faTimes, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useI18n } from 'vue-i18n';
 import { faTable } from '@fortawesome/free-solid-svg-icons/faTable';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -65,6 +65,7 @@ const onToggle = (open: boolean) => {
 
 const links = computed<Link[]>(() => [
     { icon: faTachometerAlt, label: 'Dashboard', to: '/' },
+    { icon: faFileImport, label: `${t('sidebar.dataImport')}`, to: '/data-import' },
     { icon: faFileAlt, label: `${t('sidebar.reports')}`, to: '/reports' },
     { icon: faTable, label: `${t('sidebar.tables')}`, to: '/tables' },
 ]);

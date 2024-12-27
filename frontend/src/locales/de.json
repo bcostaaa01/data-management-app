@@ -1,5 +1,4 @@
 {
-  "message": "Hallo, Welt!",
   "settings": {
     "language": "Sprache",
     "language_switch": "Sprache wechseln"
@@ -7,8 +6,17 @@
   "pages": {
     "settings": "Einstellungen"
   },
+  "dataImport": {
+    "title": "Datenimport",
+    "selectFile": "Datei auswählen",
+    "importButton": "Daten importieren",
+    "successMessage": "Daten erfolgreich importiert",
+    "errorMessage": "Bitte wählen Sie eine Datei aus",
+    "uploadingMessage": "Datei wird hochgeladen..."
+  },
   "sidebar": {
     "reports": "Berichte",
+    "dataImport": "Datenimport",
     "tables": "Tabellen",
     "settings": "Einstellungen",
     "signOut": "Ausloggen"
