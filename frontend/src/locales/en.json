@@ -6,6 +6,12 @@
   "pages": {
     "settings": "Settings"
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "getFiles": "Get Files",
+    "emptyMessage": "No files found",
+    "emptyFolderPlaceholder": "No files found in this folder"
+  },
   "dataImport": {
     "title": "Data Import",
     "selectFile": "Select File",

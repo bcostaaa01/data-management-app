@@ -6,6 +6,12 @@
   "pages": {
     "settings": "Einstellungen"
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "getFiles": "Dateien abrufen",
+    "emptyMessage": "Keine Dateien gefunden",
+    "emptyFolderPlaceholder": "Keine Dateien in diesem Ordner"
+  },
   "dataImport": {
     "title": "Datenimport",
     "selectFile": "Datei auswählen",

@@ -1,36 +1,42 @@
 <template>
-    <div class="flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8 w-full">
-        <h1 class="mb-8 text-3xl font-bold text-center">{{ t('dataImport.title') }}</h1>
-        <form @submit.prevent="importData" class="w-full max-w-md">
-            <div class="mb-6">
-                <label for="file" class="block mb-2 text-sm font-medium dark:text-white">{{ t('dataImport.selectFile')
-                    }}</label>
-                <input type="file" id="file" @change="handleFileUpload"
-                    class="w-full px-6 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
-            </div>
-            <div v-if="!isLoading" class="flex justify-center items-center mt-4">
-                <button type="submit"
-                    class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline">{{
-                        t('dataImport.importButton') }}</button>
-            </div>
-            <div v-else class="flex justify-center items-center mt-4">
-                <FontAwesomeIcon :icon="faSpinner" class="animate-spin" />
-            </div>
-            <div v-if="uploadWasSuccessful && !isUploading" class="flex justify-center items-center mt-4">
-                <p class="text-green-500">{{ t('dataImport.successMessage') }}</p>
-            </div>
-            <div v-else-if="uploadWasSuccessful === false && !isUploading && !beforeUpload"
-                class="flex justify-center items-center mt-4">
-                <p class="text-red-500">{{ t('dataImport.errorMessage') }}</p>
-            </div>
-            <div v-else-if="isUploading" class="flex justify-center items-center mt-4">
-                <p>{{ t('dataImport.uploadingMessage') }}</p>
-            </div>
-            <div v-else-if="beforeUpload" class="flex justify-center items-center mt-4 dark:text-white">
-                <FontAwesomeIcon :icon="faFile" class="mr-2" />
-                <p>{{ t('dataImport.beforeUploadMessage') }}</p>
-            </div>
-        </form>
+    <div class="flex justify-start min-h-full px-4 sm:px-6 lg:px-8 w-full">
+        <h1 class="text-3xl font-bold text-center mb-4">{{ t('dataImport.title') }}</h1>
+        <div class="flex flex-col items-center justify-center min-h-full py-12 sm:px-6 lg:px-8 w-full">
+
+            <form @submit.prevent="importData" class="w-full max-w-md">
+                <div class="mb-6">
+                    <label for="file" class="block mb-2 text-sm font-medium dark:text-white">{{
+                        t('dataImport.selectFile')
+                        }}</label>
+                    <input type="file" id="file" @change="handleFileUpload"
+                        class="w-full px-6 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                </div>
+                <div v-if="!isLoading" class="flex justify-center items-center mt-4">
+                    <button type="submit"
+                        class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline">{{
+                            t('dataImport.importButton') }}</button>
+                </div>
+                <div v-else class="flex justify-center items-center mt-4">
+                    <FontAwesomeIcon :icon="faSpinner" class="animate-spin" />
+                </div>
+                <div v-if="uploadWasSuccessful && !isUploading"
+                    class="flex justify-center items-center mt-4 gap-2">
+                    <FontAwesomeIcon :icon="faCheck" class="text-green-500" />
+                    <p class="text-green-500">{{ t('dataImport.successMessage') }}</p>
+                </div>
+                <div v-else-if="uploadWasSuccessful === false && !isUploading && !beforeUpload"
+                    class="flex justify-center items-center mt-4">
+                    <p class="text-red-500">{{ t('dataImport.errorMessage') }}</p>
+                </div>
+                <div v-else-if="isUploading" class="flex justify-center items-center mt-4">
+                    <p>{{ t('dataImport.uploadingMessage') }}</p>
+                </div>
+                <div v-else-if="beforeUpload" class="flex justify-center items-center mt-4 dark:text-white">
+                    <FontAwesomeIcon :icon="faFile" class="mr-2" />
+                    <p>{{ t('dataImport.beforeUploadMessage') }}</p>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -40,11 +46,11 @@ import { useI18n } from 'vue-i18n';
 import { useFileUpload } from '../composables/useFileUpload';
 import { useSupabaseUpload } from '../composables/useSupabaseUpload';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faSpinner, faFile } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faFile, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const { t } = useI18n();
 const { file, handleFileUpload } = useFileUpload();
-const { uploadFile } = useSupabaseUpload();
+const { uploadFileToFolder } = useSupabaseUpload();
 
 const isLoading = ref(false);
 
@@ -62,7 +68,7 @@ const importData = async () => {
 
         try {
             await new Promise((resolve) => setTimeout(resolve, 2000));
-            await uploadFile(file.value);
+            await uploadFileToFolder(file.value, 'private');
             uploadWasSuccessful.value = true;
         } catch (error) {
             console.error('Error uploading file:', error);

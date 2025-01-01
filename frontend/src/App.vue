@@ -1,12 +1,12 @@
 <template>
-  <div class="flex h-screen dark:bg-gray-900">
+  <div class="flex h-full dark:bg-gray-900 w-full">
     <div v-if="isAuthenticated">
       <div>
         <Sidebar />
         <SmartSearchModal :isOpen="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" />
       </div>
-      <div class="flex flex-col ml-16 w-full">
-        <main class="flex-1 p-4 w-screen">
+      <div class="flex flex-col ml-16 w-full h-screen">
+        <main class="flex-1 p-4 w-full h-screen">
           <RouterView />
           <div class="fixed top-0 right-0 p-4">
             <RefreshServiceWorker />

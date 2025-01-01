@@ -14,6 +14,15 @@ export function useSupabaseUpload() {
         }
     };
 
+    const uploadFileToFolder = async (file: File, folder: string) => {
+        const { data, error } = await supabase.storage.from('test').upload(folder + '/' + file.name, file);
+        if (error) {
+            console.error('Error uploading file:', error);
+        } else {
+            console.log('File uploaded successfully:', data);
+        }
+    };
+
     const createBucket = async () => {
         const { data, error } = await supabase.storage.createBucket('my-bucket');
         if (error) {
@@ -23,5 +32,5 @@ export function useSupabaseUpload() {
         }
     };
 
-    return { uploadFile, createBucket };
+    return { uploadFile, uploadFileToFolder, createBucket };
 }
