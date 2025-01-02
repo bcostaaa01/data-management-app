@@ -10,8 +10,7 @@
 <script setup lang="ts">
 import deIcon from "../../assets/de.svg";
 import enIcon from "../../assets/en.svg";
-
-type Language = "de" | "en";
+import { Language } from "../../locales/types";
 
 const languageIcons: Record<Language, string> = {
     de: deIcon,
