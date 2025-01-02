@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <h1 class="text-3xl font-bold text-center">{{ t('dashboard.title') }}</h1>
+        <h1 class="text-3xl font-bold">{{ t('dashboard.title') }}</h1>
         <div v-for="file in files" :key="file.id" v-if="files.length > 0">
             <div>
                 <File :file="file" @click="handleOpen" />
