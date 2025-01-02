@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { FwbSidebarItemGroup } from "flowbite-vue";
 import SidebarLink from './SidebarLink.vue';
 import { faTachometerAlt, faFileAlt, faFileImport, faCog, faBars, faTimes, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -44,6 +44,9 @@ import CompanyInfo from './CompanyInfo.vue';
 import SidebarToggle from './SidebarToggle.vue';
 import SmartSearchInput from '../../SmartSearch/SmartSearchInput.vue';
 import { signOut } from "../../../supabase/auth";
+import { useSidebar } from '../../../composables/useSidebar';
+
+const { visible, toggleSidebar } = useSidebar();
 
 const { t } = useI18n();
 
@@ -51,12 +54,6 @@ type Link = {
     icon: IconProp;
     label: string;
     to: string;
-};
-
-const visible = ref(false);
-
-const toggleSidebar = () => {
-    visible.value = !visible.value;
 };
 
 const onToggle = (open: boolean) => {
