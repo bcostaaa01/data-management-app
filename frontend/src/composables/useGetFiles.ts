@@ -1,19 +1,13 @@
-import { ref } from 'vue';
-import supabase from '../supabase/config';
+import { ref } from "vue";
+import { useSupabaseStorage } from "./useSupabaseStorage";
 
 export const useGetFilesFromBucket = () => {
-    const files = ref<any[]>([]);
+  const files = ref<any[]>([]);
+  const { listFiles } = useSupabaseStorage();
 
-    const getFiles = async () => {
-        const { data, error } = await supabase.storage.from('test').list('private');
+  const getFiles = async () => {
+    files.value = await listFiles("test", "private");
+  };
 
-        if (error) {
-            console.error('Error fetching files:', error);
-        } else {
-            console.log(data);
-            files.value = data || [];
-        }
-    };
-
-    return { files, getFiles };
+  return { files, getFiles };
 };
