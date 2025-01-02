@@ -1,7 +1,7 @@
 <template>
     <div>
         <fwb-card
-            class="flex items-center gap-6 p-6 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 m-6 cursor-pointer"
+            class="flex items-center gap-6 p-6 ml-0 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 m-6 cursor-pointer"
             @click="openFile(file.name)">
             <FontAwesomeIcon :icon="faFile" />
             <span class="ml-2">{{ file.name }}</span>
