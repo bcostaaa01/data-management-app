@@ -18,8 +18,7 @@
                             <SidebarToggle @open="onToggle" class="mb-4" />
                         </div>
                         <SmartSearchInput />
-                        <SidebarLink v-for="link in links" :key="link.label" :icon="link.icon" :label="link.label"
-                            :to="link.to" />
+                        <SidebarLinks :links="links" />
                         <fwb-sidebar-item-group border>
                             <SidebarLink :icon="faCog" :label="t('sidebar.settings')" :to="'/settings'" class="my-0" />
                         </fwb-sidebar-item-group>
@@ -45,6 +44,7 @@ import SidebarToggle from './SidebarToggle.vue';
 import SmartSearchInput from '../../SmartSearch/SmartSearchInput.vue';
 import { signOut } from "../../../supabase/auth";
 import { useSidebar } from '../../../composables/useSidebar';
+import SidebarLinks from './SidebarLinks.vue';
 
 const { visible, toggleSidebar } = useSidebar();
 
