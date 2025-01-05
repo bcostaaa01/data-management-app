@@ -3,6 +3,7 @@ import { faTable } from "@fortawesome/free-solid-svg-icons/faTable";
 import { faFileImport } from "@fortawesome/free-solid-svg-icons/faFileImport";
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons/faFileAlt";
 import { faTachometerAlt } from "@fortawesome/free-solid-svg-icons/faTachometerAlt";
+import { faHome } from "@fortawesome/free-solid-svg-icons/faHome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 type Link = {
@@ -13,7 +14,8 @@ type Link = {
 
 export const useSidebarLinks = (t: any) => {
   return computed<Link[]>(() => [
-    { icon: faTachometerAlt, label: "Dashboard", to: "/" },
+    { icon: faHome, label: "Home", to: "/" },
+    { icon: faTachometerAlt, label: "Dashboard", to: "/dashboard" },
     {
       icon: faFileImport,
       label: `${t("sidebar.dataImport")}`,

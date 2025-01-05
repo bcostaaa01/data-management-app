@@ -5,10 +5,12 @@ import SettingsView from "./views/SettingsView.vue";
 import TablesView from "./views/TablesView.vue";
 import SignIn from "./views/Auth/SignIn.vue";
 import DataImportView from "./views/DataImportView.vue";
+import HomePage from "./views/HomePage.vue";
 import { checkAuth } from "./supabase/auth";
 
 const routes = [
-  { path: "/", component: DashboardView, meta: { requiresAuth: true } },
+  { path: "/", component: HomePage, meta: { requiresAuth: true } },
+  { path: "/dashboard", component: DashboardView, meta: { requiresAuth: true } },
   {
     path: "/data-import",
     component: DataImportView,
