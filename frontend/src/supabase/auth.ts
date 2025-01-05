@@ -36,7 +36,8 @@ export const signOut = async () => {
   if (error) {
     alert("Error signing out: " + error.message);
   } else {
-    router.push("/signin");
+    window.location.reload();
+    router.push("/signin");    
   }
 };
 
