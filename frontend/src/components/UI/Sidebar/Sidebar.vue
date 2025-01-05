@@ -45,27 +45,17 @@ import SmartSearchInput from '../../SmartSearch/SmartSearchInput.vue';
 import { signOut } from "../../../supabase/auth";
 import { useSidebar } from '../../../composables/useSidebar';
 import SidebarLinks from './SidebarLinks.vue';
+import { useSidebarLinks } from '../../../composables/useSidebarLinks';
 
 const { visible, toggleSidebar } = useSidebar();
 
 const { t } = useI18n();
 
-type Link = {
-    icon: IconProp;
-    label: string;
-    to: string;
-};
+const links = useSidebarLinks(t);
 
 const onToggle = (open: boolean) => {
     visible.value = open;
 };
-
-const links = computed<Link[]>(() => [
-    { icon: faTachometerAlt, label: 'Dashboard', to: '/' },
-    { icon: faFileImport, label: `${t('sidebar.dataImport')}`, to: '/data-import' },
-    { icon: faFileAlt, label: `${t('sidebar.reports')}`, to: '/reports' },
-    { icon: faTable, label: `${t('sidebar.tables')}`, to: '/tables' },
-]);
 </script>
 
 <style scoped>
