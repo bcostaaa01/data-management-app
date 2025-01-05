@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-start min-h-full w-full">
+    <div class="flexjustify-center items-center min-h-full w-full">
         <h1 class="text-3xl font-bold text-center mb-4">{{ t('dataImport.title') }}</h1>
         <div class="flex flex-col items-center justify-center min-h-full py-12 sm:px-6 lg:px-8 w-full">
 

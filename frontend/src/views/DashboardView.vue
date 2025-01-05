@@ -1,6 +1,7 @@
 <template>
-    <div class="w-full">
-        <h1 class="text-3xl font-bold">{{ t('dashboard.title') }}</h1>
+    <h1 class="text-3xl font-bold">{{ t('dashboard.title') }}</h1>
+    <div class="flex justify-center items-center w-full min-h-full ">
+
         <div v-for="file in files" :key="file.id" v-if="files.length > 0">
             <File :file="file" :isLoading="file.isLoading" @click="handleOpen(file)" />
         </div>
