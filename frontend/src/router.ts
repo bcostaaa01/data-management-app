@@ -5,7 +5,7 @@ import SettingsView from "./views/SettingsView.vue";
 import TablesView from "./views/TablesView.vue";
 import SignIn from "./views/Auth/SignIn.vue";
 import DataImportView from "./views/DataImportView.vue";
-import HomePage from "./views/HomePage.vue";
+import HomePage from "./views/HomePageView.vue";
 import { checkAuth } from "./supabase/auth";
 
 const routes = [
