@@ -1,28 +1,27 @@
 <template>
-    <h1 class="text-3xl font-bold">{{ t('dashboard.title') }}</h1>
-    <div class="flex justify-center items-center w-full min-h-full ">
+    <div class="flex justify-center min-h-full w-full">
+        <h1 class="text-3xl font-bold">{{ t('dashboard.title') }}</h1>
+        <div class="flex justify-center items-center w-full">
 
-        <div v-for="file in files" :key="file.id" v-if="files.length > 0">
-            <File :file="file" :isLoading="file.isLoading" @click="handleOpen(file)" />
+            <div v-for="file in files" :key="file.id" v-if="files.length > 0">
+                <File :file="file" :isLoading="file.isLoading" @click="handleOpen(file)" />
+            </div>
+
+            <div v-if="files.length === 0">{{ t('dashboard.emptyFolderPlaceholder') }}</div>
         </div>
-
-        <div v-if="files.length === 0">{{ t('dashboard.emptyFolderPlaceholder') }}</div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { onMounted } from 'vue';
 import { useGetFilesFromBucket } from '../composables/useGetFiles';
 import { useI18n } from 'vue-i18n';
 import File from '../components/Dashboard/File.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const { t } = useI18n();
 const { files, getFiles } = useGetFilesFromBucket();
 
-const handleOpen = async (file) => {
+const handleOpen = async (file: any) => {
     file.isLoading = true;
 
     try {

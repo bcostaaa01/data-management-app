@@ -23,6 +23,7 @@
     "selectFile": "Datei auswählen",
     "importButton": "Daten importieren",
     "successMessage": "Daten erfolgreich importiert",
+    "goToFile": "Sie können die Datei im Dashboard ansehen. Gehe zu ",
     "errorMessage": "Bitte wählen Sie eine Datei aus",
     "uploadingMessage": "Datei wird hochgeladen...",
     "beforeUploadMessage": "Bitte wählen Sie eine Datei aus"

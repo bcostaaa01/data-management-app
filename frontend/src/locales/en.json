@@ -23,6 +23,7 @@
     "selectFile": "Select File",
     "importButton": "Import Data",
     "successMessage": "Data imported successfully",
+    "goToFile": "You can view the file in the dashboard. Go to ",
     "errorMessage": "Please select a file",
     "uploadingMessage": "Uploading file...",
     "beforeUploadMessage": "Please select a file"
