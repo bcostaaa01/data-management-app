@@ -6,6 +6,12 @@
   "pages": {
     "settings": "Einstellungen"
   },
+  "reports": {
+    "title": "Berichte"
+  },
+  "tables": {
+    "title": "Tabellen"
+  },
   "dashboard": {
     "title": "Dashboard",
     "getFiles": "Dateien abrufen",

@@ -1,6 +1,6 @@
 <template>
-    <div class="flexjustify-center items-center min-h-full w-full">
-        <h1 class="text-3xl font-bold text-center mb-4">{{ t('dataImport.title') }}</h1>
+    <div class="flex justify-center min-h-full w-full">
+        <h1 class="text-3xl font-bold flex justify-start mb-4">{{ t('dataImport.title') }}</h1>
         <div class="flex flex-col items-center justify-center min-h-full py-12 sm:px-6 lg:px-8 w-full">
 
             <form @submit.prevent="importData" class="w-full max-w-md">

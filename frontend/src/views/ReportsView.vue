@@ -1,9 +1,11 @@
 <template>
-    <div>
-        <h1>Reports</h1>
-        <p>This is the reports page. Here you can view various reports related to the data management.</p>
+    <div class="w-full">
+        <h3 class="text-3xl font-bold flex justify-start mb-4">{{ t('reports.title') }}</h3>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 </script>

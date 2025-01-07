@@ -1,6 +1,6 @@
 <template>
-    <div class="p-4">
-        <h1 class="text-2xl font-bold">{{ $t('sidebar.tables') }}</h1>
+    <div class="w-full">
+        <h3 class="text-3xl font-bold flex justify-start mb-4">{{ t('tables.title') }}</h3>
         <div class="mt-4">
             <table class="min-w-full bg-white dark:bg-gray-800">
                 <thead>
@@ -26,6 +26,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const items = ref([
     { id: 1, name: 'John Doe', age: 28, email: 'john.doe@example.com' },

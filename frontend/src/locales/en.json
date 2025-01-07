@@ -6,6 +6,12 @@
   "pages": {
     "settings": "Settings"
   },
+  "reports": {
+    "title": "Reports"
+  },
+  "tables": {
+    "title": "Tables"
+  },
   "dashboard": {
     "title": "Dashboard",
     "getFiles": "Get Files",
