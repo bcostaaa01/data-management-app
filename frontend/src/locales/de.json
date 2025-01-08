@@ -10,7 +10,8 @@
     "title": "Berichte"
   },
   "tables": {
-    "title": "Tabellen"
+    "title": "Tabellen",
+    "importTable": "Tabelle verbinden"
   },
   "dashboard": {
     "title": "Dashboard",

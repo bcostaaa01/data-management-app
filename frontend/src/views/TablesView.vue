@@ -1,6 +1,7 @@
 <template>
     <div class="w-full">
-        <h3 class="text-3xl font-bold flex justify-start mb-4">{{ t('tables.title') }}</h3>
+        <h3 class="text-3xl font-bold flex justify-start">{{ t('tables.title') }}</h3>
+        <TableImport />
         <div class="mt-4">
             <table class="min-w-full bg-white dark:bg-gray-800">
                 <thead>
@@ -25,15 +26,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useTablesStore } from '../stores/tables.store';
+import TableImport from '../components/Data/Integrations/TableImport.vue';
 
 const { t } = useI18n();
+const tablesStore = useTablesStore();
 
-const items = ref([
-    { id: 1, name: 'John Doe', age: 28, email: 'john.doe@example.com' },
-    { id: 2, name: 'Jane Smith', age: 34, email: 'jane.smith@example.com' },
-    { id: 3, name: 'Sam Johnson', age: 45, email: 'sam.johnson@example.com' },
-    { id: 4, name: 'Chris Lee', age: 23, email: 'chris.lee@example.com' },
-]);
+const items = computed(() => tablesStore.tables);
 </script>
