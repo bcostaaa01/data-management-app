@@ -21,3 +21,7 @@ A solution for managing data from different sources and formats. It's a full-sta
 1. Clone the repository
 2. Run `docker compose build` to build the Docker image or `docker build -t {whatever_name_you_want} .`
 3. Run `docker compose up` to start the development server
+
+### Architecture Diagram
+
+![Screenshot 2024-12-16 221702](https://github.com/user-attachments/assets/b7bdb09f-8b70-4287-8699-b3e7732ceeb8)
