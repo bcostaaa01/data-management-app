@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative z-50">
         <div class="fixed inset-y-0 top-0 left-0 h-screen w-16 bg-gray-50 dark:bg-gray-800 text-white">
 
             <button @click="toggleSidebar" class="mt-4 ml-4 hover:bg-gray-600 rounded-md p-1 transition duration-200">
