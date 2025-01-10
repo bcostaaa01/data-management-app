@@ -4,6 +4,8 @@ import supabase from "../supabase/config";
 
 export const useTablesStore = defineStore("tables", () => {
   const tables = ref<any[]>([]);
+  const table = ref<any>(null);
+  const name = ref<string | null>(null);
   const error = ref<string | null>(null);
   const isConnectingToTable = ref(false);
 
@@ -15,6 +17,10 @@ export const useTablesStore = defineStore("tables", () => {
     const { data, error: fetchError } = await supabase
       .from(tableName)
       .select("*");
+
+    table.value = data;
+    name.value = tableName;
+    console.log(table.value);
 
     if (fetchError) {
       console.error("Error fetching tables:", fetchError);
@@ -28,5 +34,5 @@ export const useTablesStore = defineStore("tables", () => {
     console.log("isConnectingToTable set to:", isConnectingToTable.value);
   };
 
-  return { tables, error, fetchTable, isConnectingToTable };
+  return { tables, error, fetchTable, isConnectingToTable, table, name };
 });

@@ -1,7 +1,24 @@
 <template>
     <div class="bg-gray-800 w-full p-2 rounded-lg">
-        <DataTable selection-mode="single" :value="paginatedItems" :columns="columns" :rows="rows">
-            <Column v-for="column in columns" :field="column.field" :header="column.header" />
+        <DataTable selection-mode="single" :value="paginatedItems" :columns="columns" :rows="rows" removable-sort>
+            <template #header>
+                <div class="flex justify-between items-center">
+                    <div class="text-white hover:bg-gray-800 p-2 rounded-lg transition duration-200 cursor-pointer">
+                        <h1>{{ name }}</h1>
+
+                    </div>
+                    <div class="text-white hover:bg-gray-800 p-2 rounded-lg transition duration-200 cursor-pointer">
+                        <FontAwesomeIcon :icon="faPlus" class="w-5 h-5" />
+                    </div>
+                </div>
+            </template>
+            <Column v-for="column in columns" :field="column.field" :header="column.header" :sortable="true">
+                <template #body="{ data }">
+                    <div class="text-white">
+                        {{ data[column.field] }}
+                    </div>
+                </template>
+            </Column>
         </DataTable>
         <DataTablePagination :total-records="items.length" :rows="rows" :current-page="currentPage"
             @page-change="onPageChange" />
@@ -13,11 +30,24 @@ import { ref, computed } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import DataTablePagination from './DataTablePagination.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useTablesStore } from '../../stores/tables.store';
+
+const tablesStore = useTablesStore();
+
 
 const items = computed(() => props.items);
 const columns = computed(() => props.columns);
 const rows = ref(5);
 const currentPage = ref(1);
+const table = tablesStore.table;
+const name = tablesStore.name;
+
+console.log(table);
+console.log("name", name);
+
+
 
 const paginatedItems = computed(() => {
     const start = (currentPage.value - 1) * rows.value;

@@ -1,6 +1,7 @@
 <template>
     <div class="w-full">
-        <fwb-button class="mt-4" @click="importTable">
+        <InputField v-if="!isConnecting" class="my-4 w-32" @update:value="updateTableName" />
+        <fwb-button class="mt-4" @click="importTable" :disabled="!tableName">
             <span v-if="!isConnecting">{{ t('tables.importTable') }}</span>
             <FontAwesomeIcon :icon="faSpinner" spin v-else />
         </fwb-button>
@@ -8,19 +9,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { FwbButton } from 'flowbite-vue';
 import { useI18n } from 'vue-i18n';
 import { useTablesStore } from '../../../stores/tables.store';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import InputField from '../../UI/Input/InputField.vue';
 
 const { t } = useI18n();
 const tablesStore = useTablesStore();
 
+const tableName = ref('');
+
 const isConnecting = computed(() => tablesStore.isConnectingToTable);
 
 const importTable = async () => {
-    tablesStore.fetchTable('sales');
+    tablesStore.fetchTable(tableName.value);
+};
+
+const updateTableName = (newVal: string) => {
+    console.log(newVal);
+    tableName.value = newVal;
 };
 </script>
