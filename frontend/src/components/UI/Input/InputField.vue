@@ -1,6 +1,10 @@
 <template>
     <div class="w-full">
-        <fwb-input placeholder="Table Name" v-model="value" @update:modelValue="updateValue" />
+        <fwb-input placeholder="Table Name" v-model="value" @update:modelValue="updateValue">
+            <template #prefix>
+                <slot name="prefix" />
+            </template>
+        </fwb-input>
     </div>
 </template>
 

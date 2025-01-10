@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <InputField v-if="!isConnecting" class="my-4 w-32" @update:value="updateTableName" />
+        <TableSearch v-if="!isConnecting" class="my-4 w-32" @update:value="updateTableName" />
         <fwb-button class="mt-4" @click="importTable" :disabled="!tableName">
             <span v-if="!isConnecting">{{ t('tables.importTable') }}</span>
             <FontAwesomeIcon :icon="faSpinner" spin v-else />
@@ -15,7 +15,7 @@ import { useI18n } from 'vue-i18n';
 import { useTablesStore } from '../../../stores/tables.store';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import InputField from '../../UI/Input/InputField.vue';
+import TableSearch from './TableSearch.vue';
 
 const { t } = useI18n();
 const tablesStore = useTablesStore();
