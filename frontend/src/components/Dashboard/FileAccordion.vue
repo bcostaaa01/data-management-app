@@ -12,11 +12,8 @@
                 </svg>
             </button>
             <div v-if="isOpen" class=" bg-gray-800 text-white">
-                <ul>
-                    <li class="p-2 hover:bg-gray-700 transition" v-for="file in files" :key="file.name">
-                        <span class="text-gray-300 cursor-pointer" @click="handleOpen(file)">{{ file.name }}</span>
-                    </li>
-                </ul>
+                <File v-for="file in files" :key="file.name" :file="file" />
+
             </div>
         </div>
     </div>
@@ -25,32 +22,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useOpenFile } from '../../composables/useOpenFile';
+import File from '../Data/Import/File.vue';
 
 const { t } = useI18n();
-
-const { openFile, getSignedUrl } = useOpenFile();
 
 const isOpen = ref(true);
 
 function toggle() {
     isOpen.value = !isOpen.value;
 }
-
-const handleOpen = async (file: any) => {
-    file.isLoading = true;
-
-    try {
-        const signedUrl = await getSignedUrl(file.name);
-        if (signedUrl) {
-            openFile(signedUrl.signedUrl);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-
-    file.isLoading = false;
-};
 
 defineProps<{
     files: any[];
