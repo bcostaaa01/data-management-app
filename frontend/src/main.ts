@@ -9,14 +9,17 @@ import "../node_modules/flowbite-vue/dist/index.css";
 import Vue3Toastify, { type ToastContainerOptions } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import i18n from "./i18n/config";
+import { useSystemTheme } from "./composables/useSystemTheme";
 const pinia = createPinia();
+
+useSystemTheme();
 
 createApp(App)
   .use(PrimeVue, {
     theme: {
       preset: Aura,
       options: {
-        darkModeSelector: '.dark'
+        darkModeSelector: ".dark",
       },
     },
   })
