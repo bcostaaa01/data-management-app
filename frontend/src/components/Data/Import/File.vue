@@ -7,15 +7,22 @@
 <script setup lang="ts">
 import { useOpenFile } from '../../../composables/useOpenFile';
 
-const { openFile, getSignedUrl } = useOpenFile();
+const { downloadFile } = useOpenFile();
 
 const handleOpen = async (file: any) => {
     file.isLoading = true;
 
     try {
-        const signedUrl = await getSignedUrl(file.name);
-        if (signedUrl) {
-            openFile(signedUrl.signedUrl);
+        const blob = await downloadFile(file.name);
+        if (blob) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = file.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
     } catch (error) {
         console.error(error);

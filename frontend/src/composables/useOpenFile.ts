@@ -27,5 +27,15 @@ export const useOpenFile = () => {
     }
   };
 
-  return { openFile, getSignedUrl };
+  const downloadFile = async (fileName: string) => {
+    const { data, error } = await supabase.storage.from('test').download("private/" + fileName);
+    if (error) {
+      console.error("Error downloading file:", error);
+    } else {
+      console.log("File downloaded successfully:", data);
+      return data;
+    }
+  };
+
+  return { openFile, getSignedUrl, downloadFile };
 };
