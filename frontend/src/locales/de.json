@@ -17,6 +17,7 @@
   },
   "dashboard": {
     "title": "Dashboard",
+    "files": "Dateien",
     "getFiles": "Dateien abrufen",
     "emptyMessage": "Keine Dateien gefunden",
     "emptyFolderPlaceholder": "Keine Dateien in diesem Ordner"
