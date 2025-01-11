@@ -11,7 +11,9 @@
   },
   "tables": {
     "title": "Tables",
-    "importTable": "Connect to Table"
+    "importTable": "Connect to Table",
+    "importTableInfo": "You can integrate Supabase tables with the software, and thus get access to the data here.",
+    "importTableLoading": "Connecting to table..."
   },
   "dashboard": {
     "title": "Dashboard",

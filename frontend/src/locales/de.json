@@ -11,7 +11,9 @@
   },
   "tables": {
     "title": "Tabellen",
-    "importTable": "Tabelle verbinden"
+    "importTable": "Tabelle verbinden",
+    "importTableInfo": "Sie können Supabase-Tabellen mit der Software integrieren und so Zugriff auf die Daten hier erhalten.",
+    "importTableLoading": "Verbinde mit Tabelle..."
   },
   "dashboard": {
     "title": "Dashboard",
