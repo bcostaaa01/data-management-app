@@ -2,7 +2,7 @@
     <div>
         <InputField v-model="search" @update:value="updateValue">
             <template #prefix>
-                <FontAwesomeIcon :icon="faSearch" />
+                <FontAwesomeIcon :icon="faSearch" class="dark:text-white" />
             </template>
         </InputField>
     </div>

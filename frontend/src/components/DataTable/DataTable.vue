@@ -1,20 +1,21 @@
 <template>
-    <div class="bg-gray-800 w-full p-2 rounded-lg">
+    <div class="bg-gray-200 w-full p-2 rounded-lg dark:bg-gray-800">
         <DataTable selection-mode="single" :value="paginatedItems" :columns="columns" :rows="rows" removable-sort>
             <template #header>
-                <div class="flex justify-between items-center">
-                    <div class="text-white hover:bg-gray-800 p-2 rounded-lg transition duration-200 cursor-pointer">
+                <div class="flex justify-between items-center ">
+                    <div
+                        class="text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 p-2 rounded-lg transition duration-200 cursor-pointer">
                         <h1>{{ name }}</h1>
-
                     </div>
-                    <div class="text-white hover:bg-gray-800 p-2 rounded-lg transition duration-200 cursor-pointer">
+                    <div
+                        class="text-gray-500 dark:text-gray-100 hover:bg-gray-800 p-2 rounded-lg transition duration-200 cursor-pointer">
                         <FontAwesomeIcon :icon="faPlus" class="w-5 h-5" />
                     </div>
                 </div>
             </template>
             <Column v-for="column in columns" :field="column.field" :header="column.header" :sortable="true">
                 <template #body="{ data }">
-                    <div class="text-white">
+                    <div>
                         {{ data[column.field] }}
                     </div>
                 </template>

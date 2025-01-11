@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full dark:bg-gray-900 w-full">
+  <div class="flex h-full dark:bg-gray-900 bg-gray-100 w-full">
     <div v-if="isAuthenticated" class="flex flex-1">
       <Sidebar class="w-20" />
       <div class="flex flex-col flex-1 h-screen">
@@ -7,6 +7,7 @@
         <main class="flex-1 p-4">
           <RouterView />
           <div class="fixed top-0 right-0 p-4">
+            <ThemeToggle />
             <RefreshServiceWorker />
           </div>
         </main>
@@ -29,6 +30,7 @@ import { useSmartSearchStore } from './stores/smart-search.store';
 import { checkAuth } from './supabase/auth';
 import SignIn from './views/Auth/SignIn.vue';
 import { useRouter } from 'vue-router';
+import ThemeToggle from './components/ThemeSwitch/ThemeToggle.vue';
 
 const router = useRouter();
 

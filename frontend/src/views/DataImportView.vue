@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center min-h-full w-full">
-        <h1 class="text-3xl font-bold flex justify-start mb-6">{{ t('dataImport.title') }}</h1>
+        <h1 class="text-3xl font-bold flex justify-start mb-6 dark:text-white">{{ t('dataImport.title') }}</h1>
         <div class="flex flex-col items-center justify-center min-h-full py-12 sm:px-6 lg:px-8 w-full">
 
             <form @submit.prevent="importData" class="w-full max-w-md px-4">
@@ -9,7 +9,7 @@
                         t('dataImport.selectFile')
                         }}</label>
                     <input type="file" id="file" @change="handleFileUpload"
-                        class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                        class="w-full px-7 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
                 </div>
 
                 <div v-if="!isLoading" class="flex justify-center items-center mt-6">

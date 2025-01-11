@@ -1,15 +1,15 @@
 <template>
     <div class="w-full">
 
-        <span class="flex my-3 font-bold">{{ t("tables.importTableInfo") }}</span>
+        <span class="flex my-3 font-bold text-gray-500 dark:text-gray-100">{{ t("tables.importTableInfo") }}</span>
 
         <div class="flex flex-row items-center">
             <TableSearch :disabled="isConnecting" class="my-4 w-32" @update:value="updateTableName" />
-            <FontAwesomeIcon :icon="faSquareCaretRight" class="m-5" />
+            <FontAwesomeIcon :icon="faSquareCaretRight" class="m-5 dark:text-white" />
             <fwb-button @click="importTable" :disabled="!tableName">
                 <span v-if="!isConnecting">{{ t('tables.importTable') }}</span>
                 <div class="flex flex-row items-center" v-else>
-                    <span>{{ t("tables.importTableLoading") }}</span>
+                    <span class="text-gray-500 dark:text-gray-100">{{ t("tables.importTableLoading") }}</span>
                     <FontAwesomeIcon :icon="faSpinner" spin class="ml-2" />
                 </div>
             </fwb-button>

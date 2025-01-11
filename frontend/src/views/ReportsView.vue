@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <h3 class="text-3xl font-bold flex justify-start mb-4">{{ t('reports.title') }}</h3>
+        <h3 class="text-3xl font-bold flex justify-start mb-4 dark:text-white">{{ t('reports.title') }}</h3>
     </div>
 </template>
 
