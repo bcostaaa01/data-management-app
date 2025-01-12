@@ -13,7 +13,6 @@ import { useSmartSearchStore } from '../../stores/smart-search.store';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-
 const smartSearchStore = useSmartSearchStore();
 
 const openModal = () => {

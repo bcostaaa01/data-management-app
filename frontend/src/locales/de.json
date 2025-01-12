@@ -32,11 +32,18 @@
     "uploadingMessage": "Datei wird hochgeladen...",
     "beforeUploadMessage": "Bitte wählen Sie eine Datei aus"
   },
+  "chatbot": {
+    "title": "Chatbot",
+    "welcomeMessage": "Willkommen im Chatbot!",
+    "welcomeMessageSubtitle": "Frag mich alles über deine Daten und ich helfe dir.💾",
+    "placeholder": "Schreibe eine Nachricht..."
+  },
   "sidebar": {
     "reports": "Berichte",
     "dataImport": "Datenimport",
     "tables": "Tabellen",
     "settings": "Einstellungen",
-    "signOut": "Ausloggen"
+    "signOut": "Ausloggen",
+    "chatbot": "Chatbot"
   }
 }

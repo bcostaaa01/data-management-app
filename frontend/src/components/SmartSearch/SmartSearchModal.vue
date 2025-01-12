@@ -4,13 +4,13 @@
             <div class="flex items-center w-full">
                 <FontAwesomeIcon :icon="faSearch" class="h-4 w-4 text-gray-500" />
                 <fwb-input v-model="query" placeholder="Search for reports, tables, ..." autofocus
-                    class="w-full ml-2 mr-2 text-sm focus:outline-none" />
+                    class="w-full ml-2 mr-2 text-sm focus:outline-none" @keyup.enter="search" />
             </div>
         </template>
         <template #body>
             <ul v-if="results.length" class="text-sm">
                 <li v-for="result in results" :key="result.id"
-                    class="px-2 py-2 cursor-pointer hover:bg-gray-800 rounded-md">
+                    class="px-2 py-2 cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500 rounded-md">
                     {{ result.name }}
                 </li>
             </ul>
@@ -22,16 +22,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { FwbModal, FwbInput } from 'flowbite-vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useSmartSearchStore } from '../../stores/smart-search.store';
-
-interface SearchResult {
-    id: number;
-    name: string;
-}
 
 defineProps<{
     isOpen: boolean;
@@ -44,11 +39,14 @@ const closeModal = () => {
 };
 
 const query = ref('');
-const results = ref<SearchResult[]>([
-    { id: 1, name: 'Result 1' },
-    { id: 2, name: 'Result 2' },
-    { id: 3, name: 'Result 3' },
-]);
+const results = computed(() => smartSearchStore.searchResults);
+
+const search = async () => {
+    if (query.value) {
+        smartSearchStore.searchQuery = query.value;
+    }
+    await smartSearchStore.search();
+};
 
 const handleKeyPress = (event: KeyboardEvent) => {
     if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
@@ -62,6 +60,7 @@ const handleKeyPress = (event: KeyboardEvent) => {
 
 onMounted(() => {
     window.addEventListener('keydown', handleKeyPress);
+    smartSearchStore.search();
 });
 
 onUnmounted(() => {

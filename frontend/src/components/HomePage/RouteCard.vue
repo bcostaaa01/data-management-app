@@ -1,10 +1,9 @@
-```vue:frontend/src/components/HomePage/RouteCard.vue
 <template>
     <fwb-card class="p-8 m-4 flex flex-row items-center transition-all duration-300 hover:scale-105 cursor-pointer bg-gray-100 dark:bg-gray-900"
         @click="handleClick">
         <fwb-card-body class="flex flex-col">
             <div class="flex items-center">
-                <FontAwesomeIcon :icon="icon" class="w-8 h-8 mr-2 text-gray-500 dark:text-gray-100" />
+                <FontAwesomeIcon :icon="icon" class="w-8 h-8 mr-6 text-gray-500 dark:text-gray-100" />
                 <div class="flex flex-col">
                     <h5 class="text-xl font-bold text-gray-500 dark:text-gray-100">{{ title }}</h5>
                     <p class="text-sm text-gray-500 dark:text-gray-100">{{ description }}</p>

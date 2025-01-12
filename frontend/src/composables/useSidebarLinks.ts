@@ -5,6 +5,7 @@ import { faFileAlt } from "@fortawesome/free-solid-svg-icons/faFileAlt";
 import { faTachometerAlt } from "@fortawesome/free-solid-svg-icons/faTachometerAlt";
 import { faHome } from "@fortawesome/free-solid-svg-icons/faHome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faRobot } from "@fortawesome/free-solid-svg-icons/faRobot";
 
 type Link = {
   icon: IconProp;
@@ -23,5 +24,6 @@ export const useSidebarLinks = (t: any) => {
     },
     { icon: faFileAlt, label: `${t("sidebar.reports")}`, to: "/reports" },
     { icon: faTable, label: `${t("sidebar.tables")}`, to: "/tables" },
+    { icon: faRobot, label: `${t("sidebar.chatbot")}`, to: "/chatbot" },
   ]);
 };

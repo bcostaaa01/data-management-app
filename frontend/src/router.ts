@@ -6,6 +6,7 @@ import TablesView from "./views/TablesView.vue";
 import SignIn from "./views/Auth/SignIn.vue";
 import DataImportView from "./views/DataImportView.vue";
 import HomePage from "./views/HomePageView.vue";
+import ChatbotView from "./views/ChatbotView.vue";
 import { checkAuth } from "./supabase/auth";
 
 const routes = [
@@ -33,6 +34,13 @@ const routes = [
   {
     path: "/settings",
     component: SettingsView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/chatbot",
+    component: ChatbotView,
     meta: {
       requiresAuth: true,
     },

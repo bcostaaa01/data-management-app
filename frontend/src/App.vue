@@ -11,6 +11,9 @@
             <ThemeToggle />
             <RefreshServiceWorker />
           </div>
+          <div class="fixed bottom-0 right-0 p-4 flex flex-row gap-2">
+            <ChatbotLauncher />
+          </div>
         </main>
       </div>
     </div>
@@ -33,6 +36,7 @@ import SignIn from './views/Auth/SignIn.vue';
 import { useRouter } from 'vue-router';
 import ThemeToggle from './components/ThemeSwitch/ThemeToggle.vue';
 import ProjectHealth from './components/SupabaseHealth/ProjectHealth.vue';
+import ChatbotLauncher from './components/Chatbot/ChatbotLauncher.vue';
 
 const router = useRouter();
 
