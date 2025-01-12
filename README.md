@@ -24,4 +24,4 @@ A solution for managing data from different sources and formats. It's a full-sta
 
 ### Architecture Diagram
 
-![Screenshot 2024-12-16 221702](https://github.com/user-attachments/assets/b7bdb09f-8b70-4287-8699-b3e7732ceeb8)
+![architecture-model](https://github.com/user-attachments/assets/109043fd-933a-4a75-b614-6404227ce20f)
