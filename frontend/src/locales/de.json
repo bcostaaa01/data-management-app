@@ -36,6 +36,7 @@
     "title": "Chatbot",
     "welcomeMessage": "Willkommen im Chatbot!",
     "welcomeMessageSubtitle": "Frag mich alles über deine Daten und ich helfe dir.💾",
+    "tooltip": "Chat öffnen",
     "placeholder": "Schreibe eine Nachricht..."
   },
   "sidebar": {

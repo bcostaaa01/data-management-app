@@ -36,6 +36,7 @@
     "title": "Chatbot",
     "welcomeMessage": "Welcome to the chatbot!",
     "welcomeMessageSubtitle": "Ask me anything about your data and I will help you.💾",
+    "tooltip": "Open AI chat",
     "placeholder": "Type your message..."
   },
   "sidebar": {
