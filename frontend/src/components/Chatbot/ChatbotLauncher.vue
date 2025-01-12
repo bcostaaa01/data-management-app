@@ -1,6 +1,6 @@
 <template>
     <button
-        class="rounded-md bg-gray-200 dark:bg-gray-800 p-3 transition-all duration-300 hover:scale-110 hover:rotate-12"
+        class="rounded-md bg-gray-300 dark:bg-gray-700 p-3 transition-all duration-300 hover:scale-110 hover:rotate-12"
         @click="toggleChatbot">
         <FontAwesomeIcon :icon="faRobot" class="h-6 w-6" />
     </button>
