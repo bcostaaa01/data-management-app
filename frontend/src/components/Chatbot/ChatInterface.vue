@@ -27,9 +27,7 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const messages = ref([
-    { text: "Welcome to the chat!", isUser: false },
-]);
+const messages = ref([]);
 
 const userInput = ref('');
 const isLoading = ref(false);
