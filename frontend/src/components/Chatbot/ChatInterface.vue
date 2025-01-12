@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold dark:text-white text-center">{{ t('chatbot.welcomeMessage') }}</h1>
         <div class="text-md text-gray-500 dark:text-gray-300 text-center m-5">{{ t('chatbot.welcomeMessageSubtitle') }}
         </div>
-        <div class="grid grid-cols-2 gap-2 mt-10 w-[calc(600px)] mx-auto">
+        <div class="grid grid-cols-3 gap-4 mt-10 w-[calc(600px)] mx-auto">
             <ChatbotSuggestedCard v-for="(card, index) in suggestedCards" :key="index" :title="card.title"
                 :icon="card.icon" ref="suggestedCardsRef" @click="handleSuggestedCardClick(card)" />
         </div>
@@ -20,7 +20,7 @@
 import { ref } from 'vue';
 import ChatMessage from './ChatMessage.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faEllipsis, faCopy, faImage, faUser, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis, faCopy, faDatabase, faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import { FwbInput } from 'flowbite-vue';
 import ChatbotSuggestedCard from './ChatbotSuggestedCard.vue';
 import { useI18n } from 'vue-i18n';
@@ -34,10 +34,9 @@ const isLoading = ref(false);
 const suggestedCardsRef = ref(null);
 
 const suggestedCards = ref([
-    { title: "Write copy", icon: faCopy },
-    { title: "Image generation", icon: faImage },
-    { title: "Create avatar", icon: faUser },
-    { title: "Write code", icon: faCode },
+    { title: "List down the files available in the Supabase storage", icon: faCopy },
+    { title: "Generate SQL query to get the data from the sales table", icon: faDatabase },
+    { title: "Generate a report on the sales data", icon: faFileExcel },
 ]);
 
 const sendMessage = () => {
