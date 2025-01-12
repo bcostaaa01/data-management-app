@@ -6,7 +6,8 @@
         <SmartSearchModal :isOpen="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" />
         <main class="flex-1 p-4">
           <RouterView />
-          <div class="fixed top-0 right-0 p-4">
+          <div class="fixed top-0 right-0 p-4 flex flex-row gap-2">
+            <ProjectHealth />
             <ThemeToggle />
             <RefreshServiceWorker />
           </div>
@@ -31,6 +32,7 @@ import { checkAuth } from './supabase/auth';
 import SignIn from './views/Auth/SignIn.vue';
 import { useRouter } from 'vue-router';
 import ThemeToggle from './components/ThemeSwitch/ThemeToggle.vue';
+import ProjectHealth from './components/SupabaseHealth/ProjectHealth.vue';
 
 const router = useRouter();
 
