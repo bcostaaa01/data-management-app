@@ -1,7 +1,9 @@
 <template>
-    <div class="flex justify-center min-h-full w-full">
-        <h1 class="text-3xl font-bold dark:text-white">{{ t('dashboard.title') }}</h1>
-        <div class="flex-1 justify-start mt-20 w-full ml-[-140px] mr-6">
+    <div class="flex flex-col min-h-full w-full">
+        <header class="flex justify-between items-center border-b border-gray-300 pb-4">
+            <h1 class="text-2xl font-bold dark:text-white">{{ t('dashboard.title') }}</h1>
+        </header>
+        <div class="flex-1 justify-start mt-10 w-full mr-6">
 
             <FileAccordion :files="files" />
 

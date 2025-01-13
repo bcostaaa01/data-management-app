@@ -1,6 +1,8 @@
 <template>
-    <div class="w-full">
-        <h3 class="text-3xl font-bold flex justify-start text-gray-700 dark:text-gray-100">{{ t('tables.title') }}</h3>
+    <div class="flex flex-col min-h-full w-full">
+        <header class="flex justify-between items-center border-b border-gray-300 pb-4">
+            <h1 class="text-2xl font-bold dark:text-white">{{ t('tables.title') }}</h1>
+        </header>
         <TableImport />
         <div class="mt-4">
             <DataTable v-if="!isConnecting && items.length > 0" :items="items" :columns="columns" />
