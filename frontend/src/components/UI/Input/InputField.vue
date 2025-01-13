@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <fwb-input placeholder="Table Name" v-model="value" @update:modelValue="updateValue">
+        <fwb-input placeholder="Table Name" v-model="value">
             <template #prefix>
                 <slot name="prefix" />
             </template>
@@ -9,14 +9,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { FwbInput } from 'flowbite-vue';
 
 const emit = defineEmits(['update:value']);
 const value = ref('');
 
-const updateValue = (newVal: string) => {
-    console.log(newVal);
+watch(value, (newVal) => {
     emit('update:value', newVal);
-};
+});
 </script>

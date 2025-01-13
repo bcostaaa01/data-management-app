@@ -5,22 +5,24 @@ import supabase from "../supabase/config";
 export const useTablesStore = defineStore("tables", () => {
   const tables = ref<any[]>([]);
   const table = ref<any>(null);
+  const columns = ref<any[]>([]);
   const name = ref<string | null>(null);
   const error = ref<string | null>(null);
   const isConnectingToTable = ref(false);
 
   const fetchTable = async (tableName: string) => {
-    console.log("Fetching table:", tableName);
     isConnectingToTable.value = true;
-    console.log("isConnectingToTable set to:", isConnectingToTable.value);
 
     const { data, error: fetchError } = await supabase
       .from(tableName)
       .select("*");
 
     table.value = data;
+    columns.value = Object.keys(data?.[0] || {}).map((key) => ({
+      field: key,
+      header: key,
+    }));
     name.value = tableName;
-    console.log(table.value);
 
     if (fetchError) {
       console.error("Error fetching tables:", fetchError);
@@ -30,9 +32,29 @@ export const useTablesStore = defineStore("tables", () => {
       error.value = null;
       isConnectingToTable.value = false;
     }
-
-    console.log("isConnectingToTable set to:", isConnectingToTable.value);
   };
 
-  return { tables, error, fetchTable, isConnectingToTable, table, name };
+  const insertRows = async (tableName: string, rows: any[]) => {
+    console.log("Inserting rows into table:", tableName);
+    const { data, error } = await supabase
+      .from(tableName)
+      .insert(rows)
+      .select();
+    if (error) {
+      console.error("Error inserting rows:", error);
+    } else {
+      console.log("Rows inserted successfully:", data);
+    }
+  };
+
+  return {
+    tables,
+    error,
+    fetchTable,
+    isConnectingToTable,
+    table,
+    name,
+    insertRows,
+    columns,
+  };
 });
