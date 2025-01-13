@@ -1,7 +1,9 @@
 {
   "auth": {
     "signIn": "Anmelden",
-    "signInWithMagicLink": "Anmelden mit Magic Link"
+    "signInWithMagicLink": "Anmelden mit Magic Link",
+    "magicLinkSent": "Magic Link wurde an Ihre E-Mail gesendet.",
+    "magicLinkSentInfo": "Bitte überprüfen Sie Ihre E-Mail und klicken Sie auf den Link, um sich anzumelden."
   },
   "settings": {
     "language": "Sprache",

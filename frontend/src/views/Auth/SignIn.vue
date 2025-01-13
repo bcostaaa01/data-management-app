@@ -23,8 +23,8 @@
 
         <div v-if="isMagicLinkRequested" class="text-center text-white py-8 text-sm flex flex-col items-center">
             <FontAwesomeIcon :icon="faEnvelope" class="h-12 w-12 text-white mb-4" />
-            <h1 class="text-2xl font-bold mb-4">Magic Link sent to your email.</h1>
-            <p class="text-sm text-gray-400">Open your email and click the link to sign in.</p>
+            <h1 class="text-2xl font-bold mb-4">{{ t('auth.magicLinkSent') }}</h1>
+            <p class="text-sm text-gray-400">{{ t('auth.magicLinkSentInfo') }}</p>
         </div>
     </fwb-card>
 </template>
