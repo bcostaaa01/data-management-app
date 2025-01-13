@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col items-center justify-center min-h-screen py-2">
+    <fwb-card class="flex flex-col p-12">
         <div v-if="!isMagicLinkRequested">
-            <h1 class="text-2xl font-bold mb-4 text-center">Sign In</h1>
+            <h1 class="text-2xl font-bold mb-10">{{ t('auth.signIn') }}</h1>
             <form @submit.prevent="handleSignIn">
                 <div class="mb-4">
                     <label for="email"
@@ -15,7 +15,7 @@
                         <FontAwesomeIcon :icon="faSpinner" class="animate-spin" />
                     </span>
                     <span v-else>
-                        Sign In with Magic Link
+                        {{ t('auth.signInWithMagicLink') }}
                     </span>
                 </button>
             </form>
@@ -26,7 +26,7 @@
             <h1 class="text-2xl font-bold mb-4">Magic Link sent to your email.</h1>
             <p class="text-sm text-gray-400">Open your email and click the link to sign in.</p>
         </div>
-    </div>
+    </fwb-card>
 </template>
 
 <script setup lang="ts">
@@ -34,6 +34,10 @@ import { ref } from 'vue';
 import { signIn } from '../../supabase/auth';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faEnvelope, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { useI18n } from 'vue-i18n';
+import { FwbCard } from "flowbite-vue";
+
+const { t } = useI18n();
 
 const email = ref('');
 const isMagicLinkRequested = ref(false);

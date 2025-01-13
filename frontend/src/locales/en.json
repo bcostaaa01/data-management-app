@@ -1,4 +1,8 @@
 {
+  "auth": {
+    "signIn": "Sign In",
+    "signInWithMagicLink": "Sign In with Magic Link"
+  },
   "settings": {
     "language": "Language",
     "language_switch": "Language switch"
