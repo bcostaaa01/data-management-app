@@ -38,7 +38,8 @@
     "errorMessage": "Please select a file",
     "uploadingMessage": "Uploading file...",
     "beforeUploadMessage": "Please select a file",
-    "importDataInfo": "Please select a table and a file to import the data into the table."
+    "importDataInfo": "Please select a table and a file to import the data into the table.",
+    "processingFile": "Processing data..."
   },
   "chatbot": {
     "title": "Chatbot",

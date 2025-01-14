@@ -26,6 +26,7 @@
                         </div>
                         <div v-else class="flex justify-center items-center mt-6">
                             <FontAwesomeIcon :icon="faSpinner" class="animate-spin" />
+                            <span class="ml-2">{{ t('dataImport.processingFile') }}</span>
                         </div>
 
                         <div v-if="uploadWasSuccessful && !isUploading" class="flex flex-col items-center mt-6 gap-2">
