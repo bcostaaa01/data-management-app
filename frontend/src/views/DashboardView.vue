@@ -3,9 +3,10 @@
         <h1 class="text-2xl font-bold dark:text-white">{{ t('dashboard.title') }}</h1>
     </header>
     <div class="flex-1 justify-start mt-10 w-full mr-6">
-
         <FileAccordion :files="files" :fileIds="fileIds" />
-        <div v-if="files.length === 0">{{ t('dashboard.emptyFolderPlaceholder') }}</div>
+    </div>
+    <div v-if="files.length === 0" class="flex justify-center items-center">
+        <div class="text-lg dark:text-white">{{ t('dashboard.emptyFolderPlaceholder') }}</div>
     </div>
 </template>
 

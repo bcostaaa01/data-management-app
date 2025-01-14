@@ -39,7 +39,13 @@
     "files": "Dateien",
     "getFiles": "Dateien abrufen",
     "emptyMessage": "Keine Dateien gefunden",
-    "emptyFolderPlaceholder": "Keine Dateien in diesem Ordner"
+    "emptyFolderPlaceholder": "Keine Dateien in diesem Ordner",
+    "loadingFile": "Lade PDF..."
+  },
+  "fileView": {
+    "fileDetails": "Dateidetails",
+    "fileName": "Dateiname",
+    "loadingFile": "Lade PDF..."
   },
   "dataImport": {
     "title": "Datenimport",

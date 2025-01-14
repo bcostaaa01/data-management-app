@@ -7,16 +7,18 @@
                 </template>
             </VuePdfEmbed>
         </div>
-        <div v-else class="flex items-center justify-center h-full">
-            Loading PDF...
-        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted } from 'vue';
 import { useOpenFile } from '../../../composables/useOpenFile';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import VuePdfEmbed from 'vue-pdf-embed';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const { downloadFile } = useOpenFile();
 const pdfUrl = ref<string | null>(null);

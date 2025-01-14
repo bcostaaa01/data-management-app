@@ -39,7 +39,8 @@
     "files": "Files",
     "getFiles": "Get Files",
     "emptyMessage": "No files found",
-    "emptyFolderPlaceholder": "No files found in this folder"
+    "emptyFolderPlaceholder": "No files found in this folder",
+    "loadingFile": "Loading PDF..."
   },
   "dataImport": {
     "title": "Data Import",
@@ -52,6 +53,11 @@
     "beforeUploadMessage": "Please select a file",
     "importDataInfo": "Please select a table and a file to import the data into the table.",
     "processingFile": "Processing data..."
+  },
+  "fileView": {
+    "fileDetails": "File Details",
+    "fileName": "File Name",
+    "loadingFile": "Loading PDF..."
   },
   "chatbot": {
     "title": "Chatbot",
