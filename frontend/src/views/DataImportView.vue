@@ -8,18 +8,18 @@
     <div class="flex flex-row w-full py-5">
         <div class="w-[30%]">
             <TableSelector v-model="selectedTable" @update:value="updateSelectedTable" class="mb-4" />
-            <div v-if="selectedTable" class="flex flex-col items-center">
+            <div class="flex flex-col items-center" :class="{ 'opacity-50': !selectedTable }">
                 <form @submit.prevent="importDataToSupabase(selectedTable)" class="w-full max-w-md pr-4">
                     <div class="mb-6">
                         <label for="file" class="block mb-2 text-sm font-medium dark:text-white">{{
                             t('dataImport.selectFile')
                         }}</label>
-                        <input type="file" id="file" @change="handleFileUpload"
+                        <input type="file" id="file" @change="handleFileUpload" :disabled="!selectedTable"
                             class="w-full px-7 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
                     </div>
 
                     <div v-if="!isLoading" class="flex justify-center items-center mt-6">
-                        <button type="submit"
+                        <button type="submit" :disabled="!selectedTable"
                             class="w-full px-4 py-3 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline">{{
                                 t('dataImport.importButton') }}</button>
                     </div>
