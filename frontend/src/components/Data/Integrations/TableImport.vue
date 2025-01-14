@@ -9,8 +9,8 @@
             <fwb-button @click="importTable" :disabled="!tableName">
                 <span v-if="!isConnecting">{{ t('tables.importTable') }}</span>
                 <div class="flex flex-row items-center" v-else>
-                    <span class="text-gray-500 dark:text-gray-100">{{ t("tables.importTableLoading") }}</span>
-                    <FontAwesomeIcon :icon="faSpinner" spin class="ml-2" />
+                    <FontAwesomeIcon :icon="faSpinner" spin />
+                    <span class="text-white dark:text-gray-100 ml-2">{{ t("tables.importTableLoading") }}</span>
                 </div>
             </fwb-button>
         </div>
