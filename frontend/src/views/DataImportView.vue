@@ -4,15 +4,15 @@
             <h1 class="text-2xl font-bold dark:text-white">{{ t('dataImport.title') }}</h1>
         </header>
 
-        <div class="flex flex-col w-full py-5">
-            <div class="w-full">
+        <div class="flex flex-row w-full py-5">
+            <div class="w-[30%]">
                 <TableSelector v-model="selectedTable" @update:value="updateSelectedTable" class="mb-4" />
                 <div v-if="selectedTable" class="flex flex-col items-center">
-                    <form @submit.prevent="importDataToSupabase(selectedTable)" class="w-full max-w-md px-4">
+                    <form @submit.prevent="importDataToSupabase(selectedTable)" class="w-full max-w-md pr-4">
                         <div class="mb-6">
                             <label for="file" class="block mb-2 text-sm font-medium dark:text-white">{{
                                 t('dataImport.selectFile')
-                                }}</label>
+                            }}</label>
                             <input type="file" id="file" @change="handleFileUpload"
                                 class="w-full px-7 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
                         </div>
@@ -44,10 +44,11 @@
                     </form>
                 </div>
 
-                <div v-if="items.length !== 0 && columns.length !== 0 && selectedTable"
-                    class="flex flex-col justify-center items-center mt-6">
-                    <DataTable :items="items" :columns="columns" :importedTable="selectedTable" />
-                </div>
+
+            </div>
+            <div v-if="items.length !== 0 && columns.length !== 0 && selectedTable"
+                class="flex flex-col justify-center items-center w-[70%]">
+                <DataTable :items="items" :columns="columns" :importedTable="selectedTable" />
             </div>
         </div>
     </div>

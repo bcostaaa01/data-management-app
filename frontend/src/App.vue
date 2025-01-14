@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full dark:bg-gray-900 bg-gray-100 w-full overflow-hidden">
+  <div class="flex h-full dark:bg-gray-900 bg-gray-100 w-full overflow-auto">
     <div v-if="isAuthenticated" class="flex flex-1">
       <Sidebar class="w-20" />
       <div class="flex flex-col flex-1 h-screen">
