@@ -14,7 +14,7 @@
                         <div class="mb-6">
                             <label for="file" class="block mb-2 text-sm font-medium dark:text-white">{{
                                 t('dataImport.selectFile')
-                            }}</label>
+                                }}</label>
                             <input type="file" id="file" @change="handleFileUpload"
                                 class="w-full px-7 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
                         </div>
