@@ -37,7 +37,8 @@
     "goToFile": "Sie können die Datei im Dashboard ansehen. Gehe zu ",
     "errorMessage": "Bitte wählen Sie eine Datei aus",
     "uploadingMessage": "Datei wird hochgeladen...",
-    "beforeUploadMessage": "Bitte wählen Sie eine Datei aus"
+    "beforeUploadMessage": "Bitte wählen Sie eine Datei aus",
+    "importDataInfo": "Bitte wählen Sie eine Tabelle und eine Datei aus, um die Daten in die Tabelle zu importieren."
   },
   "chatbot": {
     "title": "Chatbot",

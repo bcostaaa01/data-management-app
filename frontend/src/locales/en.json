@@ -37,7 +37,8 @@
     "goToFile": "You can view the file in the dashboard. Go to ",
     "errorMessage": "Please select a file",
     "uploadingMessage": "Uploading file...",
-    "beforeUploadMessage": "Please select a file"
+    "beforeUploadMessage": "Please select a file",
+    "importDataInfo": "Please select a table and a file to import the data into the table."
   },
   "chatbot": {
     "title": "Chatbot",

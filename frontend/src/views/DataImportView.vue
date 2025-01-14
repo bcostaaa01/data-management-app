@@ -4,6 +4,8 @@
             <h1 class="text-2xl font-bold dark:text-white">{{ t('dataImport.title') }}</h1>
         </header>
 
+        <span class="flex my-3 font-bold text-gray-500 dark:text-gray-100">{{ t("dataImport.importDataInfo") }}</span>
+
         <div class="flex flex-row w-full py-5">
             <div class="w-[30%]">
                 <TableSelector v-model="selectedTable" @update:value="updateSelectedTable" class="mb-4" />
