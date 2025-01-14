@@ -5,6 +5,18 @@
     "magicLinkSent": "Magic Link wurde an Ihre E-Mail gesendet.",
     "magicLinkSentInfo": "Bitte überprüfen Sie Ihre E-Mail und klicken Sie auf den Link, um sich anzumelden."
   },
+  "homePage": {
+    "dashboards": "Dashboards",
+    "dashboardsDescription": "Erstellen Sie Dashboards, um Ihre Daten zu visualisieren.",
+    "dataImport": "Datenimport",
+    "dataImportDescription": "Importieren Sie Daten aus einer Datei.",
+    "reports": "Berichte",
+    "reportsDescription": "Erstellen Sie Berichte, um Ihre Daten zu analysieren.",
+    "tables": "Tabellen",
+    "tablesDescription": "Erstellen Sie Tabellen, um Ihre Daten zu speichern.",
+    "chatbot": "Chatbot",
+    "chatbotDescription": "Chatten Sie mit Ihren Daten."
+  },
   "settings": {
     "language": "Sprache",
     "language_switch": "Sprache wechseln"

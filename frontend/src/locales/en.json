@@ -5,6 +5,18 @@
     "magicLinkSent": "Magic Link sent to your email.",
     "magicLinkSentInfo": "Please check your email and click the link to sign in."
   },
+  "homePage": {
+    "dashboards": "Dashboards",
+    "dashboardsDescription": "View reports",
+    "dataImport": "Data Import",
+    "dataImportDescription": "Import data from a file",
+    "reports": "Reports",
+    "reportsDescription": "View reports",
+    "tables": "Tables",
+    "tablesDescription": "View tables",
+    "chatbot": "Chatbot",
+    "chatbotDescription": "Chat with your data"
+  },
   "settings": {
     "language": "Language",
     "language_switch": "Language switch"

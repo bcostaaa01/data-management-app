@@ -8,13 +8,16 @@
 <script setup lang="ts">
 import RouteCard from '@/components/HomePage/RouteCard.vue';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const cards = [
-    { icon: 'faTachometerAlt', title: 'Dashboards', description: 'View reports', to: '/dashboard' },
-    { icon: 'faUpload', title: 'Data Import', description: 'Import data from a file', to: '/data-import' },
-    { icon: 'faChartBar', title: 'Reports', description: 'View reports', to: '/reports' },
-    { icon: 'faTable', title: 'Tables', description: 'View tables', to: '/tables' },
-    { icon: 'faRobot', title: 'Chatbot', description: 'Chat with your data', to: '/chatbot' },
+    { icon: 'faTachometerAlt', title: t('homePage.dashboards'), description: t('homePage.dashboardsDescription'), to: '/dashboard' },
+    { icon: 'faUpload', title: t('homePage.dataImport'), description: t('homePage.dataImportDescription'), to: '/data-import' },
+    { icon: 'faChartBar', title: t('homePage.reports'), description: t('homePage.reportsDescription'), to: '/reports' },
+    { icon: 'faTable', title: t('homePage.tables'), description: t('homePage.tablesDescription'), to: '/tables' },
+    { icon: 'faRobot', title: t('homePage.chatbot'), description: t('homePage.chatbotDescription'), to: '/chatbot' },
 ];
 
 defineProps<{
