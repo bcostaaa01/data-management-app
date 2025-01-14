@@ -1,17 +1,15 @@
 <template>
-    <div class="flex flex-col min-h-full w-full">
-        <header class="flex justify-between items-center border-b border-gray-300 pb-4">
-            <h1 class="text-2xl font-bold dark:text-white">{{ t('tables.title') }}</h1>
-        </header>
-        <TableImport />
-        <div class="mt-4">
-            <DataTable v-if="!isConnecting && items.length > 0" :items="items" :columns="columns" />
-            <div v-else-if="isConnecting && items.length === 0">
-                <p>{{ t('tables.importTableLoading') }}</p>
-            </div>
-            <div v-if="items.length === 0">
-                <p>{{ t('tables.noDataMessage') }}</p>
-            </div>
+    <header class="flex justify-between items-center border-b border-gray-300 pb-4">
+        <h1 class="text-2xl font-bold dark:text-white">{{ t('tables.title') }}</h1>
+    </header>
+    <TableImport />
+    <div class="mt-4">
+        <DataTable v-if="!isConnecting && items.length > 0" :items="items" :columns="columns" />
+        <div v-else-if="isConnecting && items.length === 0">
+            <p>{{ t('tables.importTableLoading') }}</p>
+        </div>
+        <div v-if="items.length === 0">
+            <p>{{ t('tables.noDataMessage') }}</p>
         </div>
     </div>
 </template>

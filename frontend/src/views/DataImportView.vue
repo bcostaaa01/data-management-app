@@ -1,58 +1,56 @@
 <template>
-    <div class="flex flex-col min-h-full w-full">
-        <header class="flex justify-between items-center border-b border-gray-300 pb-4">
-            <h1 class="text-2xl font-bold dark:text-white">{{ t('dataImport.title') }}</h1>
-        </header>
+    <header class="flex justify-between items-center border-b border-gray-300 pb-4">
+        <h1 class="text-2xl font-bold dark:text-white">{{ t('dataImport.title') }}</h1>
+    </header>
 
-        <span class="flex my-3 font-bold text-gray-500 dark:text-gray-100">{{ t("dataImport.importDataInfo") }}</span>
+    <span class="flex my-3 font-bold text-gray-500 dark:text-gray-100">{{ t("dataImport.importDataInfo") }}</span>
 
-        <div class="flex flex-row w-full py-5">
-            <div class="w-[30%]">
-                <TableSelector v-model="selectedTable" @update:value="updateSelectedTable" class="mb-4" />
-                <div v-if="selectedTable" class="flex flex-col items-center">
-                    <form @submit.prevent="importDataToSupabase(selectedTable)" class="w-full max-w-md pr-4">
-                        <div class="mb-6">
-                            <label for="file" class="block mb-2 text-sm font-medium dark:text-white">{{
-                                t('dataImport.selectFile')
-                                }}</label>
-                            <input type="file" id="file" @change="handleFileUpload"
-                                class="w-full px-7 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
-                        </div>
+    <div class="flex flex-row w-full py-5">
+        <div class="w-[30%]">
+            <TableSelector v-model="selectedTable" @update:value="updateSelectedTable" class="mb-4" />
+            <div v-if="selectedTable" class="flex flex-col items-center">
+                <form @submit.prevent="importDataToSupabase(selectedTable)" class="w-full max-w-md pr-4">
+                    <div class="mb-6">
+                        <label for="file" class="block mb-2 text-sm font-medium dark:text-white">{{
+                            t('dataImport.selectFile')
+                        }}</label>
+                        <input type="file" id="file" @change="handleFileUpload"
+                            class="w-full px-7 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    </div>
 
-                        <div v-if="!isLoading" class="flex justify-center items-center mt-6">
-                            <button type="submit"
-                                class="w-full px-4 py-3 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline">{{
-                                    t('dataImport.importButton') }}</button>
-                        </div>
-                        <div v-else class="flex justify-center items-center mt-6">
-                            <FontAwesomeIcon :icon="faSpinner" class="animate-spin" />
-                            <span class="ml-2">{{ t('dataImport.processingFile') }}</span>
-                        </div>
+                    <div v-if="!isLoading" class="flex justify-center items-center mt-6">
+                        <button type="submit"
+                            class="w-full px-4 py-3 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline">{{
+                                t('dataImport.importButton') }}</button>
+                    </div>
+                    <div v-else class="flex justify-center items-center mt-6">
+                        <FontAwesomeIcon :icon="faSpinner" class="animate-spin" />
+                        <span class="ml-2">{{ t('dataImport.processingFile') }}</span>
+                    </div>
 
-                        <div v-if="uploadWasSuccessful && !isUploading" class="flex flex-col items-center mt-6 gap-2">
-                            <FontAwesomeIcon :icon="faCheck" class="text-green-500" />
-                            <p class="text-green-500">{{ t('dataImport.successMessage') }}</p>
-                        </div>
-                        <div v-else-if="uploadWasSuccessful === false && !isUploading && !beforeUpload"
-                            class="flex justify-center items-center mt-6">
-                            <p class="text-red-500">{{ t('dataImport.errorMessage') }}</p>
-                        </div>
-                        <div v-else-if="isUploading" class="flex justify-center items-center mt-6">
-                            <p>{{ t('dataImport.uploadingMessage') }}</p>
-                        </div>
-                        <div v-else-if="beforeUpload" class="flex justify-center items-center mt-6 dark:text-white">
-                            <FontAwesomeIcon :icon="faFile" class="mr-2" />
-                            <p>{{ t('dataImport.beforeUploadMessage') }}</p>
-                        </div>
-                    </form>
-                </div>
-
-
+                    <div v-if="uploadWasSuccessful && !isUploading" class="flex flex-col items-center mt-6 gap-2">
+                        <FontAwesomeIcon :icon="faCheck" class="text-green-500" />
+                        <p class="text-green-500">{{ t('dataImport.successMessage') }}</p>
+                    </div>
+                    <div v-else-if="uploadWasSuccessful === false && !isUploading && !beforeUpload"
+                        class="flex justify-center items-center mt-6">
+                        <p class="text-red-500">{{ t('dataImport.errorMessage') }}</p>
+                    </div>
+                    <div v-else-if="isUploading" class="flex justify-center items-center mt-6">
+                        <p>{{ t('dataImport.uploadingMessage') }}</p>
+                    </div>
+                    <div v-else-if="beforeUpload" class="flex justify-center items-center mt-6 dark:text-white">
+                        <FontAwesomeIcon :icon="faFile" class="mr-2" />
+                        <p>{{ t('dataImport.beforeUploadMessage') }}</p>
+                    </div>
+                </form>
             </div>
-            <div v-if="items.length !== 0 && columns.length !== 0 && selectedTable"
-                class="flex flex-col justify-center items-center w-[70%]">
-                <DataTable :items="items" :columns="columns" :importedTable="selectedTable" />
-            </div>
+
+
+        </div>
+        <div v-if="items.length !== 0 && columns.length !== 0 && selectedTable"
+            class="flex flex-col justify-center items-center w-[70%]">
+            <DataTable :items="items" :columns="columns" :importedTable="selectedTable" />
         </div>
     </div>
 </template>

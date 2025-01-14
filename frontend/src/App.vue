@@ -5,7 +5,9 @@
       <div class="flex flex-col flex-1 h-screen">
         <SmartSearchModal :isOpen="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" />
         <main class="flex-1 p-4">
-          <RouterView />
+          <AppBody>
+            <RouterView />
+          </AppBody>
           <div class="fixed top-0 right-0 p-4 flex flex-row gap-2">
             <ProjectHealth />
             <ThemeToggle />
@@ -37,6 +39,7 @@ import { useRouter } from 'vue-router';
 import ThemeToggle from './components/ThemeSwitch/ThemeToggle.vue';
 import ProjectHealth from './components/SupabaseHealth/ProjectHealth.vue';
 import ChatbotLauncher from './components/Chatbot/ChatbotLauncher.vue';
+import AppBody from './components/Layout/AppBody.vue';
 
 const router = useRouter();
 

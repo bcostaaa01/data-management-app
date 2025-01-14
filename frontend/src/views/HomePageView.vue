@@ -1,7 +1,9 @@
 <template>
-    <div class="flex flex-row gap-4 w-full justify-center items-center min-h-full">
-        <RouteCard v-for="card in cards" :key="card.title" :icon="card.icon" :title="card.title"
-            :description="card.description" :to="card.to" class="max-w-xs" />
+    <div class="flex flex-col items-center justify-center min-h-[calc(100vh-2rem)]">
+        <div class="flex flex-row gap-4 flex-wrap justify-center max-w-6xl">
+            <RouteCard v-for="card in cards" :key="card.title" :icon="card.icon" :title="card.title"
+                :description="card.description" :to="card.to" class="max-w-xs" />
+        </div>
     </div>
 </template>
 

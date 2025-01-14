@@ -1,9 +1,7 @@
 <template>
-    <div class="flex flex-col min-h-full w-full">
-        <header class="flex justify-between items-center border-b border-gray-300 pb-4">
-            <h1 class="text-2xl font-bold dark:text-white">{{ t('reports.title') }}</h1>
-        </header>
-    </div>
+    <header class="flex justify-between items-center border-b border-gray-300 pb-4">
+        <h1 class="text-2xl font-bold dark:text-white">{{ t('reports.title') }}</h1>
+    </header>
 </template>
 
 <script setup lang="ts">
