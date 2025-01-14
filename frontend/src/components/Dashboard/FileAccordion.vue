@@ -11,9 +11,11 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
             </button>
-            <div v-if="isOpen" class=" bg-gray-800 text-white">
-                <File v-for="file in files" :key="file.name" :file="file" />
-
+            <div v-if="isOpen" class="bg-gray-800 text-white">
+                <router-link v-for="file in props.files" :to="`/file/${file.id}`" :key="file.id"
+                    class="flex items-center justify-between w-full p-4 text-left bg-slate-800 text-white hover:bg-slate-700 transition">
+                    {{ file.name }}
+                </router-link>
             </div>
         </div>
     </div>
@@ -22,17 +24,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import File from '../Data/Import/File.vue';
 
 const { t } = useI18n();
-
 const isOpen = ref(true);
 
 function toggle() {
     isOpen.value = !isOpen.value;
 }
 
-defineProps<{
-    files: any[];
+const props = defineProps<{
+    files: Array<{ id: string; name: string }>;
 }>();
 </script>

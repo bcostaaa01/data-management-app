@@ -4,8 +4,7 @@
     </header>
     <div class="flex-1 justify-start mt-10 w-full mr-6">
 
-        <FileAccordion :files="files" />
-
+        <FileAccordion :files="files" :fileIds="fileIds" />
         <div v-if="files.length === 0">{{ t('dashboard.emptyFolderPlaceholder') }}</div>
     </div>
 </template>
@@ -17,7 +16,7 @@ import { useI18n } from 'vue-i18n';
 import FileAccordion from '../components/Dashboard/FileAccordion.vue';
 
 const { t } = useI18n();
-const { files, getFiles } = useGetFilesFromBucket();
+const { files, getFiles, fileIds } = useGetFilesFromBucket();
 
 onMounted(() => {
     getFiles();

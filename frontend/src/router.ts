@@ -7,11 +7,23 @@ import SignIn from "./views/Auth/SignIn.vue";
 import DataImportView from "./views/DataImportView.vue";
 import HomePage from "./views/HomePageView.vue";
 import ChatbotView from "./views/ChatbotView.vue";
+import FileView from "./views/FileView.vue";
 import { checkAuth } from "./supabase/auth";
 
 const routes = [
   { path: "/", component: HomePage, meta: { requiresAuth: true } },
-  { path: "/dashboard", component: DashboardView, meta: { requiresAuth: true } },
+  {
+    path: "/dashboard",
+    component: DashboardView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/file/:id",
+    name: "file",
+    component: FileView,
+    meta: { requiresAuth: true },
+    props: true,
+  },
   {
     path: "/data-import",
     component: DataImportView,
