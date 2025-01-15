@@ -12,9 +12,12 @@
                 </svg>
             </button>
             <div v-if="isOpen" class="bg-gray-800 text-white">
-                <router-link v-for="file in props.files" :to="`/file/${file.id}`" :key="file.id"
+                <div v-if="!props.files.length" class="p-4 text-gray-400">
+                    {{ t('dashboard.emptyFolderPlaceholder') }}
+                </div>
+                <router-link v-for="file in props.files" :to="`/file/${encodeURIComponent(file.id)}`" :key="file.id"
                     class="flex items-center justify-between w-full p-4 text-left bg-slate-800 text-white hover:bg-slate-700 transition">
-                    {{ file.name }}
+                    <span class="truncate">{{ file.name }}</span>
                 </router-link>
             </div>
         </div>

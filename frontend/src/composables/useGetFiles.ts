@@ -8,8 +8,15 @@ export const useGetFilesFromBucket = () => {
 
   const getFiles = async () => {
     const listedFiles = await listFiles("test", "private");
-    fileIds.value = listedFiles.map((file) => file.name);
-    files.value = listedFiles;
+
+    files.value = listedFiles
+      .filter((file) => file.name !== ".emptyFolderPlaceholder")
+      .map((file) => ({
+        id: file.name,
+        name: file.name.split("/").pop() || file.name,
+      }));
+
+    fileIds.value = files.value.map((file) => file.id);
   };
 
   return { files, getFiles, fileIds };
