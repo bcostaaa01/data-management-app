@@ -51,7 +51,8 @@
     "getFiles": "Dateien abrufen",
     "emptyMessage": "Keine Dateien gefunden",
     "emptyFolderPlaceholder": "Keine Dateien in diesem Ordner",
-    "loadingFile": "Lade PDF..."
+    "loadingFile": "Lade PDF...",
+    "dashboardInfo": "Hier können Sie die Dateien ansehen, die Sie generiert haben. Sie können sie auch hier herunterladen."
   },
   "fileView": {
     "fileDetails": "Dateidetails",

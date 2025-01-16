@@ -51,7 +51,8 @@
     "getFiles": "Get Files",
     "emptyMessage": "No files found",
     "emptyFolderPlaceholder": "No files found in this folder",
-    "loadingFile": "Loading PDF..."
+    "loadingFile": "Loading PDF...",
+    "dashboardInfo": "Here you can view the files you have generated. You can also download them here."
   },
   "dataImport": {
     "title": "Data Import",
