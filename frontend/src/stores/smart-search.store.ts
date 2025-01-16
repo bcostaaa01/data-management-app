@@ -23,7 +23,7 @@ export const useSmartSearchStore = defineStore("smartSearch", () => {
   };
 
   const search = async () => {
-    const { data, error } = await supabase.storage.from("test").list("private");
+    const { data, error } = await supabase.storage.from("reports").list("sales");
     if (error) {
       console.error("Error searching:", error);
     } else {

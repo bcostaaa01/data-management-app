@@ -25,7 +25,18 @@
     "settings": "Einstellungen"
   },
   "reports": {
-    "title": "Berichte"
+    "title": "Berichte",
+    "uploadFile": "Datei hochladen",
+    "uploadFileLoading": "Datei wird hochgeladen...",
+    "fileUploaded": "Datei hochgeladen",
+    "processData": "Daten verarbeiten",
+    "dataProcessed": "Daten verarbeitet",
+    "generatePdf": "PDF generieren",
+    "pdfGenerated": "generiert kann im Dashboard gefunden werden an ",
+    "uploadToSupabase": "Zu Supabase hochladen",
+    "uploadedToSupabase": "hochgeladen",
+    "generatingPdf": "PDF generieren...",
+    "uploadingToSupabase": "Uploading to Supabase..."
   },
   "tables": {
     "title": "Tabellen",

@@ -7,8 +7,8 @@ export const useGetFilesFromBucket = () => {
   const { listFiles } = useSupabaseStorage();
 
   const getFiles = async () => {
-    const listedFiles = await listFiles("test", "private");
-
+    const listedFiles = await listFiles("reports", "reports");
+    console.log("listedFiles", listedFiles);
     files.value = listedFiles
       .filter((file) => file.name !== ".emptyFolderPlaceholder")
       .map((file) => ({

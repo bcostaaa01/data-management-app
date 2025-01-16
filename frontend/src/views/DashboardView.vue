@@ -17,6 +17,7 @@ const { t } = useI18n();
 const { files, getFiles, fileIds } = useGetFilesFromBucket();
 
 onMounted(() => {
+    console.log("files", files.value);
     getFiles();
 });
 </script>

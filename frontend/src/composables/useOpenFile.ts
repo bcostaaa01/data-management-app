@@ -6,8 +6,8 @@ export const useOpenFile = () => {
 
   const openFile = async (fileName: string) => {
     const { data, error } = await supabase.storage
-      .from("test")
-      .createSignedUploadUrl("private/" + fileName);
+      .from("reports")
+      .createSignedUploadUrl("reports/" + fileName);
 
     if (error) {
       console.error("Error opening file:", error);
@@ -18,7 +18,7 @@ export const useOpenFile = () => {
   };
 
   const getSignedUrl = async (fileName: string) => {
-    const { data, error } = await supabase.storage.from('test').createSignedUploadUrl("private/" + fileName);
+    const { data, error } = await supabase.storage.from('reports').createSignedUploadUrl("reports/" + fileName);
     if (error) {
       console.error("Error getting signed url:", error);
     } else {
@@ -28,7 +28,7 @@ export const useOpenFile = () => {
   };
 
   const downloadFile = async (fileName: string) => {
-    const { data, error } = await supabase.storage.from('test').download("private/" + fileName);
+    const { data, error } = await supabase.storage.from('reports').download("reports/" + fileName);
     if (error) {
       console.error("Error downloading file:", error);
     } else {

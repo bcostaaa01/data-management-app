@@ -2,11 +2,10 @@ import supabase from "../supabase/config";
 
 
 export function useSupabaseUpload() {
-    // TODO: Implement supabase upload
     // TODO: Implement supabase create bucket
 
     const uploadFile = async (file: File) => {
-        const { data, error } = await supabase.storage.from('test').upload(file.name,file);
+        const { data, error } = await supabase.storage.from('reports').upload(file.name, file);
         if (error) {
             console.error('Error uploading file:', error);
         } else {
@@ -14,8 +13,8 @@ export function useSupabaseUpload() {
         }
     };
 
-    const uploadFileToFolder = async (file: File, folder: string) => {
-        const { data, error } = await supabase.storage.from('test').upload(folder + '/' + file.name, file);
+    const uploadFileToFolder = async (file: File, fileName: string, folder: string) => {
+        const { data, error } = await supabase.storage.from('reports').upload(folder + '/' + fileName, file);
         if (error) {
             console.error('Error uploading file:', error);
         } else {

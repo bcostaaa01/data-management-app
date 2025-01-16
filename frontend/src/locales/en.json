@@ -25,7 +25,18 @@
     "settings": "Settings"
   },
   "reports": {
-    "title": "Reports"
+    "title": "Reports",
+    "uploadFile": "Upload File",
+    "uploadFileLoading": "Uploading file...",
+    "fileUploaded": "File uploaded",
+    "processData": "Process Data",
+    "dataProcessed": "Data processed",
+    "generatePdf": "Generate PDF",
+    "pdfGenerated": "generated can be found in ",
+    "uploadToSupabase": "Upload to Supabase",
+    "uploadedToSupabase": "Uploaded to Supabase",
+    "generatingPdf": "Generating PDF...",
+    "uploadingToSupabase": "Uploading to Supabase..."
   },
   "tables": {
     "title": "Tables",
