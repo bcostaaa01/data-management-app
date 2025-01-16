@@ -15,10 +15,13 @@
                 <div v-if="!props.files.length" class="p-4 text-gray-400">
                     {{ t('dashboard.emptyFolderPlaceholder') }}
                 </div>
-                <router-link v-for="file in props.files" :to="`/file/${encodeURIComponent(file.id)}`" :key="file.id"
-                    class="flex items-center justify-between w-full p-4 text-left bg-slate-800 text-white hover:bg-slate-700 transition">
-                    <span class="truncate">{{ file.name }}</span>
-                </router-link>
+                <span v-for="file in props.files" :key="file.id"
+                    class="flex items-center w-full p-4 text-left bg-slate-800 text-white hover:bg-slate-700 transition">
+                    <router-link :to="`/file/${encodeURIComponent(file.id)}`">
+                        <span class="truncate">{{ file.name }}</span>
+                    </router-link>
+                    <DownloadFile :fileName="file.name" class="ml-5" />
+                </span>
             </div>
         </div>
     </div>
@@ -27,6 +30,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import DownloadFile from '../Data/Export/DownloadFile.vue';
 
 const { t } = useI18n();
 const isOpen = ref(true);

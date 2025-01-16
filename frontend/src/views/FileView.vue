@@ -2,7 +2,10 @@
     <div class="p-4">
         <h1 class="text-2xl font-bold dark:text-white mb-4">{{ t('fileView.fileDetails') }}</h1>
         <div class="bg-white dark:bg-gray-800 rounded-lg p-4 flex flex-col h-full">
+            <div class="flex justify-between items-center">
             <span class="text-lg dark:text-white mb-4">{{ t('fileView.fileName') }}: {{ fileName }}</span>
+                <DownloadFile :fileName="fileName" />
+            </div>
             <File v-if="fileName" :file="id" :fileName="fileName" />
             <div v-else class="flex flex-col items-center justify-center h-full w-full">
                 <FontAwesomeIcon :icon="faSpinner" class="animate-spin" spin />
