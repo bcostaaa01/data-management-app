@@ -1,5 +1,5 @@
 <template>
-    <div class="h-[calc(100vh-8rem)] w-full">
+    <div class="h-[calc(95vh-8rem)] w-full">
         <div v-if="pdfUrl" class="w-full h-full overflow-auto">
             <VuePdfEmbed :source="pdfUrl" class="w-full" style="min-width: fit-content">
                 <template #after-page>
