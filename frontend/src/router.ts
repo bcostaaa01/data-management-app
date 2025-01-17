@@ -3,7 +3,7 @@ import DashboardView from "./views/DashboardView.vue";
 import ReportsView from "./views/ReportsView.vue";
 import SettingsView from "./views/SettingsView.vue";
 import TablesView from "./views/TablesView.vue";
-import SignIn from "./views/Auth/SignIn.vue";
+import OAuth from "./views/Auth/OAuth.vue";
 import DataImportView from "./views/DataImportView.vue";
 import HomePage from "./views/HomePageView.vue";
 import ChatbotView from "./views/ChatbotView.vue";
@@ -58,8 +58,8 @@ const routes = [
     },
   },
   {
-    path: "/signin",
-    component: SignIn,
+    path: "/oauth",
+    component: OAuth,
     meta: {
       requiresAuth: false,
     },
@@ -73,7 +73,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth) && !checkAuth()) {
-    next("/signin");
+    next("/oauth");
   } else {
     next();
   }

@@ -3,7 +3,10 @@
     "signIn": "Anmelden",
     "signInWithMagicLink": "Anmelden mit Magic Link",
     "magicLinkSent": "Magic Link wurde an Ihre E-Mail gesendet.",
-    "magicLinkSentInfo": "Bitte überprüfen Sie Ihre E-Mail und klicken Sie auf den Link, um sich anzumelden."
+    "magicLinkSentInfo": "Bitte überprüfen Sie Ihre E-Mail und klicken Sie auf den Link, um sich anzumelden.",
+    "signUp": "Registrieren",
+    "switchToSignIn": "Zum Anmelden wechseln",
+    "switchToSignUp": "Zum Registrieren wechseln"
   },
   "homePage": {
     "dashboards": "Dashboards",

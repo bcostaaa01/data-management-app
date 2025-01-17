@@ -6,6 +6,11 @@
     <div class="flex flex-col mt-4 rounded-lg p-4 border border-gray-300">
         <h3 class="text-lg font-bold">{{ t('settings.language') }}</h3>
         <LanguageSwitch :languages="languages" :changeLanguage="changeAppLanguage" ref="languageSwitch" />
+
+        <h3 class="text-lg font-bold">Name</h3>
+        {{ userDetails }}
+        <input type="text" class="w-full p-2 border border-gray-300 rounded-lg" v-model="userSettings.name" />
+
         <div class="flex flex-row mt-4">
             <fwb-button @click="updateUserSettings" class="w-52">{{ t('settings.updateUserSettings')
                 }}</fwb-button>
@@ -28,8 +33,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faCheck, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const userStore = useUserStore();
-const userEmail = ref('');
-const userSettings = ref('');
+const userDetails = ref('');
+const userSettings = ref({
+    language: localStorage.getItem("settings.language") || "de",
+    name: '',
+});
 const languageSwitch = ref(null);
 const isLoading = ref(false);
 const settingsUpdated = ref(false);
@@ -56,7 +64,7 @@ const updateUserSettings = async () => {
 };
 
 onMounted(async () => {
-    userEmail.value = await userStore.fetchUser();
+    userDetails.value = await userStore.fetchUser();
     userSettings.value = await userStore.getUserSettings();
 });
 </script>

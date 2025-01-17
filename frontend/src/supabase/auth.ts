@@ -3,17 +3,25 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-export const signUp = async (email: string, password: string) => {
+export const signUp = async (
+  email: string,
+  password: string,
+  firstName: string,
+  lastName: string
+) => {
   const { error } = await supabase.auth.signUp({
     email: email,
     password: password,
+    options: {
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+      },
+      emailRedirectTo: "http://localhost:5173/",
+    },
   });
 
-  if (error) {
-    alert("Error signing up: " + error.message);
-  } else {
-    alert("Successfully signed up!");
-  }
+  return error;
 };
 
 export const signIn = async (email: string) => {
@@ -24,20 +32,16 @@ export const signIn = async (email: string) => {
     },
   });
 
-  if (error) {
-    alert("Error signing in: " + error.message);
-  } else {
-    router.push("/");
-  }
+  return error;
 };
 
 export const signOut = async () => {
   const { error } = await supabase.auth.signOut();
   if (error) {
-    alert("Error signing out: " + error.message);
+    return error;
   } else {
     window.location.reload();
-    router.push("/signin");    
+    router.push("/oauth");
   }
 };
 

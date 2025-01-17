@@ -11,7 +11,7 @@ export const useUserStore = defineStore("user", () => {
     user.value = data;
     console.log("user", user.value);
     console.log("user", user.value.user.email);
-    return user.value.user.email;
+    return user;
   };
 
   const getUserSettings = async () => {

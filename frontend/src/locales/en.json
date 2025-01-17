@@ -3,7 +3,10 @@
     "signIn": "Sign In",
     "signInWithMagicLink": "Sign In with Magic Link",
     "magicLinkSent": "Magic Link sent to your email.",
-    "magicLinkSentInfo": "Please check your email and click the link to sign in."
+    "magicLinkSentInfo": "Please check your email and click the link to sign in.",
+    "signUp": "Sign Up",
+    "switchToSignIn": "Switch to Sign In",
+    "switchToSignUp": "Switch to Sign Up"
   },
   "homePage": {
     "dashboards": "Dashboards",

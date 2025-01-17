@@ -21,7 +21,7 @@
     </div>
 
     <div v-else class="flex flex-col justify-center items-center h-screen w-full">
-      <SignIn />
+      <OAuth />
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@ import RefreshServiceWorker from './components/ServiceWorker/RefreshServiceWorke
 import SmartSearchModal from './components/SmartSearch/SmartSearchModal.vue';
 import { useSmartSearchStore } from './stores/smart-search.store';
 import { checkAuth } from './supabase/auth';
-import SignIn from './views/Auth/SignIn.vue';
+import OAuth from './views/Auth/OAuth.vue';
 import { useRouter } from 'vue-router';
 import ThemeToggle from './components/ThemeSwitch/ThemeToggle.vue';
 import ProjectHealth from './components/SupabaseHealth/ProjectHealth.vue';
