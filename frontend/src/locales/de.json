@@ -19,13 +19,16 @@
   },
   "settings": {
     "language": "Sprache",
-    "language_switch": "Sprache wechseln"
+    "language_switch": "Sprache wechseln",
+    "updateUserSettings": "Einstellungen aktualisieren",
+    "settingsUpdated": "Einstellungen aktualisiert"
   },
   "pages": {
     "settings": "Einstellungen"
   },
   "reports": {
     "title": "Berichte",
+    "reportsInfo": "Hier können Sie PDF-Berichte aus Ihren Daten generieren.",
     "uploadFile": "Datei hochladen",
     "uploadFileLoading": "Datei wird hochgeladen...",
     "fileUploaded": "Datei hochgeladen",
@@ -36,7 +39,10 @@
     "uploadToSupabase": "Zu Supabase hochladen",
     "uploadedToSupabase": "hochgeladen",
     "generatingPdf": "PDF generieren...",
-    "uploadingToSupabase": "Uploading to Supabase..."
+    "uploadingToSupabase": "Uploading to Supabase...",
+    "sendReport": "Bericht senden",
+    "sendReportLoading": "Bericht wird gesendet...",
+    "sendReportSuccess": "Bericht erfolgreich gesendet"
   },
   "tables": {
     "title": "Tabellen",
