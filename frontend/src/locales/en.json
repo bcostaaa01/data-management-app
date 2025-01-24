@@ -21,6 +21,7 @@
     "chatbotDescription": "Chat with your data"
   },
   "settings": {
+    "name": "Name",
     "language": "Language",
     "language_switch": "Language switch",
     "updateUserSettings": "Update User Settings",

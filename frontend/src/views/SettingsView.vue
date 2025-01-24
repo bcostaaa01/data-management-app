@@ -7,9 +7,9 @@
         <h3 class="text-lg font-bold">{{ t('settings.language') }}</h3>
         <LanguageSwitch :languages="languages" :changeLanguage="changeAppLanguage" ref="languageSwitch" />
 
-        <h3 class="text-lg font-bold">Name</h3>
-        {{ userDetails }}
-        <input type="text" class="w-full p-2 border border-gray-300 rounded-lg" v-model="userSettings.name" />
+        <h3 class="text-lg font-bold">{{ t('settings.name') }}</h3>
+        <input type="text" class="w-80 p-2 mt-2 border border-gray-900 dark:bg-gray-800 rounded-lg"
+            v-model="userSettings.name" />
 
         <div class="flex flex-row mt-4">
             <fwb-button @click="updateUserSettings" class="w-52">{{ t('settings.updateUserSettings')
