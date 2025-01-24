@@ -7,35 +7,54 @@ export const useUserStore = defineStore("user", () => {
   const userSettings = ref<any>(null);
 
   const fetchUser = async () => {
-    const { data, error } = await supabase.auth.getUser();
-    user.value = data;
-    console.log("user", user.value);
-    console.log("user", user.value.user.email);
-    return user;
+    try {
+      const { data, error } = await supabase.auth.getUser();
+      if (error) throw error;
+      user.value = data;
+      console.log("User fetched:", user.value?.user?.email);
+      return user;
+    } catch (err) {
+      console.error("Error fetching user:", err);
+    }
   };
 
   const getUserSettings = async () => {
-    const { data, error } = await supabase.from("app_settings").select("*");
-    userSettings.value = data;
-    console.log("userSettings", userSettings.value);
-    return userSettings.value;
+    try {
+      const { data, error } = await supabase.from("app_settings").select("*");
+      if (error) throw error;
+      userSettings.value = data;
+      console.log("User settings fetched:", userSettings.value);
+      return userSettings.value;
+    } catch (err) {
+      console.error("Error fetching user settings:", err);
+    }
   };
 
   const updateAppSettings = async (settings: any) => {
-    const { data, error } = await supabase
-      .from("app_settings")
-      .update(settings)
-      .eq("id", userSettings.value[0].id)
-      .select();
-    localStorage.setItem("settings", JSON.stringify(data));
-    return data;
+    try {
+      const { data, error } = await supabase
+        .from("app_settings")
+        .update(settings)
+        .eq("id", userSettings.value[0]?.id)
+        .select();
+      if (error) throw error;
+      localStorage.setItem("settings", JSON.stringify(data));
+      return data;
+    } catch (err) {
+      console.error("Error updating app settings:", err);
+    }
   };
 
   const updateUserSettings = async (settings: any) => {
-    const { data, error } = await supabase.auth.updateUser({
-      data: settings,
-    });
-    return data;
+    try {
+      const { data, error } = await supabase.auth.updateUser({
+        data: settings,
+      });
+      if (error) throw error;
+      return data;
+    } catch (err) {
+      console.error("Error updating user settings:", err);
+    }
   };
 
   return {
