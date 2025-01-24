@@ -4,7 +4,7 @@
       <FontAwesomeIcon :icon="faSpinner" class="animate-spin text-6xl" />
     </div>
 
-    <div v-if="!isLoading && isAuthenticated" class="flex flex-1">
+    <div v-else-if="isAuthenticated" class="flex flex-1">
       <Sidebar class="w-20" />
       <div class="flex flex-col flex-1 h-screen">
         <SmartSearchModal :isOpen="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" />
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div v-else-if="!isLoading && !isAuthenticated" class="flex flex-col justify-center items-center h-screen w-full">
+    <div v-else class="flex flex-col justify-center items-center h-screen w-full">
       <OAuth />
     </div>
   </div>
