@@ -15,15 +15,15 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const getUserSettings = async () => {
-    const { data, error } = await supabase.from("user_settings").select("*");
+    const { data, error } = await supabase.from("app_settings").select("*");
     userSettings.value = data;
     console.log("userSettings", userSettings.value);
     return userSettings.value;
   };
 
-  const updateUserSettings = async (settings: any) => {
+  const updateAppSettings = async (settings: any) => {
     const { data, error } = await supabase
-      .from("user_settings")
+      .from("app_settings")
       .update(settings)
       .eq("id", userSettings.value[0].id)
       .select();
@@ -31,5 +31,18 @@ export const useUserStore = defineStore("user", () => {
     return data;
   };
 
-  return { user, fetchUser, getUserSettings, updateUserSettings };
+  const updateUserSettings = async (settings: any) => {
+    const { data, error } = await supabase.auth.updateUser({
+      data: settings,
+    });
+    return data;
+  };
+
+  return {
+    user,
+    fetchUser,
+    getUserSettings,
+    updateAppSettings,
+    updateUserSettings,
+  };
 });

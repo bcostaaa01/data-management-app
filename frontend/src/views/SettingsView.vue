@@ -12,7 +12,7 @@
             v-model="userSettings.name" />
 
         <div class="flex flex-row mt-4">
-            <fwb-button @click="updateUserSettings" class="w-52">{{ t('settings.updateUserSettings')
+            <fwb-button @click="updateAppSettings" class="w-52">{{ t('settings.updateUserSettings')
                 }}</fwb-button>
             <FontAwesomeIcon v-if="isLoading" :icon="faSpinner" class="text-green-500 ml-8 mt-1 animate-spin" />
             <FontAwesomeIcon v-else-if="settingsUpdated" :icon="faCheck" class="text-green-500 ml-8 mt-2" />
@@ -53,9 +53,14 @@ const changeAppLanguage = (lang: Language) => {
     localStorage.setItem("settings.language", lang);
 };
 
-const updateUserSettings = async () => {
+const updateAppSettings = async () => {
     isLoading.value = true;
-    await userStore.updateUserSettings({ settings: { language: language.value } });
+    if (language.value) {
+        await userStore.updateAppSettings({ settings: { language: language.value } });
+    }
+    if (userSettings.value.name) {
+        await userStore.updateUserSettings({ display_name: userSettings.value.name });
+    }
     settingsUpdated.value = true;
     setTimeout(() => {
         settingsUpdated.value = false;
