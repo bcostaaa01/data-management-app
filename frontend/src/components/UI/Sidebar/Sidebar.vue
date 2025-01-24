@@ -1,9 +1,12 @@
 <template>
     <div class="relative z-50">
-        <div class="fixed inset-y-0 top-0 left-0 h-screen w-16 bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-100">
+        <div
+            class="fixed inset-y-0 top-0 left-0 h-screen w-16 bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-100">
 
-            <button @click="toggleSidebar" class="mt-4 ml-4 hover:bg-gray-400 hover:text-white rounded-md p-1 transition duration-200 dark:hover:bg-gray-700">
-                <FontAwesomeIcon :icon="visible ? faTimes : faBars" class="w-5 h-5 dark:text-gray-100 hover:text-white" />
+            <button @click="toggleSidebar"
+                class="mt-4 ml-4 hover:bg-gray-400 hover:text-white rounded-md p-1 transition duration-200 dark:hover:bg-gray-700">
+                <FontAwesomeIcon :icon="visible ? faTimes : faBars"
+                    class="w-5 h-5 dark:text-gray-100 hover:text-white" />
             </button>
 
             <div v-if="visible" class="fixed top-0 left-0 h-screen w-16 bg-gray-800 text-white" />
@@ -23,6 +26,9 @@
                             <SidebarLink :icon="faCog" :label="t('sidebar.settings')" :to="'/settings'" class="my-0" />
                         </fwb-sidebar-item-group>
                         <SidebarLink :icon="faSignOutAlt" :label="t('sidebar.signOut')" @click="signOut" />
+                        <div class="absolute bottom-3 w-full">
+                            <UserInfo />
+                        </div>
                     </div>
                 </aside>
             </Transition>
@@ -31,14 +37,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { FwbSidebarItemGroup } from "flowbite-vue";
 import SidebarLink from './SidebarLink.vue';
-import { faTachometerAlt, faFileAlt, faFileImport, faCog, faBars, faTimes, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faBars, faTimes, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useI18n } from 'vue-i18n';
-import { faTable } from '@fortawesome/free-solid-svg-icons/faTable';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import CompanyInfo from './CompanyInfo.vue';
 import SidebarToggle from './SidebarToggle.vue';
 import SmartSearchInput from '../../SmartSearch/SmartSearchInput.vue';
@@ -46,7 +49,7 @@ import { signOut } from "../../../supabase/auth";
 import { useSidebar } from '../../../composables/useSidebar';
 import SidebarLinks from './SidebarLinks.vue';
 import { useSidebarLinks } from '../../../composables/useSidebarLinks';
-import ThemeToggle from '../../ThemeSwitch/ThemeToggle.vue';
+import UserInfo from './UserInfo.vue';
 
 const { visible, toggleSidebar } = useSidebar();
 
