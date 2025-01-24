@@ -1,6 +1,10 @@
 <template>
   <div class="flex h-full dark:bg-gray-900 bg-gray-100 overflow-hidden">
-    <div v-if="isAuthenticated" class="flex flex-1">
+    <div v-if="isLoading" class="flex justify-center items-center h-screen w-full">
+      <FontAwesomeIcon :icon="faSpinner" class="animate-spin text-6xl" />
+    </div>
+
+    <div v-if="!isLoading && isAuthenticated" class="flex flex-1">
       <Sidebar class="w-20" />
       <div class="flex flex-col flex-1 h-screen">
         <SmartSearchModal :isOpen="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" />
@@ -20,7 +24,7 @@
       </div>
     </div>
 
-    <div v-else class="flex flex-col justify-center items-center h-screen w-full">
+    <div v-else-if="!isLoading && !isAuthenticated" class="flex flex-col justify-center items-center h-screen w-full">
       <OAuth />
     </div>
   </div>
@@ -40,15 +44,19 @@ import ThemeToggle from './components/ThemeSwitch/ThemeToggle.vue';
 import ProjectHealth from './components/SupabaseHealth/ProjectHealth.vue';
 import ChatbotLauncher from './components/Chatbot/ChatbotLauncher.vue';
 import AppBody from './components/Layout/AppBody.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const router = useRouter();
 
 const smartSearchStore = useSmartSearchStore();
 
+const isLoading = ref(true);
 const isAuthenticated = ref(false);
 
 onMounted(async () => {
   isAuthenticated.value = (await checkAuth()) !== null;
+  isLoading.value = false;
 });
 
 watch(isAuthenticated, (newVal) => {
