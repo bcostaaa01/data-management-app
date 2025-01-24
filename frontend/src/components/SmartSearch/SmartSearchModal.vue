@@ -1,5 +1,5 @@
 <template>
-    <fwb-modal v-if="isOpen" @close="closeModal" size="4xl">
+    <fwb-modal v-if="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" size="4xl">
         <template #header>
             <div class="flex items-center w-full">
                 <FontAwesomeIcon :icon="faSearch" class="h-4 w-4 text-gray-500" />
@@ -35,7 +35,6 @@ const { files, getFiles } = useGetFilesFromBucket();
 
 const query = ref('');
 
-const isOpen = ref(false);
 const results = computed(() => {
     const filteredResults = files.value.filter(file => file.name.toLowerCase().includes(query.value.toLowerCase()));
     console.log('Filtered Results:', filteredResults);
@@ -43,16 +42,16 @@ const results = computed(() => {
 });
 
 const openModal = () => {
-    isOpen.value = true;
+    smartSearchStore.openModal();
 };
 
 const closeModal = () => {
-    isOpen.value = false;
+    smartSearchStore.closeModal();
 };
 
 const handleKeyPress = (event: KeyboardEvent) => {
     if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
-        if (isOpen.value) {
+        if (smartSearchStore.isOpen) {
             closeModal();
         } else {
             openModal();
