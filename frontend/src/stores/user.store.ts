@@ -11,7 +11,6 @@ export const useUserStore = defineStore("user", () => {
       const { data, error } = await supabase.auth.getUser();
       if (error) throw error;
       user.value = data;
-      console.log("User fetched:", user.value?.user?.email);
       return user;
     } catch (err) {
       console.error("Error fetching user:", err);
@@ -23,7 +22,6 @@ export const useUserStore = defineStore("user", () => {
       const { data, error } = await supabase.from("app_settings").select("*");
       if (error) throw error;
       userSettings.value = data;
-      console.log("User settings fetched:", userSettings.value);
       return userSettings.value;
     } catch (err) {
       console.error("Error fetching user settings:", err);
