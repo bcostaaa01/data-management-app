@@ -11,8 +11,10 @@
         <div v-if="isLoading" class="flex justify-center mt-4">
             <FontAwesomeIcon :icon="faEllipsis" class="text-gray-500 dark:text-gray-300 animate-pulse" />
         </div>
-        <fwb-input v-model="userInput" @keyup.enter="sendMessage" class="mt-4"
-            :placeholder="t('chatbot.placeholder')" />
+        <div class="mt-4">
+            <fwb-input v-model="userInput" @keyup.enter="sendMessage" class=""
+                :placeholder="t('chatbot.placeholder')" />
+        </div>
     </div>
 </template>
 
