@@ -2,9 +2,10 @@
     <fwb-modal v-if="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" size="4xl">
         <template #header>
             <div class="flex items-center w-full">
-                <FontAwesomeIcon :icon="faSearch" class="h-4 w-4 text-gray-500" />
-                <fwb-input v-model="query" placeholder="Search for reports, tables, ..." autofocus
-                    class="w-full ml-2 mr-2 text-sm focus:outline-none" @keyup.enter="search" />
+                <FontAwesomeIcon :icon="faSearch" class="h-4 w-4 text-gray-500 mr-2" />
+                <input v-model="query" placeholder="Search for reports, tables, ..." autofocus
+                    class="w-full ml-2 mr-2 text-sm dark:bg-gray-700 dark:text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    @keyup.enter="search" />
             </div>
         </template>
         <template #body>
