@@ -27,7 +27,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const props = defineProps<{
-    icon: string;
+    icon: IconProp;
     title: string;
     description: string;
     to: string;
