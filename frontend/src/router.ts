@@ -72,7 +72,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth) && !checkAuth()) {
+  if (to.matched.some((record) => record.meta.requiresAuth) && !checkAuth(router)) {
     next("/oauth");
   } else {
     next();
