@@ -5,7 +5,7 @@
         </template>
         <template #body>
             <form class="flex flex-col space-y-6" @submit.prevent="submitForm">
-                <label>Email address:
+                <label>{{ t("dashboard.emailAddress") }}:
                     <input type="email" name="email" required
                         class="text-black border-2 dark:bg-gray-800 dark:text-white border-gray-300 dark:border-gray-700 w-full rounded-md p-2 mt-2" />
                 </label>
