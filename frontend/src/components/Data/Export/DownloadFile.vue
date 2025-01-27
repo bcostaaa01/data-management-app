@@ -1,6 +1,6 @@
 <template>
     <button @click="handleDownload" class="transition-all duration-300 hover:scale-110">
-        <FontAwesomeIcon v-if="!isLoading" :icon="faDownload" class="dark:text-white hover:text-gray-800" />
+        <FontAwesomeIcon v-if="!isLoading" :icon="faDownload" class="dark:text-white hover:text-gray-400" />
         <FontAwesomeIcon v-else :icon="faSpinner" class="animate-spin" />
     </button>
 </template>
