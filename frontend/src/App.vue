@@ -55,7 +55,7 @@ const isLoading = ref(true);
 const isAuthenticated = ref(false);
 
 onMounted(async () => {
-  isAuthenticated.value = (await checkAuth()) !== null;
+  isAuthenticated.value = await checkAuth(router);
   isLoading.value = false;
 });
 

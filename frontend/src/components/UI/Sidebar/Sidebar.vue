@@ -25,7 +25,7 @@
                         <fwb-sidebar-item-group border>
                             <SidebarLink :icon="faCog" :label="t('sidebar.settings')" :to="'/settings'" class="my-0" />
                         </fwb-sidebar-item-group>
-                        <SidebarLink :icon="faSignOutAlt" :label="t('sidebar.signOut')" @click="signOut" />
+                        <SidebarLink :icon="faSignOutAlt" :label="t('sidebar.signOut')" @click="signOut(router)" />
                         <div class="absolute bottom-3 w-full">
                             <UserInfo />
                         </div>
@@ -50,6 +50,9 @@ import { useSidebar } from '../../../composables/useSidebar';
 import SidebarLinks from './SidebarLinks.vue';
 import { useSidebarLinks } from '../../../composables/useSidebarLinks';
 import UserInfo from './UserInfo.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const { visible, toggleSidebar } = useSidebar();
 

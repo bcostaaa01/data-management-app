@@ -1,7 +1,4 @@
 import supabase from "./config";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
 
 export const signUp = async (
   email: string,
@@ -35,7 +32,7 @@ export const signIn = async (email: string) => {
   return error;
 };
 
-export const signOut = async () => {
+export const signOut = async (router: any) => {
   const { error } = await supabase.auth.signOut();
   if (error) {
     return error;
@@ -45,10 +42,11 @@ export const signOut = async () => {
   }
 };
 
-export const checkAuth = async () => {
+export const checkAuth = async (router: any) => {
   const { data, error } = await supabase.auth.getUser();
-  if (error) {
-    router.push("/signin");
+  if (error || !data) {
+    router.push("/oauth");
+    return false;
   }
-  return data;
+  return true;
 };
