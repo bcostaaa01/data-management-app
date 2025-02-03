@@ -8,6 +8,7 @@
     "switchToSignIn": "Zum Anmelden wechseln",
     "switchToSignUp": "Zum Registrieren wechseln"
   },
+  "projectOffline": "Projekt ist offline. Bitte überprüfen Sie Ihr Projektstatus auf Supabase.",
   "supabaseHealth": {
     "projectHealth": "Projektstatus",
     "healthy": "Gesund",

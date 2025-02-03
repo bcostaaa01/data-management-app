@@ -4,7 +4,7 @@
       <FontAwesomeIcon :icon="faSpinner" class="animate-spin text-6xl" />
     </div>
 
-    <div v-else-if="isAuthenticated" class="flex flex-1">
+    <div v-else-if="isAuthenticated && isProjectOnline" class="flex flex-1">
       <Sidebar class="w-20" />
       <div class="flex flex-col flex-1 h-screen">
         <SmartSearchModal :isOpen="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" />
@@ -24,8 +24,14 @@
       </div>
     </div>
 
-    <div v-else class="flex flex-col justify-center items-center h-screen w-full">
+    <div v-else-if="!isAuthenticated && isProjectOnline"
+      class="flex flex-col justify-center items-center h-screen w-full">
       <OAuth />
+    </div>
+
+    <div v-else-if="isProjectOnline" class="flex flex-col justify-center items-center h-screen w-full">
+      <FontAwesomeIcon :icon="faExclamationTriangle" class="text-6xl mb-4" />
+      <h1 class="text-2xl font-bold">{{ t('projectOffline') }}</h1>
     </div>
   </div>
 </template>
@@ -45,8 +51,11 @@ import ProjectHealth from './components/SupabaseHealth/ProjectHealth.vue';
 import ChatbotLauncher from './components/Chatbot/ChatbotLauncher.vue';
 import AppBody from './components/Layout/AppBody.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { useGetSupabaseHealth } from './composables/useSupabase';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const router = useRouter();
 
@@ -58,7 +67,7 @@ const isProjectOnline = ref(false);
 
 onMounted(async () => {
   isAuthenticated.value = await checkAuth(router);
-  isProjectOnline.value = (await useGetSupabaseHealth()).data.status === 'healthy';
+  isProjectOnline.value = (await useGetSupabaseHealth()).data[0].healthy;
   isLoading.value = false;
 });
 

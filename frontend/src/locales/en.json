@@ -8,6 +8,7 @@
     "switchToSignIn": "Switch to Sign In",
     "switchToSignUp": "Switch to Sign Up"
   },
+  "projectOffline": "Project is offline. Please check your project status on Supabase.",
   "supabaseHealth": {
     "projectHealth": "Project Health",
     "healthy": "Healthy",
