@@ -46,6 +46,7 @@ import ChatbotLauncher from './components/Chatbot/ChatbotLauncher.vue';
 import AppBody from './components/Layout/AppBody.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { useGetSupabaseHealth } from './composables/useSupabase';
 
 const router = useRouter();
 
@@ -53,9 +54,11 @@ const smartSearchStore = useSmartSearchStore();
 
 const isLoading = ref(true);
 const isAuthenticated = ref(false);
+const isProjectOnline = ref(false);
 
 onMounted(async () => {
   isAuthenticated.value = await checkAuth(router);
+  isProjectOnline.value = (await useGetSupabaseHealth()).data.status === 'healthy';
   isLoading.value = false;
 });
 

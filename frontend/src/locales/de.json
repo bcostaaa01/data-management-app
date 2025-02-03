@@ -8,6 +8,12 @@
     "switchToSignIn": "Zum Anmelden wechseln",
     "switchToSignUp": "Zum Registrieren wechseln"
   },
+  "supabaseHealth": {
+    "projectHealth": "Projektstatus",
+    "healthy": "Gesund",
+    "unhealthy": "Krank",
+    "loading": "Lade..."
+  },
   "homePage": {
     "dashboards": "Dashboards",
     "dashboardsDescription": "Erstellen Sie Dashboards, um Ihre Daten zu visualisieren.",

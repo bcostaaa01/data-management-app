@@ -8,6 +8,12 @@
     "switchToSignIn": "Switch to Sign In",
     "switchToSignUp": "Switch to Sign Up"
   },
+  "supabaseHealth": {
+    "projectHealth": "Project Health",
+    "healthy": "Healthy",
+    "unhealthy": "Unhealthy",
+    "loading": "Loading..."
+  },
   "homePage": {
     "dashboards": "Dashboards",
     "dashboardsDescription": "View reports",
