@@ -1,14 +1,16 @@
-import { apiService } from "../services/apiService";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const useGetSupabaseHealth = async () => {
-  const response = await apiService(
-    `/api/v1/projects/lmzzocmmjtnupgajguma/health?services=realtime`,
-    {
+  try {
+    const response = await fetch(`${supabaseUrl}/auth/v1/health`, {
       headers: {
-        "Content-Type": "application/json",
+        apikey: supabaseAnonKey,
+        Authorization: `Bearer ${supabaseAnonKey}`,
       },
-    }
-  );
-  console.log(response);
-  return response;
+    });
+    return { healthy: response.ok };
+  } catch {
+    return { healthy: false };
+  }
 };
