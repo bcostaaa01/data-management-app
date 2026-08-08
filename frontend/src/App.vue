@@ -67,7 +67,7 @@ const isProjectOnline = ref(false);
 
 onMounted(async () => {
   isAuthenticated.value = await checkAuth(router);
-  isProjectOnline.value = (await useGetSupabaseHealth()).data[0].healthy;
+  isProjectOnline.value = (await useGetSupabaseHealth()).healthy;
   isLoading.value = false;
 });
 

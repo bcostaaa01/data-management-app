@@ -20,7 +20,6 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@primevue/themes": "^4.2.5",
     "@supabase/supabase-js": "^2.47.10",
-    "axios": "^1.7.9",
     "flowbite": "^2.5.2",
     "flowbite-vue": "^0.1.6",
     "jsdom": "^26.0.0",

@@ -29,8 +29,7 @@ const isLoading = ref(false);
 
 onMounted(async () => {
     isLoading.value = true;
-    const response = await useGetSupabaseHealth();
-    healthInfo.value = response.data[0];
+    healthInfo.value = await useGetSupabaseHealth();
     isLoading.value = false;
 });
 </script>
