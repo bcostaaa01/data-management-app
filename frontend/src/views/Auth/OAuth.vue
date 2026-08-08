@@ -1,33 +1,39 @@
 <template>
-    <fwb-card class="flex flex-col p-12">
+    <div class="fixed top-0 right-0 p-4">
+        <ThemeToggle />
+    </div>
+
+    <fwb-card class="flex flex-col p-12 dark:bg-gray-800">
         <div v-if="!isMagicLinkRequested">
-            <h1 class="text-2xl font-bold mb-10">{{ t(isSignUp ? 'auth.signUp' : 'auth.signIn') }}</h1>
+            <h1 class="text-2xl font-bold mb-10 text-gray-900 dark:text-white">{{ t(isSignUp ? 'auth.signUp' :
+                'auth.signIn') }}</h1>
             <form @submit.prevent="isSignUp ? handleSignUp() : handleSignIn()">
                 <div class="mb-4">
                     <label for="email"
-                        class="block text-sm font-medium text-gray-300 mb-2 dark:text-white">Email</label>
+                        class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">Email</label>
                     <input v-model="email" type="email" id="email" required
-                        class="mt-1 block w-full px-3 py-2 border border-gray-600 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white" />
                 </div>
 
                 <div v-if="isSignUp" class="mb-4">
                     <label for="password"
-                        class="block text-sm font-medium text-gray-300 mb-2 dark:text-white">Password</label>
+                        class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">Password</label>
                     <input v-model="password" type="password" id="password" required
-                        class="mt-1 block w-full px-3 py-2 border border-gray-600 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white" />
 
                     <div class="mb-4">
                         <label for="firstName"
-                            class="block text-sm font-medium text-gray-300 mb-2 dark:text-white">First
+                            class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">First
                             Name</label>
                         <input v-model="firstName" type="text" id="firstName" required
-                            class="mt-1 block w-full px-3 py-2 border border-gray-600 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white" />
                     </div>
                     <div class="mb-4">
-                        <label for="lastName" class="block text-sm font-medium text-gray-300 mb-2 dark:text-white">Last
+                        <label for="lastName"
+                            class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">Last
                             Name</label>
                         <input v-model="lastName" type="text" id="lastName" required
-                            class="mt-1 block w-full px-3 py-2 border border-gray-600 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white" />
                     </div>
                 </div>
 
@@ -46,10 +52,11 @@
             </form>
         </div>
 
-        <div v-if="isMagicLinkRequested" class="text-center text-white py-8 text-sm flex flex-col items-center">
-            <FontAwesomeIcon :icon="faEnvelope" class="h-12 w-12 text-white mb-4" />
+        <div v-if="isMagicLinkRequested"
+            class="text-center text-gray-900 dark:text-white py-8 text-sm flex flex-col items-center">
+            <FontAwesomeIcon :icon="faEnvelope" class="h-12 w-12 text-gray-900 dark:text-white mb-4" />
             <h1 class="text-2xl font-bold mb-4">{{ t('auth.magicLinkSent') }}</h1>
-            <p class="text-sm text-gray-400">{{ t('auth.magicLinkSentInfo') }}</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{{ t('auth.magicLinkSentInfo') }}</p>
         </div>
     </fwb-card>
 </template>
@@ -61,6 +68,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faEnvelope, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useI18n } from 'vue-i18n';
 import { FwbCard } from "flowbite-vue";
+import ThemeToggle from '../../components/ThemeSwitch/ThemeToggle.vue';
 
 const { t } = useI18n();
 

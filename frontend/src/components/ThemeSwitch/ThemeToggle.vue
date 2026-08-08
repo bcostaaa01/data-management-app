@@ -16,7 +16,7 @@ import { ref } from 'vue';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-const theme = ref(false);
+const theme = ref(document.documentElement.classList.contains('dark'));
 
 const toggleTheme = () => {
     theme.value = !theme.value;
