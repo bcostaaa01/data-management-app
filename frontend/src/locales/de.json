@@ -121,6 +121,8 @@
     "tables": "Tabellen",
     "settings": "Einstellungen",
     "signOut": "Ausloggen",
-    "chatbot": "Chatbot"
+    "chatbot": "Chatbot",
+    "expand": "Seitenleiste öffnen",
+    "collapse": "Seitenleiste schließen"
   }
 }

@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import SidebarLink from './SidebarLink.vue';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface Props {
     links: { icon: IconProp; label: string; to: string }[];

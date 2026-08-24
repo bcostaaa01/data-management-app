@@ -5,7 +5,7 @@
     </div>
 
     <div v-else-if="isAuthenticated && isProjectOnline" class="flex flex-1">
-      <Sidebar class="w-20" />
+      <Sidebar />
       <div class="flex flex-col flex-1 h-screen">
         <SmartSearchModal :isOpen="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" />
         <main class="flex-1 p-4">
