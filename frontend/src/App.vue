@@ -4,23 +4,21 @@
       <FontAwesomeIcon :icon="faSpinner" class="animate-spin text-6xl" />
     </div>
 
-    <div v-else-if="isAuthenticated && isProjectOnline" class="flex flex-1">
-      <Sidebar />
-      <div class="flex flex-col flex-1 h-screen">
-        <SmartSearchModal />
-        <main class="flex-1 p-4">
-          <AppBody>
-            <RouterView />
-          </AppBody>
-          <div class="fixed top-0 right-0 p-4 flex flex-row gap-2">
-            <ProjectHealth />
-            <ThemeToggle />
-            <RefreshServiceWorker />
-          </div>
-          <div class="fixed bottom-0 right-0 p-4 flex flex-row gap-2">
-            <ChatbotLauncher />
-          </div>
-        </main>
+    <div v-else-if="isAuthenticated && isProjectOnline" class="flex flex-col flex-1 h-screen">
+      <TopNavbar />
+      <div class="flex flex-1 min-h-0">
+        <Sidebar />
+        <div class="flex flex-col flex-1 h-full">
+          <SmartSearchModal />
+          <main class="flex-1 p-4">
+            <AppBody>
+              <RouterView />
+            </AppBody>
+            <div class="fixed bottom-0 right-0 p-4 flex flex-row gap-2">
+              <ChatbotLauncher />
+            </div>
+          </main>
+        </div>
       </div>
     </div>
 
@@ -40,13 +38,11 @@
 import { onMounted, ref, watch } from 'vue';
 import { RouterView } from 'vue-router';
 import Sidebar from './components/UI/Sidebar/Sidebar.vue';
-import RefreshServiceWorker from './components/ServiceWorker/RefreshServiceWorker.vue';
+import TopNavbar from './components/UI/Navbar/TopNavbar.vue';
 import SmartSearchModal from './components/SmartSearch/SmartSearchModal.vue';
 import { checkAuth } from './supabase/auth';
 import OAuth from './views/Auth/OAuth.vue';
 import { useRouter } from 'vue-router';
-import ThemeToggle from './components/ThemeSwitch/ThemeToggle.vue';
-import ProjectHealth from './components/SupabaseHealth/ProjectHealth.vue';
 import ChatbotLauncher from './components/Chatbot/ChatbotLauncher.vue';
 import AppBody from './components/Layout/AppBody.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
