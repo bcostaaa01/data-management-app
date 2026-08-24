@@ -121,6 +121,8 @@
     "tables": "Tables",
     "settings": "Settings",
     "signOut": "Sign out",
-    "chatbot": "Chatbot"
+    "chatbot": "Chatbot",
+    "expand": "Expand sidebar",
+    "collapse": "Collapse sidebar"
   }
 }
