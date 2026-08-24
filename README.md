@@ -33,13 +33,18 @@ Sign up/sign in send magic links that redirect to `http://localhost:5173/`. Add 
 
 ### 4. Create the storage bucket
 
-Create a bucket named exactly `reports` (**Storage → New bucket**) — file upload/download/list all reference this bucket name directly. (The Reports page can also create this bucket for you if it's missing.)
-
-Creating the bucket does **not** grant any access to it — `storage.objects` has RLS enabled by default, and a bucket being "public" only affects reads via a public URL, not writes. Without a policy, uploads fail with `new row violates row-level security policy`. In the SQL editor:
+Both creating the `reports` bucket and reading/writing files in it are gated by RLS — `anon`/`authenticated` requests get no access to `storage.buckets` or `storage.objects` by default, regardless of whether the bucket itself is public or private. Run this in the SQL editor **before** creating the bucket:
 
 ```sql
-drop policy if exists "Authenticated users can manage report files" on storage.objects;
+-- Lets an authenticated user create the bucket itself (needed for the
+-- Reports page's own "Create bucket" action, or skip this and create
+-- it manually via Storage → New bucket instead)
+create policy "Authenticated users can create buckets"
+on storage.buckets for insert
+to authenticated
+with check (true);
 
+-- Actual file access, once the 'reports' bucket exists
 create policy "Authenticated users can upload reports"
 on storage.objects for insert
 to authenticated
@@ -62,17 +67,19 @@ to authenticated
 using (bucket_id = 'reports');
 ```
 
-If you already ran the earlier single `for all` version of this policy and are still hitting `new row violates row-level security policy`, run these two queries first to see what's actually registered before re-running the block above:
+Then either click **Create bucket** on the Reports page (it shows up automatically if an upload fails because the bucket is missing), or create it yourself: **Storage → New bucket**, named exactly `reports`.
 
-```sql
-select id, name, public from storage.buckets;
+#### Troubleshooting
 
-select policyname, cmd, roles, qual, with_check
-from pg_policies
-where schemaname = 'storage' and tablename = 'objects';
-```
+Still seeing `new row violates row-level security policy` after adding these policies? Two most common causes, in order of likelihood:
 
-The first confirms the bucket's `id` is exactly `reports` (case/whitespace matters); the second shows every policy actually on `storage.objects` — if your policy isn't listed, it was created against a different project than the one in `.env`, or the statement errored silently.
+1. **The bucket doesn't actually exist yet.** No policy can satisfy a `bucket_id = 'reports'` check if there's no row in `storage.buckets` with that id — run `select id, name, public from storage.buckets;` to confirm it's there.
+2. **The policy was created against a different Supabase project** than the one in your `.env`. Run this to see exactly what's registered on the project you're actually connected to:
+   ```sql
+   select policyname, cmd, roles, qual, with_check
+   from pg_policies
+   where schemaname = 'storage' and tablename in ('objects', 'buckets');
+   ```
 
 ### 5. Create the `app_settings` table
 

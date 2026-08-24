@@ -113,7 +113,7 @@
                 <p>{{ errorMessage }}</p>
                 <p v-if="errorDetail" class="mt-1 text-xs font-mono break-words opacity-75">{{ errorDetail }}</p>
                 <p v-if="isRlsError" class="mt-2 text-sm">{{ t('reports.rlsErrorHint') }}</p>
-                <button v-if="failedStep === 4 && !isRlsError" type="button" :disabled="isCreatingBucket"
+                <button v-if="failedStep === 4" type="button" :disabled="isCreatingBucket"
                     class="mt-2 text-sm font-semibold underline hover:no-underline disabled:opacity-50"
                     @click="handleCreateBucket">
                     {{ isCreatingBucket ? t('reports.creatingBucket') : t('reports.createBucket') }}
