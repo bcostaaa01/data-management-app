@@ -1,13 +1,19 @@
 <template>
     <div class="border-2 border-gray-300 rounded-md p-6">
         <div class="flex flex-col space-y-6">
-            <div class="flex items-center">
-                <input type="file" @change="handleFileUpload" accept=".csv,.xlsx,.xls" :disabled="isFileUploaded"
-                    class="w-64" />
-                <fwb-button class="ml-4 min-w-[150px]" :disabled="!file || isFileUploaded" @click="handleInitialUpload">
-                    {{ t("reports.uploadFile") }}
-                </fwb-button>
-                <span v-if="isFileUploaded" class="ml-4 text-green-500">{{ t("reports.fileUploaded") }}</span>
+            <div>
+                <div class="flex items-center">
+                    <input type="file" @change="handleFileUpload" accept=".csv,.xlsx,.xls" :disabled="isFileUploaded"
+                        class="w-64" />
+                    <fwb-button class="ml-4 min-w-[150px]" :disabled="!file || isFileUploaded"
+                        @click="handleInitialUpload">
+                        {{ t("reports.uploadFile") }}
+                    </fwb-button>
+                    <span v-if="isFileUploaded" class="ml-4 text-green-500">{{ t("reports.fileUploaded") }}</span>
+                </div>
+                <span class="block mt-2 text-xs text-gray-500 dark:text-gray-400">{{
+                    t('reports.supportedFormats')
+                }}</span>
             </div>
 
             <div class="flex items-center">

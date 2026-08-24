@@ -53,7 +53,8 @@
     "uploadingToSupabase": "Uploading to Supabase...",
     "sendReport": "Send Report",
     "sendReportLoading": "Sending report...",
-    "sendReportSuccess": "Report sent successfully"
+    "sendReportSuccess": "Report sent successfully",
+    "supportedFormats": "Supported formats: CSV, XLSX, XLS"
   },
   "tables": {
     "title": "Tables",
@@ -82,6 +83,7 @@
     "uploadingMessage": "Uploading file...",
     "beforeUploadMessage": "Please select a file",
     "importDataInfo": "Please select a table and a file to import the data into the table.",
+    "supportedFormats": "Supported formats: CSV, XLSX, XLS",
     "processingFile": "Processing data..."
   },
   "fileView": {

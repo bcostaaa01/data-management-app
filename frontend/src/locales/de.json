@@ -53,7 +53,8 @@
     "uploadingToSupabase": "Uploading to Supabase...",
     "sendReport": "Bericht senden",
     "sendReportLoading": "Bericht wird gesendet...",
-    "sendReportSuccess": "Bericht erfolgreich gesendet"
+    "sendReportSuccess": "Bericht erfolgreich gesendet",
+    "supportedFormats": "Unterstützte Formate: CSV, XLSX, XLS"
   },
   "tables": {
     "title": "Tabellen",
@@ -87,6 +88,7 @@
     "uploadingMessage": "Datei wird hochgeladen...",
     "beforeUploadMessage": "Bitte wählen Sie eine Datei aus",
     "importDataInfo": "Bitte wählen Sie eine Tabelle und eine Datei aus, um die Daten in die Tabelle zu importieren.",
+    "supportedFormats": "Unterstützte Formate: CSV, XLSX, XLS",
     "processingFile": "Verarbeite Daten..."
   },
   "chatbot": {

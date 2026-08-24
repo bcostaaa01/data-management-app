@@ -17,6 +17,9 @@
                         <input type="file" id="file" @change="handleFileUpload" :disabled="!selectedTable"
                             accept=".csv,.xlsx,.xls"
                             class="w-full px-7 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                        <span class="block mt-2 text-xs text-gray-500 dark:text-gray-400">{{
+                            t('dataImport.supportedFormats')
+                        }}</span>
                     </div>
 
                     <div v-if="!isLoading" class="flex justify-center items-center mt-6">
