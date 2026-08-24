@@ -93,12 +93,16 @@ const handleProcessData = async () => {
     isLoading.value = true;
     loadingMessage.value = t("reports.processingData");
 
+    const currentFile = file.value;
+    const extension = currentFile.name.split('.').pop()?.toLowerCase();
+    const isExcel = extension === 'xlsx' || extension === 'xls';
+
     try {
         const reader = new FileReader();
         reader.onload = async (e) => {
             try {
-                const fileContent = e.target?.result as string;
-                processedData.value = await processData(fileContent);
+                const fileContent = e.target?.result as string | ArrayBuffer;
+                processedData.value = await processData(fileContent, currentFile.name);
                 isDataProcessed.value = true;
             } catch (error) {
                 console.error('Error processing file:', error);
@@ -106,7 +110,16 @@ const handleProcessData = async () => {
                 isLoading.value = false;
             }
         };
-        reader.readAsText(file.value);
+        reader.onerror = () => {
+            console.error('Error reading file:', reader.error);
+            isLoading.value = false;
+        };
+
+        if (isExcel) {
+            reader.readAsArrayBuffer(currentFile);
+        } else {
+            reader.readAsText(currentFile);
+        }
     } catch (error) {
         console.error('Error reading file:', error);
         isLoading.value = false;

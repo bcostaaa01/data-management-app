@@ -78,7 +78,7 @@
     "importButton": "Import Data",
     "successMessage": "Data imported successfully",
     "goToFile": "You can view the file in the dashboard. Go to ",
-    "errorMessage": "Please select a file",
+    "errorMessage": "Failed to import file. Please check the file and try again.",
     "uploadingMessage": "Uploading file...",
     "beforeUploadMessage": "Please select a file",
     "importDataInfo": "Please select a table and a file to import the data into the table.",

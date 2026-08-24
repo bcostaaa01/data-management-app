@@ -12,6 +12,7 @@ export default defineConfig({
       workbox: {
         skipWaiting: true,
         globPatterns: ["**/*.{js,ts,vue,css,html,png,svg,ico}"],
+        maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       },
       devOptions: {
         enabled: true,

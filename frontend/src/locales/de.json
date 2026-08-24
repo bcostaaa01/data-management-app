@@ -83,7 +83,7 @@
     "importButton": "Daten importieren",
     "successMessage": "Daten erfolgreich importiert",
     "goToFile": "Sie können die Datei im Dashboard ansehen. Gehe zu ",
-    "errorMessage": "Bitte wählen Sie eine Datei aus",
+    "errorMessage": "Datei konnte nicht importiert werden. Bitte überprüfen Sie die Datei und versuchen Sie es erneut.",
     "uploadingMessage": "Datei wird hochgeladen...",
     "beforeUploadMessage": "Bitte wählen Sie eine Datei aus",
     "importDataInfo": "Bitte wählen Sie eine Tabelle und eine Datei aus, um die Daten in die Tabelle zu importieren.",
