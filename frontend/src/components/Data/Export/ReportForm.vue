@@ -1,76 +1,155 @@
 <template>
-    <div class="border-2 border-gray-300 rounded-md p-6">
-        <div class="flex flex-col space-y-6">
-            <div>
-                <div class="flex items-center">
-                    <input type="file" @change="handleFileUpload" accept=".csv,.xlsx,.xls" :disabled="isFileUploaded"
-                        class="w-64" />
-                    <fwb-button class="ml-4 min-w-[150px]" :disabled="!file || isFileUploaded"
-                        @click="handleInitialUpload">
-                        {{ t("reports.uploadFile") }}
-                    </fwb-button>
-                    <span v-if="isFileUploaded" class="ml-4 text-green-500">{{ t("reports.fileUploaded") }}</span>
-                </div>
-                <span class="block mt-2 text-xs text-gray-500 dark:text-gray-400">{{
-                    t('reports.supportedFormats')
-                }}</span>
-            </div>
+    <fwb-card class="dark:bg-gray-800">
+        <div class="p-2 sm:p-4">
+            <fwb-timeline>
+                <fwb-timeline-item>
+                    <fwb-timeline-point>
+                        <FontAwesomeIcon v-if="file" :icon="faCheck" class="text-white text-xs" />
+                    </fwb-timeline-point>
+                    <fwb-timeline-content>
+                        <fwb-timeline-title>{{ t('reports.selectFile') }}</fwb-timeline-title>
+                        <fwb-timeline-body>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">{{
+                                t('reports.selectFilePrompt') }}</p>
 
-            <div class="flex items-center">
-                <fwb-button class="min-w-[150px]" :disabled="!isFileUploaded || isDataProcessed"
-                    @click="handleProcessData">
-                    {{ t("reports.processData") }}
+                            <fwb-file-input v-if="!file || isEditingFile" v-model="file"
+                                accept=".csv,.xlsx,.xls" class="max-w-xs" />
+                            <div v-else class="flex flex-wrap items-center gap-3">
+                                <fwb-badge type="green">
+                                    <FontAwesomeIcon :icon="faCheck" class="mr-1" />
+                                    {{ file.name }} — {{ t('reports.fileSelected') }}
+                                </fwb-badge>
+                                <button v-if="!isRunning" type="button"
+                                    class="text-xs text-gray-500 dark:text-gray-400 underline hover:no-underline"
+                                    @click="isEditingFile = true">
+                                    {{ t('reports.selectFile') }}
+                                </button>
+                            </div>
+
+                            <p v-if="!file" class="mt-2 text-xs text-gray-400 dark:text-gray-500">
+                                {{ t('reports.noFileSelected') }}
+                            </p>
+                        </fwb-timeline-body>
+                    </fwb-timeline-content>
+                </fwb-timeline-item>
+
+                <fwb-timeline-item>
+                    <fwb-timeline-point>
+                        <FontAwesomeIcon v-if="activeStep === 2" :icon="faSpinner"
+                            class="text-white text-xs animate-spin" />
+                        <FontAwesomeIcon v-else-if="isDataProcessed" :icon="faCheck" class="text-white text-xs" />
+                    </fwb-timeline-point>
+                    <fwb-timeline-content>
+                        <fwb-timeline-title>{{ t('reports.processData') }}</fwb-timeline-title>
+                        <fwb-timeline-body>
+                            <span v-if="activeStep === 2" class="text-sm text-gray-500 dark:text-gray-400">
+                                {{ loadingMessage }}
+                            </span>
+                            <fwb-badge v-else-if="isDataProcessed" type="green">
+                                <FontAwesomeIcon :icon="faCheck" class="mr-1" />{{ t('reports.dataProcessed') }}
+                            </fwb-badge>
+                        </fwb-timeline-body>
+                    </fwb-timeline-content>
+                </fwb-timeline-item>
+
+                <fwb-timeline-item>
+                    <fwb-timeline-point>
+                        <FontAwesomeIcon v-if="activeStep === 3" :icon="faSpinner"
+                            class="text-white text-xs animate-spin" />
+                        <FontAwesomeIcon v-else-if="isPdfGenerated" :icon="faCheck" class="text-white text-xs" />
+                    </fwb-timeline-point>
+                    <fwb-timeline-content>
+                        <fwb-timeline-title>{{ t('reports.generatePdf') }}</fwb-timeline-title>
+                        <fwb-timeline-body>
+                            <span v-if="activeStep === 3" class="text-sm text-gray-500 dark:text-gray-400">
+                                {{ loadingMessage }}
+                            </span>
+                            <fwb-badge v-else-if="isPdfGenerated" type="green">
+                                <FontAwesomeIcon :icon="faCheck" class="mr-1" />{{ t('reports.pdfReady') }}
+                            </fwb-badge>
+                        </fwb-timeline-body>
+                    </fwb-timeline-content>
+                </fwb-timeline-item>
+
+                <fwb-timeline-item>
+                    <fwb-timeline-point>
+                        <FontAwesomeIcon v-if="activeStep === 4" :icon="faSpinner"
+                            class="text-white text-xs animate-spin" />
+                        <FontAwesomeIcon v-else-if="isSupabaseUploaded" :icon="faCheck" class="text-white text-xs" />
+                    </fwb-timeline-point>
+                    <fwb-timeline-content>
+                        <fwb-timeline-title>{{ t('reports.uploadToSupabase') }}</fwb-timeline-title>
+                        <fwb-timeline-body>
+                            <span v-if="activeStep === 4" class="text-sm text-gray-500 dark:text-gray-400">
+                                {{ loadingMessage }}
+                            </span>
+                            <fwb-badge v-else-if="isSupabaseUploaded" type="green">
+                                <FontAwesomeIcon :icon="faCheck" class="mr-1" />{{
+                                    t('reports.uploadedToSupabase') }}
+                            </fwb-badge>
+                        </fwb-timeline-body>
+                    </fwb-timeline-content>
+                </fwb-timeline-item>
+            </fwb-timeline>
+
+            <div v-if="!isSupabaseUploaded" class="mt-2">
+                <fwb-button :disabled="!file || isRunning" @click="runPipeline">
+                    <FontAwesomeIcon v-if="isRunning" :icon="faSpinner" class="animate-spin mr-2" />
+                    {{ errorMessage ? t('reports.retryGenerate') : t('reports.generateReport') }}
                 </fwb-button>
-                <span v-if="isDataProcessed" class="ml-4 text-green-500">{{ t("reports.dataProcessed") }}</span>
             </div>
 
-            <div class="flex items-center">
-                <fwb-button class="min-w-[150px]" :disabled="!isDataProcessed || isPdfGenerated"
-                    @click="handleGeneratePdf">
-                    {{ t("reports.generatePdf") }}
-                </fwb-button>
-                <span v-if="isPdfGenerated" class="ml-4 text-green-500">{{ t("reports.pdfGenerated") }}</span>
-            </div>
+            <fwb-alert v-if="errorMessage" type="danger" class="mt-4" closable @close="errorMessage = ''">
+                {{ errorMessage }}
+            </fwb-alert>
 
-            <div class="flex items-center">
-                <fwb-button class="min-w-[150px]" :disabled="!isPdfGenerated || isSupabaseUploaded"
-                    @click="handleSupabaseUpload">
-                    {{ t("reports.uploadToSupabase") }}
-                </fwb-button>
-                <span v-if="isSupabaseUploaded" class="ml-4 text-green-500">{{ t("reports.uploadedToSupabase") }}</span>
-            </div>
+            <fwb-alert v-if="isSupabaseUploaded" type="success" class="mt-6" icon>
+                <p>
+                    <span class="font-medium">{{ pdfName }}</span> — {{ t('reports.reportReady') }}.
+                    <router-link to="/dashboard" class="font-semibold underline hover:no-underline">
+                        {{ t('reports.viewInDashboard') }}
+                    </router-link>
+                </p>
+                <button type="button" class="mt-2 text-sm font-semibold underline hover:no-underline"
+                    @click="resetForm">
+                    {{ t('reports.generateAnother') }}
+                </button>
+            </fwb-alert>
         </div>
-
-        <div v-if="isLoading" class="flex items-center mt-6">
-            <FontAwesomeIcon :icon="faSpinner" spin />
-            <span class="ml-2">{{ loadingMessage }}</span>
-        </div>
-
-        <div v-if="isSupabaseUploaded" class="mt-6 bg-gray-700 rounded-md p-2">
-            <span class="text-white">{{ pdfName }} {{ t("reports.pdfGenerated") }}
-                <router-link to="/dashboard" class="text-blue-500">/dashboards</router-link>
-            </span>
-        </div>
-    </div>
+    </fwb-card>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { ref, watch } from 'vue';
+import { faSpinner, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { useSupabaseUpload } from '../../../composables/useSupabaseUpload';
-import { FwbButton } from 'flowbite-vue';
+import {
+    FwbButton,
+    FwbCard,
+    FwbFileInput,
+    FwbBadge,
+    FwbAlert,
+    FwbTimeline,
+    FwbTimelineItem,
+    FwbTimelinePoint,
+    FwbTimelineContent,
+    FwbTimelineTitle,
+    FwbTimelineBody,
+} from 'flowbite-vue';
 import { useProcessData } from '../../../composables/useProcessData';
 import { useGeneratePdf } from '../../../composables/useGeneratePdf';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const pdfName = ref("");
-const isLoading = ref(false);
 const loadingMessage = ref("");
+const errorMessage = ref("");
+const activeStep = ref(0);
+const isRunning = ref(false);
+const isEditingFile = ref(false);
 const file = ref<File | null>(null);
 
-const isFileUploaded = ref(false);
 const isDataProcessed = ref(false);
 const isPdfGenerated = ref(false);
 const isSupabaseUploaded = ref(false);
@@ -81,93 +160,77 @@ const { uploadFileToFolder } = useSupabaseUpload();
 const { processData } = useProcessData();
 const { convertToPdf } = useGeneratePdf();
 
-const handleFileUpload = (event: Event) => {
-    const input = event.target as HTMLInputElement;
-    if (input.files?.length) {
-        file.value = input.files[0];
-    }
-};
+watch(file, () => {
+    isEditingFile.value = false;
+});
 
-const handleInitialUpload = () => {
-    if (!file.value) return;
-    isFileUploaded.value = true;
-};
-
-const handleProcessData = async () => {
-    if (!file.value) return;
-
-    isLoading.value = true;
-    loadingMessage.value = t("reports.processingData");
-
-    const currentFile = file.value;
-    const extension = currentFile.name.split('.').pop()?.toLowerCase();
+const readFileContents = (targetFile: File): Promise<string | ArrayBuffer> => {
+    const extension = targetFile.name.split('.').pop()?.toLowerCase();
     const isExcel = extension === 'xlsx' || extension === 'xls';
 
-    try {
+    return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = async (e) => {
-            try {
-                const fileContent = e.target?.result as string | ArrayBuffer;
-                processedData.value = await processData(fileContent, currentFile.name);
-                isDataProcessed.value = true;
-            } catch (error) {
-                console.error('Error processing file:', error);
-            } finally {
-                isLoading.value = false;
+        reader.onload = (e) => {
+            if (e.target?.result == null) {
+                reject(new Error('Failed to read file'));
+                return;
             }
+            resolve(e.target.result);
         };
-        reader.onerror = () => {
-            console.error('Error reading file:', reader.error);
-            isLoading.value = false;
-        };
+        reader.onerror = () => reject(reader.error ?? new Error('Failed to read file'));
 
         if (isExcel) {
-            reader.readAsArrayBuffer(currentFile);
+            reader.readAsArrayBuffer(targetFile);
         } else {
-            reader.readAsText(currentFile);
+            reader.readAsText(targetFile);
         }
-    } catch (error) {
-        console.error('Error reading file:', error);
-        isLoading.value = false;
-    }
+    });
 };
 
-const handleGeneratePdf = async () => {
-    if (!processedData.value) return;
+const runPipeline = async () => {
+    if (!file.value || isRunning.value) return;
+    const currentFile = file.value;
 
-    isLoading.value = true;
-    loadingMessage.value = t("reports.generatingPdf");
+    isRunning.value = true;
+    isEditingFile.value = false;
+    errorMessage.value = "";
 
     try {
+        activeStep.value = 2;
+        loadingMessage.value = t("reports.processingData");
+        const fileContent = await readFileContents(currentFile);
+        processedData.value = await processData(fileContent, currentFile.name);
+        isDataProcessed.value = true;
+
+        activeStep.value = 3;
+        loadingMessage.value = t("reports.generatingPdf");
         const pdfBlob = await convertToPdf(processedData.value);
-        pdfName.value = file.value?.name || 'uploaded_file.pdf';
-        isPdfGenerated.value = !!pdfBlob;
-        return pdfBlob;
-    } catch (error) {
-        console.error('Error generating PDF:', error);
-    } finally {
-        isLoading.value = false;
-    }
-};
+        if (!pdfBlob) throw new Error('PDF generation failed');
+        pdfName.value = currentFile.name;
+        isPdfGenerated.value = true;
 
-const handleSupabaseUpload = async () => {
-    const pdfBlob = await handleGeneratePdf();
-
-    if (!pdfBlob) {
-        console.error('No PDF blob to upload');
-        return;
-    }
-
-    isLoading.value = true;
-    loadingMessage.value = t("reports.uploadingToSupabase");
-
-    try {
+        activeStep.value = 4;
+        loadingMessage.value = t("reports.uploadingToSupabase");
         await uploadFileToFolder(pdfBlob as File, pdfName.value, 'reports');
         isSupabaseUploaded.value = true;
     } catch (error) {
-        console.error('Error uploading to Supabase:', error);
+        console.error('Error generating report:', error);
+        errorMessage.value = t("reports.stepError");
     } finally {
-        isLoading.value = false;
+        activeStep.value = 0;
+        isRunning.value = false;
     }
+};
+
+const resetForm = () => {
+    file.value = null;
+    isEditingFile.value = false;
+    isDataProcessed.value = false;
+    isPdfGenerated.value = false;
+    isSupabaseUploaded.value = false;
+    processedData.value = null;
+    pdfName.value = "";
+    errorMessage.value = "";
+    activeStep.value = 0;
 };
 </script>
