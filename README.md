@@ -33,7 +33,18 @@ Sign up/sign in send magic links that redirect to `http://localhost:5173/`. Add 
 
 ### 4. Create the storage bucket
 
-Create a bucket named exactly `reports` (**Storage → New bucket**) — file upload/download/list all reference this bucket name directly.
+Create a bucket named exactly `reports` (**Storage → New bucket**) — file upload/download/list all reference this bucket name directly. (The Reports page can also create this bucket for you if it's missing.)
+
+Creating the bucket does **not** grant any access to it — `storage.objects` has RLS enabled by default, and a bucket being "public" only affects reads via a public URL, not writes. Without a policy, uploads fail with `new row violates row-level security policy`. In the SQL editor:
+
+```sql
+create policy "Authenticated users can manage report files"
+on storage.objects
+for all
+to authenticated
+using (bucket_id = 'reports')
+with check (bucket_id = 'reports');
+```
 
 ### 5. Create the `app_settings` table
 
