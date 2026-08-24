@@ -60,9 +60,6 @@
                                 <span v-if="activeStep === 2" class="text-sm text-gray-500 dark:text-gray-400">
                                     {{ loadingMessage }}
                                 </span>
-                                <fwb-badge v-else-if="isDataProcessed" type="green">
-                                    <FontAwesomeIcon :icon="faCheck" class="mr-1" />{{ t('reports.dataProcessed') }}
-                                </fwb-badge>
                             </div>
                         </li>
 
@@ -83,9 +80,6 @@
                                 <span v-if="activeStep === 3" class="text-sm text-gray-500 dark:text-gray-400">
                                     {{ loadingMessage }}
                                 </span>
-                                <fwb-badge v-else-if="isPdfGenerated" type="green">
-                                    <FontAwesomeIcon :icon="faCheck" class="mr-1" />{{ t('reports.pdfReady') }}
-                                </fwb-badge>
                             </div>
                         </li>
 
@@ -102,10 +96,6 @@
                                 <span v-if="activeStep === 4" class="text-sm text-gray-500 dark:text-gray-400">
                                     {{ loadingMessage }}
                                 </span>
-                                <fwb-badge v-else-if="isSupabaseUploaded" type="green">
-                                    <FontAwesomeIcon :icon="faCheck" class="mr-1" />{{
-                                        t('reports.uploadedToSupabase') }}
-                                </fwb-badge>
                             </div>
                         </li>
                     </ol>

@@ -5,7 +5,7 @@
 
     <span class="flex my-3 font-bold text-gray-500 dark:text-gray-100">{{ t("reports.reportsInfo") }}</span>
 
-    <div class="flex-1 justify-start mt-10 w-full mr-6">
+    <div class="flex-1 justify-start mt-4 w-full mr-6">
         <ReportForm />
     </div>
 </template>
