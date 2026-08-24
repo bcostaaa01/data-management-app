@@ -118,6 +118,27 @@
                     @click="handleCreateBucket">
                     {{ isCreatingBucket ? t('reports.creatingBucket') : t('reports.createBucket') }}
                 </button>
+
+                <details v-if="failedStep === 4" class="mt-3">
+                    <summary class="text-sm font-semibold cursor-pointer select-none">
+                        {{ t('reports.showSetupSql') }}
+                    </summary>
+                    <div class="mt-2 rounded-md bg-black/5 dark:bg-black/30 p-3">
+                        <p class="text-xs mb-2 opacity-90">{{ t('reports.setupSqlHint') }}</p>
+                        <pre class="text-xs font-mono whitespace-pre-wrap break-words max-h-48 overflow-y-auto">{{ SETUP_SQL }}</pre>
+                        <div class="flex flex-wrap items-center gap-3 mt-2">
+                            <button type="button"
+                                class="text-sm font-semibold underline hover:no-underline"
+                                @click="copySetupSql">
+                                {{ copied ? t('reports.sqlCopied') : t('reports.copySql') }}
+                            </button>
+                            <a v-if="sqlEditorUrl" :href="sqlEditorUrl" target="_blank" rel="noopener noreferrer"
+                                class="text-sm font-semibold underline hover:no-underline">
+                                {{ t('reports.openSqlEditor') }} ↗
+                            </a>
+                        </div>
+                    </div>
+                </details>
             </fwb-alert>
 
             <fwb-alert v-if="isSupabaseUploaded" type="success" class="mt-6" icon>
@@ -156,6 +177,50 @@ import { useGeneratePdf } from '../../../composables/useGeneratePdf';
 import { useI18n } from 'vue-i18n';
 
 type StepState = 'pending' | 'active' | 'done' | 'error';
+
+const SETUP_SQL = `create policy "Authenticated users can create buckets"
+on storage.buckets for insert
+to authenticated
+with check (true);
+
+create policy "Authenticated users can upload reports"
+on storage.objects for insert
+to authenticated
+with check (bucket_id = 'reports');
+
+create policy "Authenticated users can update reports"
+on storage.objects for update
+to authenticated
+using (bucket_id = 'reports')
+with check (bucket_id = 'reports');
+
+create policy "Authenticated users can read reports"
+on storage.objects for select
+to authenticated
+using (bucket_id = 'reports');
+
+create policy "Authenticated users can delete reports"
+on storage.objects for delete
+to authenticated
+using (bucket_id = 'reports');`;
+
+const projectRef = (import.meta.env.VITE_SUPABASE_URL as string | undefined)
+    ?.match(/^https:\/\/([a-z0-9-]+)\.supabase\.co/i)?.[1];
+const sqlEditorUrl = projectRef ? `https://supabase.com/dashboard/project/${projectRef}/sql/new` : null;
+
+const copied = ref(false);
+let copiedTimeout: ReturnType<typeof setTimeout> | undefined;
+
+const copySetupSql = async () => {
+    try {
+        await navigator.clipboard.writeText(SETUP_SQL);
+        copied.value = true;
+        clearTimeout(copiedTimeout);
+        copiedTimeout = setTimeout(() => (copied.value = false), 2000);
+    } catch (error) {
+        console.error('Error copying setup SQL:', error);
+    }
+};
 
 const { t } = useI18n();
 const pdfName = ref("");
