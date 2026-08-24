@@ -67,6 +67,7 @@
     "copySql": "SQL kopieren",
     "sqlCopied": "Kopiert!",
     "openSqlEditor": "Supabase SQL-Editor öffnen",
+    "statusPlaceholder": "Hier werden Fortschritt und eventuelle Probleme angezeigt.",
     "reportReady": "Ihr Bericht ist fertig",
     "viewInDashboard": "Im Dashboard ansehen",
     "sendReportSuccess": "Bericht erfolgreich gesendet",
