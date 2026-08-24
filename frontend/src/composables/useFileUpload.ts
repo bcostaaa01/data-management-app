@@ -1,5 +1,7 @@
 import { ref } from "vue";
 
+const EXCEL_EXTENSIONS = ["xlsx", "xls"];
+
 export function useFileUpload() {
     const file = ref<File | null>(null);
 
@@ -10,5 +12,32 @@ export function useFileUpload() {
         }
     };
 
-    return { file, handleFileUpload };
+    const readFile = (): Promise<string | ArrayBuffer> => {
+        return new Promise((resolve, reject) => {
+            if (!file.value) {
+                reject(new Error("No file selected"));
+                return;
+            }
+
+            const extension = file.value.name.split(".").pop()?.toLowerCase();
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                if (reader.result === null) {
+                    reject(new Error("Failed to read file"));
+                    return;
+                }
+                resolve(reader.result);
+            };
+            reader.onerror = () => reject(reader.error ?? new Error("Failed to read file"));
+
+            if (extension && EXCEL_EXTENSIONS.includes(extension)) {
+                reader.readAsArrayBuffer(file.value);
+            } else {
+                reader.readAsText(file.value);
+            }
+        });
+    };
+
+    return { file, handleFileUpload, readFile };
 }

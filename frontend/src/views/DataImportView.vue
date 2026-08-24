@@ -15,7 +15,11 @@
                             t('dataImport.selectFile')
                         }}</label>
                         <input type="file" id="file" @change="handleFileUpload" :disabled="!selectedTable"
+                            accept=".csv,.xlsx,.xls"
                             class="w-full px-7 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                        <span class="block mt-2 text-xs text-gray-500 dark:text-gray-400">{{
+                            t('dataImport.supportedFormats')
+                        }}</span>
                     </div>
 
                     <div v-if="!isLoading" class="flex justify-center items-center mt-6">
@@ -67,7 +71,7 @@ import { useProcessData } from '../composables/useProcessData';
 import TableSelector from '../components/Data/Integrations/TableSelector.vue';
 
 const { t } = useI18n();
-const { file, handleFileUpload } = useFileUpload();
+const { file, handleFileUpload, readFile } = useFileUpload();
 const { insertRows } = useTablesStore();
 const { processData } = useProcessData();
 
@@ -81,8 +85,8 @@ const uploadWasSuccessful = ref(false);
 
 const selectedTable = ref('');
 
-const items = ref([]);
-const columns = ref([]);
+const items = ref<Record<string, any>[]>([]);
+const columns = ref<{ field: string; header: string }[]>([]);
 
 const updateSelectedTable = (newTable: string) => {
     selectedTable.value = newTable;
@@ -90,17 +94,21 @@ const updateSelectedTable = (newTable: string) => {
 
 const importDataToSupabase = async (table: string) => {
     isLoading.value = true;
-    const reader = new FileReader();
-    reader.readAsText(file.value as Blob);
-    reader.onload = async () => {
-        const data = reader.result;
-        const processedData = await processData(data);
+    beforeUpload.value = false;
+
+    try {
+        const data = await readFile();
+        const processedData = await processData(data, file.value!.name);
         await insertRows(table, processedData.data);
         items.value = processedData.data;
-        columns.value = processedData.columns as never[];
+        columns.value = processedData.columns;
         uploadWasSuccessful.value = true;
+    } catch (error) {
+        console.error('Error importing file:', error);
+        uploadWasSuccessful.value = false;
+    } finally {
         isLoading.value = false;
-    };
+    }
 };
 
 onMounted(() => {

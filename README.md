@@ -33,7 +33,46 @@ Sign up/sign in send magic links that redirect to `http://localhost:5173/`. Add 
 
 ### 4. Create the storage bucket
 
-Create a bucket named exactly `reports` (**Storage → New bucket**) — file upload/download/list all reference this bucket name directly.
+Create a bucket named exactly `reports` (**Storage → New bucket**) — file upload/download/list all reference this bucket name directly. (The Reports page can also create this bucket for you if it's missing.)
+
+Creating the bucket does **not** grant any access to it — `storage.objects` has RLS enabled by default, and a bucket being "public" only affects reads via a public URL, not writes. Without a policy, uploads fail with `new row violates row-level security policy`. In the SQL editor:
+
+```sql
+drop policy if exists "Authenticated users can manage report files" on storage.objects;
+
+create policy "Authenticated users can upload reports"
+on storage.objects for insert
+to authenticated
+with check (bucket_id = 'reports');
+
+create policy "Authenticated users can update reports"
+on storage.objects for update
+to authenticated
+using (bucket_id = 'reports')
+with check (bucket_id = 'reports');
+
+create policy "Authenticated users can read reports"
+on storage.objects for select
+to authenticated
+using (bucket_id = 'reports');
+
+create policy "Authenticated users can delete reports"
+on storage.objects for delete
+to authenticated
+using (bucket_id = 'reports');
+```
+
+If you already ran the earlier single `for all` version of this policy and are still hitting `new row violates row-level security policy`, run these two queries first to see what's actually registered before re-running the block above:
+
+```sql
+select id, name, public from storage.buckets;
+
+select policyname, cmd, roles, qual, with_check
+from pg_policies
+where schemaname = 'storage' and tablename = 'objects';
+```
+
+The first confirms the bucket's `id` is exactly `reports` (case/whitespace matters); the second shows every policy actually on `storage.objects` — if your policy isn't listed, it was created against a different project than the one in `.env`, or the statement errored silently.
 
 ### 5. Create the `app_settings` table
 

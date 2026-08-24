@@ -40,20 +40,32 @@
   "reports": {
     "title": "Reports",
     "reportsInfo": "Here you can generate PDF reports from your data.",
-    "uploadFile": "Upload File",
-    "uploadFileLoading": "Uploading file...",
-    "fileUploaded": "File uploaded",
+    "selectFile": "Select File",
+    "fileSelected": "File selected",
     "processData": "Process Data",
     "dataProcessed": "Data processed",
     "generatePdf": "Generate PDF",
-    "pdfGenerated": "generated can be found in ",
+    "pdfReady": "PDF generated",
     "uploadToSupabase": "Upload to Supabase",
     "uploadedToSupabase": "Uploaded to Supabase",
+    "processingData": "Processing data...",
     "generatingPdf": "Generating PDF...",
     "uploadingToSupabase": "Uploading to Supabase...",
+    "generateReport": "Generate Report",
+    "retryGenerate": "Retry",
+    "generateAnother": "Generate another report",
     "sendReport": "Send Report",
     "sendReportLoading": "Sending report...",
-    "sendReportSuccess": "Report sent successfully"
+    "selectFilePrompt": "Choose a CSV or Excel file to turn into a PDF report",
+    "noFileSelected": "No file selected yet",
+    "stepError": "This step failed — please try again.",
+    "createBucket": "Create 'reports' storage bucket & retry",
+    "creatingBucket": "Creating bucket...",
+    "rlsErrorHint": "Your Supabase 'reports' storage bucket is missing a policy that lets you write to it. See the README's Supabase Setup section (step 4) for the SQL to fix this.",
+    "reportReady": "Your report is ready",
+    "viewInDashboard": "View in dashboard",
+    "sendReportSuccess": "Report sent successfully",
+    "supportedFormats": "Supported formats: CSV, XLSX, XLS"
   },
   "tables": {
     "title": "Tables",
@@ -70,7 +82,8 @@
     "emptyFolderPlaceholder": "No files found in this folder",
     "loadingFile": "Loading PDF...",
     "dashboardInfo": "Here you can view the files you have generated. You can also download them here.",
-    "emailAddress": "E-Mail Address"
+    "emailAddress": "E-Mail Address",
+    "download": "Download"
   },
   "dataImport": {
     "title": "Data Import",
@@ -78,16 +91,19 @@
     "importButton": "Import Data",
     "successMessage": "Data imported successfully",
     "goToFile": "You can view the file in the dashboard. Go to ",
-    "errorMessage": "Please select a file",
+    "errorMessage": "Failed to import file. Please check the file and try again.",
     "uploadingMessage": "Uploading file...",
     "beforeUploadMessage": "Please select a file",
     "importDataInfo": "Please select a table and a file to import the data into the table.",
+    "supportedFormats": "Supported formats: CSV, XLSX, XLS",
     "processingFile": "Processing data..."
   },
   "fileView": {
     "fileDetails": "File Details",
     "fileName": "File Name",
-    "loadingFile": "Loading PDF..."
+    "loadingFile": "Loading PDF...",
+    "pdfLoadError": "This PDF could not be loaded. It may have been moved or deleted.",
+    "retry": "Retry"
   },
   "chatbot": {
     "title": "Chatbot",

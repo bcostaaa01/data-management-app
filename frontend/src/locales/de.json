@@ -40,20 +40,32 @@
   "reports": {
     "title": "Berichte",
     "reportsInfo": "Hier können Sie PDF-Berichte aus Ihren Daten generieren.",
-    "uploadFile": "Datei hochladen",
-    "uploadFileLoading": "Datei wird hochgeladen...",
-    "fileUploaded": "Datei hochgeladen",
+    "selectFile": "Datei auswählen",
+    "fileSelected": "Datei ausgewählt",
     "processData": "Daten verarbeiten",
     "dataProcessed": "Daten verarbeitet",
     "generatePdf": "PDF generieren",
-    "pdfGenerated": "generiert kann im Dashboard gefunden werden an ",
+    "pdfReady": "PDF generiert",
     "uploadToSupabase": "Zu Supabase hochladen",
     "uploadedToSupabase": "hochgeladen",
+    "processingData": "Daten werden verarbeitet...",
     "generatingPdf": "PDF generieren...",
     "uploadingToSupabase": "Uploading to Supabase...",
+    "generateReport": "Bericht erstellen",
+    "retryGenerate": "Erneut versuchen",
+    "generateAnother": "Weiteren Bericht erstellen",
     "sendReport": "Bericht senden",
     "sendReportLoading": "Bericht wird gesendet...",
-    "sendReportSuccess": "Bericht erfolgreich gesendet"
+    "selectFilePrompt": "Wählen Sie eine CSV- oder Excel-Datei, die in einen PDF-Bericht umgewandelt werden soll",
+    "noFileSelected": "Noch keine Datei ausgewählt",
+    "stepError": "Dieser Schritt ist fehlgeschlagen — bitte versuchen Sie es erneut.",
+    "createBucket": "'reports'-Speicher-Bucket erstellen & erneut versuchen",
+    "creatingBucket": "Bucket wird erstellt...",
+    "rlsErrorHint": "Ihrem Supabase-Speicher-Bucket 'reports' fehlt eine Richtlinie, die Schreibzugriff erlaubt. Das SQL zur Behebung finden Sie im Abschnitt 'Supabase Setup' der README (Schritt 4).",
+    "reportReady": "Ihr Bericht ist fertig",
+    "viewInDashboard": "Im Dashboard ansehen",
+    "sendReportSuccess": "Bericht erfolgreich gesendet",
+    "supportedFormats": "Unterstützte Formate: CSV, XLSX, XLS"
   },
   "tables": {
     "title": "Tabellen",
@@ -70,12 +82,15 @@
     "emptyFolderPlaceholder": "Keine Dateien in diesem Ordner",
     "loadingFile": "Lade PDF...",
     "dashboardInfo": "Hier können Sie die Dateien ansehen, die Sie generiert haben. Sie können sie auch hier herunterladen.",
-    "emailAddress": "E-Mail Adresse"
+    "emailAddress": "E-Mail Adresse",
+    "download": "Herunterladen"
   },
   "fileView": {
     "fileDetails": "Dateidetails",
     "fileName": "Dateiname",
-    "loadingFile": "Lade PDF..."
+    "loadingFile": "Lade PDF...",
+    "pdfLoadError": "Diese PDF-Datei konnte nicht geladen werden. Sie wurde möglicherweise verschoben oder gelöscht.",
+    "retry": "Erneut versuchen"
   },
   "dataImport": {
     "title": "Datenimport",
@@ -83,10 +98,11 @@
     "importButton": "Daten importieren",
     "successMessage": "Daten erfolgreich importiert",
     "goToFile": "Sie können die Datei im Dashboard ansehen. Gehe zu ",
-    "errorMessage": "Bitte wählen Sie eine Datei aus",
+    "errorMessage": "Datei konnte nicht importiert werden. Bitte überprüfen Sie die Datei und versuchen Sie es erneut.",
     "uploadingMessage": "Datei wird hochgeladen...",
     "beforeUploadMessage": "Bitte wählen Sie eine Datei aus",
     "importDataInfo": "Bitte wählen Sie eine Tabelle und eine Datei aus, um die Daten in die Tabelle zu importieren.",
+    "supportedFormats": "Unterstützte Formate: CSV, XLSX, XLS",
     "processingFile": "Verarbeite Daten..."
   },
   "chatbot": {
