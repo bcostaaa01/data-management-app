@@ -124,5 +124,14 @@
     "chatbot": "Chatbot",
     "expand": "Expand sidebar",
     "collapse": "Collapse sidebar"
+  },
+  "smartSearch": {
+    "title": "Smart search",
+    "placeholder": "Search for reports...",
+    "triggerPlaceholder": "Search...",
+    "noResultsFor": "No results for \"{query}\"",
+    "noFiles": "No files yet",
+    "navigateHint": "navigate",
+    "openHint": "open"
   }
 }

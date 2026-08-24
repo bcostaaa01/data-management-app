@@ -124,5 +124,14 @@
     "chatbot": "Chatbot",
     "expand": "Seitenleiste öffnen",
     "collapse": "Seitenleiste schließen"
+  },
+  "smartSearch": {
+    "title": "Intelligente Suche",
+    "placeholder": "Nach Berichten suchen...",
+    "triggerPlaceholder": "Suchen...",
+    "noResultsFor": "Keine Ergebnisse für \"{query}\"",
+    "noFiles": "Noch keine Dateien",
+    "navigateHint": "navigieren",
+    "openHint": "öffnen"
   }
 }
