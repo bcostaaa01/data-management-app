@@ -10,7 +10,7 @@
             </button>
         </div>
 
-        <SmartSearchInput v-if="visible" class="px-3 shrink-0" />
+        <SmartSearchInput v-if="visible" class="mx-3 shrink-0" />
 
         <nav class="flex-1 overflow-y-auto overflow-x-hidden px-3 py-2">
             <template v-if="visible">

@@ -7,7 +7,7 @@
     <div v-else-if="isAuthenticated && isProjectOnline" class="flex flex-1">
       <Sidebar />
       <div class="flex flex-col flex-1 h-screen">
-        <SmartSearchModal :isOpen="smartSearchStore.isOpen" @close="smartSearchStore.closeModal" />
+        <SmartSearchModal />
         <main class="flex-1 p-4">
           <AppBody>
             <RouterView />
@@ -42,7 +42,6 @@ import { RouterView } from 'vue-router';
 import Sidebar from './components/UI/Sidebar/Sidebar.vue';
 import RefreshServiceWorker from './components/ServiceWorker/RefreshServiceWorker.vue';
 import SmartSearchModal from './components/SmartSearch/SmartSearchModal.vue';
-import { useSmartSearchStore } from './stores/smart-search.store';
 import { checkAuth } from './supabase/auth';
 import OAuth from './views/Auth/OAuth.vue';
 import { useRouter } from 'vue-router';
@@ -58,8 +57,6 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 const router = useRouter();
-
-const smartSearchStore = useSmartSearchStore();
 
 const isLoading = ref(true);
 const isAuthenticated = ref(false);
