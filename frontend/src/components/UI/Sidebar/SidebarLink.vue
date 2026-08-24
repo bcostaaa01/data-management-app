@@ -1,6 +1,6 @@
 <template>
     <fwb-sidebar-item :tag="to ? 'router-link' : 'button'" :link="to"
-        class="flex items-center w-full py-2 my-1 text-left rounded-lg transition-colors duration-200 hover:!bg-blue-500 hover:!text-white dark:hover:!bg-blue-500 dark:hover:!text-white"
+        class="flex items-center w-full py-2 my-1 text-left rounded-lg transition-colors duration-200"
         :class="activeClasses">
         <template #icon>
             <font-awesome-icon :icon="icon" class="w-4 h-4 shrink-0" />
@@ -27,6 +27,8 @@ const props = defineProps<Props>();
 const route = useRoute();
 
 const activeClasses = computed(() => {
-    return props.to && route.path === props.to ? 'bg-blue-500 text-white' : '';
+    return props.to && route.path === props.to
+        ? 'bg-gray-200 dark:bg-gray-600 text-gray-900 dark:text-white font-semibold'
+        : '';
 });
 </script>
