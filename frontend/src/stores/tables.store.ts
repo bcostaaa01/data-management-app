@@ -35,16 +35,15 @@ export const useTablesStore = defineStore("tables", () => {
   };
 
   const insertRows = async (tableName: string, rows: any[]) => {
-    console.log("Inserting rows into table:", tableName);
     const { data, error } = await supabase
       .from(tableName)
       .insert(rows)
       .select();
     if (error) {
       console.error("Error inserting rows:", error);
-    } else {
-      console.log("Rows inserted successfully:", data);
+      throw error;
     }
+    return data;
   };
 
   return {
