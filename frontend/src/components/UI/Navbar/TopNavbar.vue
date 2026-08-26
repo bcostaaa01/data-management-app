@@ -8,10 +8,7 @@
                 <span class="text-sm font-semibold text-gray-900 dark:text-white whitespace-nowrap">{{ appName
                     }}</span>
             </router-link>
-            <template v-if="pageTitle">
-                <span class="text-gray-300 dark:text-gray-600">/</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400 truncate">{{ pageTitle }}</span>
-            </template>
+            <Breadcrumbs :crumbs="breadcrumbs" />
         </div>
 
         <div class="flex items-center gap-2 shrink-0">
@@ -27,40 +24,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import SmartSearchInput from '../../SmartSearch/SmartSearchInput.vue';
 import ThemeToggle from '../../ThemeSwitch/ThemeToggle.vue';
 import ProjectHealth from '../../SupabaseHealth/ProjectHealth.vue';
 import RefreshServiceWorker from '../../ServiceWorker/RefreshServiceWorker.vue';
 import UserAvatarButton from './UserAvatarButton.vue';
+import Breadcrumbs from '../Navigation/Breadcrumbs.vue';
+import { useBreadcrumbs } from '../../../composables/useBreadcrumbs';
 
 const { t } = useI18n();
-const route = useRoute();
+const breadcrumbs = useBreadcrumbs(t);
 
 const appName = "Data Management App";
-
-const pageTitle = computed(() => {
-    if (route.name === 'file') return t('fileView.fileDetails');
-
-    switch (route.path) {
-        case '/':
-            return '';
-        case '/dashboard':
-            return t('dashboard.title');
-        case '/data-import':
-            return t('dataImport.title');
-        case '/reports':
-            return t('reports.title');
-        case '/tables':
-            return t('tables.title');
-        case '/settings':
-            return t('pages.settings');
-        case '/chatbot':
-            return t('chatbot.title');
-        default:
-            return '';
-    }
-});
 </script>
