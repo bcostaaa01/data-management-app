@@ -8,9 +8,13 @@
                 <span class="text-sm font-semibold text-gray-900 dark:text-white whitespace-nowrap">{{ appName
                     }}</span>
             </router-link>
-            <template v-if="pageTitle">
+            <template v-for="crumb in breadcrumbs" :key="crumb.to ?? crumb.label">
                 <span class="text-gray-300 dark:text-gray-600">/</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400 truncate">{{ pageTitle }}</span>
+                <router-link v-if="crumb.to" :to="crumb.to"
+                    class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 truncate">
+                    {{ crumb.label }}
+                </router-link>
+                <span v-else class="text-sm text-gray-500 dark:text-gray-400 truncate">{{ crumb.label }}</span>
             </template>
         </div>
 
@@ -28,7 +32,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import SmartSearchInput from '../../SmartSearch/SmartSearchInput.vue';
 import ThemeToggle from '../../ThemeSwitch/ThemeToggle.vue';
@@ -38,29 +42,32 @@ import UserAvatarButton from './UserAvatarButton.vue';
 
 const { t } = useI18n();
 const route = useRoute();
+const router = useRouter();
 
 const appName = "Data Management App";
 
-const pageTitle = computed(() => {
-    if (route.name === 'file') return t('fileView.fileDetails');
+interface Crumb {
+    label: string;
+    to?: string;
+}
 
-    switch (route.path) {
-        case '/':
-            return '';
-        case '/dashboard':
-            return t('dashboard.title');
-        case '/data-import':
-            return t('dataImport.title');
-        case '/reports':
-            return t('reports.title');
-        case '/tables':
-            return t('tables.title');
-        case '/settings':
-            return t('pages.settings');
-        case '/chatbot':
-            return t('chatbot.title');
-        default:
-            return '';
+const breadcrumbs = computed<Crumb[]>(() => {
+    const crumbs: Crumb[] = [];
+
+    let meta = route.meta as { breadcrumb?: string; parent?: string };
+    let path: string | undefined = route.path;
+    let isCurrent = true;
+
+    while (meta?.breadcrumb) {
+        crumbs.unshift({ label: t(meta.breadcrumb), to: isCurrent ? undefined : path });
+        isCurrent = false;
+
+        if (!meta.parent) break;
+        const resolved = router.resolve(meta.parent);
+        path = resolved.path;
+        meta = resolved.meta as typeof meta;
     }
+
+    return crumbs;
 });
 </script>

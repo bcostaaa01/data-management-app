@@ -15,25 +15,30 @@ const routes = [
   {
     path: "/dashboard",
     component: DashboardView,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, breadcrumb: "dashboard.title" },
   },
   {
     path: "/file/:id",
     name: "file",
     component: FileView,
-    meta: { requiresAuth: true },
+    meta: {
+      requiresAuth: true,
+      breadcrumb: "fileView.fileDetails",
+      parent: "/dashboard",
+    },
     props: true,
   },
   {
     path: "/data-import",
     component: DataImportView,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, breadcrumb: "dataImport.title" },
   },
   {
     path: "/reports",
     component: ReportsView,
     meta: {
       requiresAuth: true,
+      breadcrumb: "reports.title",
     },
   },
   {
@@ -41,6 +46,7 @@ const routes = [
     component: TablesView,
     meta: {
       requiresAuth: true,
+      breadcrumb: "tables.title",
     },
   },
   {
@@ -48,6 +54,7 @@ const routes = [
     component: SettingsView,
     meta: {
       requiresAuth: true,
+      breadcrumb: "pages.settings",
     },
   },
   {
@@ -55,6 +62,7 @@ const routes = [
     component: ChatbotView,
     meta: {
       requiresAuth: true,
+      breadcrumb: "chatbot.title",
     },
   },
   {
