@@ -15,6 +15,13 @@
     "unhealthy": "Unhealthy",
     "loading": "Loading..."
   },
+  "themeToggle": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "serviceWorker": {
+    "updateAvailable": "New version available. Click to update."
+  },
   "homePage": {
     "dashboards": "Dashboards",
     "dashboardsDescription": "View reports",
@@ -116,6 +123,7 @@
     "placeholder": "Type your message..."
   },
   "sidebar": {
+    "home": "Home",
     "reports": "Reports",
     "dataImport": "Data Import",
     "tables": "Tables",

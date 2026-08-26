@@ -15,6 +15,13 @@
     "unhealthy": "Krank",
     "loading": "Lade..."
   },
+  "themeToggle": {
+    "switchToLight": "Zum hellen Modus wechseln",
+    "switchToDark": "Zum dunklen Modus wechseln"
+  },
+  "serviceWorker": {
+    "updateAvailable": "Neue Version verfügbar. Klicken zum Aktualisieren."
+  },
   "homePage": {
     "dashboards": "Dashboards",
     "dashboardsDescription": "Erstellen Sie Dashboards, um Ihre Daten zu visualisieren.",
@@ -116,6 +123,7 @@
     "placeholder": "Schreibe eine Nachricht..."
   },
   "sidebar": {
+    "home": "Startseite",
     "reports": "Berichte",
     "dataImport": "Datenimport",
     "tables": "Tabellen",

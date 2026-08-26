@@ -1,25 +1,27 @@
 <template>
-    <div class="rounded-md bg-gray-200 dark:bg-gray-800">
-        <h1 class="text-sm mx-2 font-bold">{{ t('supabaseHealth.projectHealth') }}</h1>
-        <div class="text-xs mx-2">
-            <span v-if="isLoading">{{ t('supabaseHealth.loading') }}</span>
-            <span v-else-if="healthInfo.healthy">
-                <FontAwesomeIcon :icon="faCheckCircle" class="text-green-500" />
-                {{ t('supabaseHealth.healthy') }}
+    <fwb-tooltip placement="bottom">
+        <template #trigger>
+            <div class="flex items-center justify-center w-9 h-9 rounded-lg text-gray-500 dark:text-gray-300">
+                <FontAwesomeIcon v-if="isLoading" :icon="faCircleNotch" class="w-4 h-4 animate-spin" />
+                <FontAwesomeIcon v-else-if="healthInfo.healthy" :icon="faCheckCircle" class="w-4 h-4 text-green-500" />
+                <FontAwesomeIcon v-else :icon="faTimesCircle" class="w-4 h-4 text-red-500" />
+            </div>
+        </template>
+        <template #content>
+            <span class="text-sm">
+                {{ t('supabaseHealth.projectHealth') }}:
+                {{ isLoading ? t('supabaseHealth.loading') : healthInfo.healthy ? t('supabaseHealth.healthy') : t('supabaseHealth.unhealthy') }}
             </span>
-            <span v-else>
-                <FontAwesomeIcon :icon="faTimesCircle" class="text-red-500" />
-                {{ t('supabaseHealth.unhealthy') }}
-            </span>
-        </div>
-    </div>
+        </template>
+    </fwb-tooltip>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useGetSupabaseHealth } from "../../composables/useSupabase";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faTimesCircle, faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FwbTooltip } from "flowbite-vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();

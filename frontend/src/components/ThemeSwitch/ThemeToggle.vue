@@ -1,20 +1,17 @@
 <template>
-    <label class="inline-flex items-center cursor-pointer bg-gray-200 dark:bg-gray-800 rounded-md p-2">
-        <span class="text-gray-700 dark:text-gray-100 mr-3 ml-2">Theme</span>
-        <input type="checkbox" value="" class="sr-only peer">
-        <div @click="toggleTheme"
-            class="relative w-8 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full transition-colors duration-300"
-            :class="{ 'bg-blue-600': theme, 'bg-gray-200': !theme }">
-            <FontAwesomeIcon :icon="theme ? faSun : faMoon"
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-yellow-500 dark:text-yellow-500" />
-        </div>
-    </label>
+    <button @click="toggleTheme" type="button" :aria-label="theme ? t('themeToggle.switchToLight') : t('themeToggle.switchToDark')"
+        class="flex items-center justify-center w-9 h-9 rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+        <FontAwesomeIcon :icon="theme ? faSun : faMoon" class="w-4 h-4" />
+    </button>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+const { t } = useI18n();
 
 const theme = ref(document.documentElement.classList.contains('dark'));
 

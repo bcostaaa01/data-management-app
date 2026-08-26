@@ -15,8 +15,8 @@ type Link = {
 
 export const useSidebarLinks = (t: any) => {
   return computed<Link[]>(() => [
-    { icon: faHome, label: "Home", to: "/" },
-    { icon: faTachometerAlt, label: "Dashboard", to: "/dashboard" },
+    { icon: faHome, label: `${t("sidebar.home")}`, to: "/" },
+    { icon: faTachometerAlt, label: `${t("dashboard.title")}`, to: "/dashboard" },
     {
       icon: faFileImport,
       label: `${t("sidebar.dataImport")}`,
