@@ -190,6 +190,7 @@ import { FwbButton, FwbCard, FwbFileInput, FwbBadge, FwbAlert, FwbProgress } fro
 import { useProcessData } from '../../../composables/useProcessData';
 import { useGeneratePdf } from '../../../composables/useGeneratePdf';
 import { useI18n } from 'vue-i18n';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 
 type StepState = 'pending' | 'active' | 'done' | 'error';
 
@@ -293,14 +294,6 @@ const badgeClass = (state: StepState) => ({
 watch(file, () => {
     isEditingFile.value = false;
 });
-
-const getErrorMessage = (error: unknown): string => {
-    if (error instanceof Error) return error.message;
-    if (typeof error === 'object' && error !== null && 'message' in error) {
-        return String((error as { message: unknown }).message);
-    }
-    return String(error);
-};
 
 const clearError = () => {
     errorMessage.value = "";
