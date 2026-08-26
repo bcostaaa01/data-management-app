@@ -8,7 +8,7 @@
                 <span class="text-sm font-semibold text-gray-900 dark:text-white whitespace-nowrap">{{ appName
                     }}</span>
             </router-link>
-            <Breadcrumbs />
+            <Breadcrumbs :crumbs="breadcrumbs" />
         </div>
 
         <div class="flex items-center gap-2 shrink-0">
@@ -24,12 +24,17 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import SmartSearchInput from '../../SmartSearch/SmartSearchInput.vue';
 import ThemeToggle from '../../ThemeSwitch/ThemeToggle.vue';
 import ProjectHealth from '../../SupabaseHealth/ProjectHealth.vue';
 import RefreshServiceWorker from '../../ServiceWorker/RefreshServiceWorker.vue';
 import UserAvatarButton from './UserAvatarButton.vue';
 import Breadcrumbs from '../Navigation/Breadcrumbs.vue';
+import { useBreadcrumbs } from '../../../composables/useBreadcrumbs';
+
+const { t } = useI18n();
+const breadcrumbs = useBreadcrumbs(t);
 
 const appName = "Data Management App";
 </script>
